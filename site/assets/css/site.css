@@ -262,6 +262,49 @@ h2.section-title {
 .tag.warning { background: rgba(231, 255, 0, 0.12); border-color: rgba(231, 255, 0, 0.6); color: var(--yellow); }
 .tag.muted { opacity: .6; }
 
+/* ---------- Resource grid (structure change) ---------- */
+.resource-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+.resource-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--yellow);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .2s, transform .15s;
+}
+
+.resource-card:hover { transform: translateY(-2px); border-color: rgba(231, 255, 0, 0.35); }
+.resource-card h3 { color: var(--yellow); font-size: 20px; margin-bottom: 6px; }
+.resource-card p { color: var(--text); font-size: 14px; margin-bottom: 12px; }
+.resource-card .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+
+.resource-links { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 11px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  transition: border-color .15s, color .15s, background .15s;
+}
+
+.resource-link:hover { border-color: var(--yellow); color: var(--yellow); }
+
+.accent-blue { border-left-color: var(--teal); }
+.accent-amber { border-left-color: #e7c500; }
+.accent-green { border-left-color: #7adf9b; }
+.accent-pink { border-left-color: #ff7bd8; }
+
 /* ---------- Episode page layout ---------- */
 .episode {
   display: grid;

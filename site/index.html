@@ -62,52 +62,71 @@
     </section>
 
     <section class="section">
-      <div class="eyebrow">The series</div>
-      <h2 class="section-title">Four episodes · one workflow</h2>
-      <div class="grid cols-2">
+      <div class="eyebrow">Library</div>
+      <h2 class="section-title">Browse every episode in one place</h2>
+      <div class="resource-grid" id="resource-grid">
 
-        <a href="/ep01" class="card linkcard">
+        <article class="resource-card accent-blue" data-tags="ep01 site structure sitemap architecture competitors">
           <h3>EP01 · Site Structure</h3>
-          <p>Reverse-engineer top 10 competitors. Inventory every page. Draft your sitemap from real patterns, not guesswork.</p>
-          <div class="meta"><span class="tag warning">Kit ready</span><span class="tag">PDF + CSV</span></div>
-        </a>
+          <div class="meta"><span class="tag warning">Kit ready</span><span class="tag">PDF</span><span class="tag">CSV</span></div>
+          <p>Reverse-engineer top competitors, inventory every page they ship, and draft your sitemap from real patterns instead of guesswork.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="/ep01">Open episode</a>
+            <a class="resource-link" href="assets/kits/ep01-site-structure-guide.pdf" data-kit download>Download PDF</a>
+            <a class="resource-link" href="assets/kits/ep01-site-structure-tracker.csv" data-kit download>Tracker CSV</a>
+          </div>
+        </article>
 
-        <a href="/ep02" class="card linkcard">
+        <article class="resource-card accent-amber" data-tags="ep02 page structure sections layout homepage">
           <h3>EP02 · Page Structure</h3>
-          <p>Map the homepage sections that win. Lock your section order before you write a single word of copy.</p>
-          <div class="meta"><span class="tag warning">Kit ready</span><span class="tag">PDF + CSV</span></div>
-        </a>
+          <div class="meta"><span class="tag warning">Kit ready</span><span class="tag">PDF</span><span class="tag">CSV</span></div>
+          <p>Map the homepage sections that actually rank. Lock your section order before writing copy and keep GEO signals consistent.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="/ep02">Open episode</a>
+            <a class="resource-link" href="assets/kits/ep02-page-structure-guide.pdf" data-kit download>Download PDF</a>
+            <a class="resource-link" href="assets/kits/ep02-page-structure-tracker.csv" data-kit download>Tracker CSV</a>
+          </div>
+        </article>
 
-        <a href="/ep03" class="card linkcard">
+        <article class="resource-card accent-green" data-tags="ep03 serp analysis formats intent faq list local">
           <h3>EP03 · SERP Analysis</h3>
-          <p>Read the SERP before you write. Pick the right format (guide, list, FAQ, local) for each keyword.</p>
-          <div class="meta"><span class="tag warning">Kit ready</span><span class="tag">PDF + CSV</span></div>
-        </a>
+          <div class="meta"><span class="tag warning">Kit ready</span><span class="tag">PDF</span><span class="tag">CSV</span></div>
+          <p>Read the SERP before you write. Pick the right format (guide, list, FAQ, local) for each keyword and cite sources cleanly.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="/ep03">Open episode</a>
+            <a class="resource-link" href="assets/kits/ep03-serp-analysis-guide.pdf" data-kit download>Download PDF</a>
+            <a class="resource-link" href="assets/kits/ep03-serp-analysis-tracker.csv" data-kit download>Tracker CSV</a>
+          </div>
+        </article>
 
-        <a href="/ep04" class="card linkcard">
+        <article class="resource-card accent-pink" data-tags="ep04 keyword research intent clusters mapping">
           <h3>EP04 · Keyword Research</h3>
-          <p>Intent-first keyword research. Harvest, tag by intent, map to page types, and publish faster.</p>
-          <div class="meta"><span class="tag warning">Kit ready</span><span class="tag">PDF + CSV</span></div>
-        </a>
+          <div class="meta"><span class="tag warning">Kit ready</span><span class="tag">PDF</span></div>
+          <p>Intent-first keyword research: harvest, tag by intent, map to page types, and publish faster with GEO baked in.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="/ep04">Open episode</a>
+            <a class="resource-link" href="assets/kits/ep04-keyword-research-guide.pdf" data-kit download>Download PDF</a>
+          </div>
+        </article>
 
       </div>
     </section>
 
     <section class="section">
       <div class="eyebrow">Why this exists</div>
-      <h2 class="section-title">No paywall · No fluff · Run by an operator</h2>
+      <h2 class="section-title">Operator-grade SEO + GEO, free</h2>
       <div class="grid cols-3">
         <div class="card">
           <h3>Real client work</h3>
-          <p>Everything here is what we run on live Fictora Labs projects. The kits are the templates, not a watered-down version.</p>
+          <p>Every kit is what we run on live Fictora Labs projects — no watered-down freebies.</p>
         </div>
         <div class="card">
           <h3>Built for AI search</h3>
-          <p>GEO baked in: answer-first sections, named sources, FAQ schema. Built for Google + ChatGPT + Perplexity from day one.</p>
+          <p>Answer-first sections, cited sources, FAQ schema. Optimized for Google, ChatGPT, and Perplexity together.</p>
         </div>
         <div class="card">
           <h3>Weekly drops</h3>
-          <p>New episode + kit weekly on Instagram. Follow <a href="https://instagram.com/baisilboban" target="_blank" rel="noopener" style="color:var(--yellow);">@baisilboban</a> for the drop.</p>
+          <p>New episode + kit weekly on Instagram. Follow <a href="https://instagram.com/baisilboban" target="_blank" rel="noopener" style="color:var(--accent);">@baisilboban</a> for the drop.</p>
         </div>
       </div>
     </section>
@@ -119,5 +138,20 @@
   </div>
 </div>
 <script src="assets/js/email-capture.js"></script>
+<script>
+  (function () {
+    const input = document.getElementById('resource-search');
+    const cards = Array.from(document.querySelectorAll('.resource-card'));
+    if (!input || !cards.length) return;
+    const normalize = (str) => (str || '').toLowerCase();
+    input.addEventListener('input', () => {
+      const q = normalize(input.value);
+      cards.forEach((card) => {
+        const haystack = normalize(card.dataset.tags + ' ' + card.textContent);
+        card.style.display = haystack.includes(q) ? '' : 'none';
+      });
+    });
+  })();
+</script>
 </body>
 </html>
