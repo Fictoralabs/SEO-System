@@ -1,4 +1,4 @@
-/* Fictora Labs · SEO + GEO Command Center
+/* Fictora Labs · SEO + GEO Series
    Shared styles. Source of truth: ../../../DESIGN.md */
 
 :root {
@@ -342,6 +342,7 @@ h2.section-title {
 
 .episode ul { margin: 8px 0 0 18px; }
 .episode li { margin-bottom: 8px; color: var(--text); font-size: 14.5px; }
+.episode p { color: var(--text); font-size: 15px; margin-bottom: 12px; }
 
 .kit {
   background: rgba(15, 74, 67, 0.08);
@@ -375,7 +376,7 @@ h2.section-title {
 
 .kit a:first-of-type { margin-top: 0; }
 .kit a:hover { border-color: var(--green); background: rgba(15, 74, 67, 0.06); color: var(--green); }
-.kit a::before { content: "↓  "; color: var(--green); font-weight: 700; }
+.kit a::before { content: "→  "; color: var(--green); font-weight: 700; }
 .kit a.no-icon::before { content: ""; }
 
 .kit p {
@@ -385,6 +386,8 @@ h2.section-title {
 }
 
 .kit p:first-of-type { margin-top: 0; }
+.kit ul { margin: 8px 0 0 18px; }
+.kit li { color: var(--text); font-size: 14px; margin-bottom: 6px; }
 
 .coming { opacity: 0.75; }
 
