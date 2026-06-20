@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SEO + GEO Series · Fictora Labs</title>
-  <meta name="description" content="A reel-by-reel SEO and GEO series with inline episode documents and one relevant sheet tab per episode." />
+  <meta name="description" content="A step-by-step SEO and GEO reel series built around one main template sheet, episode pages, and Apps Script updates." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -39,30 +39,80 @@
 
     <section class="hero">
       <div>
-        <div class="badge">SEO/GEO series · Updated by episode</div>
-        <h1>Do SEO while building the website</h1>
-        <p class="lead">Actionable SEO and GEO tasks shared one reel at a time. Each episode page contains the document, the task, and the matching sheet-tab instructions for that episode.</p>
+        <div class="badge">SEO/GEO Series · Updated Episode by Episode</div>
+        <h1>Build SEO Into the Website From Day One</h1>
+        <p class="lead">This series explains SEO and GEO one reel at a time. Start by making one copy of the main template sheet. Then follow each episode page in order. As new reels are released, the episode page will share the steps and Apps Script needed to add or update that episode's tab inside the same copied sheet.</p>
         <div class="cta-row">
-          <a class="btn" href="ep01.html">Start with EP01 →</a>
-          <a class="btn ghost" href="https://instagram.com/baisilboban" target="_blank" rel="noopener">Follow the series</a>
+          <span class="btn disabled" aria-disabled="true">Open Main Template Sheet</span>
+          <a class="btn ghost" href="ep01.html">Start with EP01</a>
+          <a class="btn ghost" href="https://instagram.com/baisilboban" target="_blank" rel="noopener">Follow on Instagram</a>
         </div>
       </div>
       <div style="display:grid;gap:12px;">
         <div class="stat-card">
           <div class="stat-title">Released now</div>
           <div class="stat-value">EP01 · EP02 · EP03 · EP04</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The site grows with the reel series. New episode pages are added as the reels are released.</p>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The current workflow covers site structure, page structure, SERP analysis, and keyword intent.</p>
         </div>
         <div class="stat-card">
-          <div class="stat-title">Workflow</div>
-          <div class="stat-value">Reel · Page · Sheet</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Watch the reel, read the episode page, make a copy of the latest master sheet, then work only inside the relevant tab.</p>
+          <div class="stat-title">Next confirmed episode</div>
+          <div class="stat-value">EP05 · Keyword Research Part 2</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The next confirmed episode covers collecting keywords using DataForSEO.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Sheet workflow</div>
+          <div class="stat-value">One copied sheet for the full series</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Make a copy of the main template once. Future episode pages will explain how to update the same copied sheet.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="eyebrow">Episode tasks</div>
+      <div class="eyebrow">Workflow</div>
+      <h2 class="section-title">How the system works</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Step 1 · Watch the reel</h3>
+          <p>Each reel introduces one SEO/GEO concept and explains why that step matters.</p>
+        </div>
+        <div class="card">
+          <h3>Step 2 · Read the episode page</h3>
+          <p>Each episode page contains the concept explanation, task steps, sheet instructions, and Apps Script code when automation is needed.</p>
+        </div>
+        <div class="card">
+          <h3>Step 3 · Work inside the same sheet</h3>
+          <p>Use the main template copy as the working file. Open the tab mentioned in the episode page and complete only that episode's task.</p>
+        </div>
+        <div class="card">
+          <h3>Step 4 · Add new episode updates</h3>
+          <p>When a new reel needs a new tab or automation, paste the Apps Script from that episode page into the same copied sheet and run the given steps.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Start here</div>
+      <h2 class="section-title">Use one main template sheet</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Main Template Sheet</h3>
+          <p>Make one copy of the main SEO/GEO template sheet. This copied file becomes the working sheet for the whole series.</p>
+          <div class="meta">
+            <span class="tag warning">Template link pending</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Episode Pages</h3>
+          <p>Read the episode page before working on the sheet. The page explains the concept, what to fill, what script to paste, and what output to expect.</p>
+          <div class="meta">
+            <a class="resource-link" href="#episodes">View Episodes</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="episodes">
+      <div class="eyebrow">Episodes</div>
       <h2 class="section-title">Follow the series in order</h2>
       <div class="resource-grid" id="resource-grid">
 
@@ -94,9 +144,9 @@
         </article>
 
         <article class="resource-card accent-pink" data-tags="ep04 keyword research intent clusters mapping">
-          <h3>EP04 · Keyword Research</h3>
+          <h3>EP04 · Keyword Research Part 1</h3>
           <div class="meta"><span class="tag warning">Inline document</span><span class="tag">Sheet tab</span></div>
-          <p>Understand keyword intent before collecting keywords. Intent decides whether to create a blog, landing page, comparison page, or service page.</p>
+          <p>Before collecting keywords, understand search intent. Intent decides whether to create a blog page, landing page, comparison page, or service page.</p>
           <div class="resource-links">
             <a class="resource-link" href="ep04.html">Open episode</a>
           </div>
@@ -105,27 +155,31 @@
         <article class="resource-card accent-blue" data-tags="ep05 keyword research part 2 dataforseo">
           <h3>EP05 · Keyword Research Part 2</h3>
           <div class="meta"><span class="tag">Coming next</span></div>
-          <p>Next episode: collecting keywords with DataForSEO. The page and Instagram embed will be added after the reel URL and document are shared.</p>
+          <p>Coming next: collecting keywords using DataForSEO.</p>
         </article>
 
       </div>
     </section>
 
     <section class="section">
-      <div class="eyebrow">Series rule</div>
-      <h2 class="section-title">One reel, one page, one sheet tab</h2>
+      <div class="eyebrow">Important notes</div>
+      <h2 class="section-title">Keep the workflow clean</h2>
       <div class="grid cols-3">
         <div class="card">
-          <h3>Use the page first</h3>
-          <p>The episode page explains the concept, the task, and the matching sheet tab. The sheet is where the work is entered.</p>
+          <h3>Use one sheet</h3>
+          <p>The main template sheet is copied once and used throughout the series.</p>
         </div>
         <div class="card">
-          <h3>Use the latest sheet</h3>
-          <p>The master sheet is updated as new reels are released. Only released episodes need tabs and instructions.</p>
+          <h3>Do not skip the page</h3>
+          <p>The sheet is for doing the work. The episode page explains what to do, why it matters, and how to make the tab work.</p>
         </div>
         <div class="card">
-          <h3>Updated as released</h3>
-          <p>Each new reel gets its own page, inline document, and relevant sheet tab. Follow <a href="https://instagram.com/baisilboban" target="_blank" rel="noopener" style="color:var(--accent);">@baisilboban</a> for the next drop.</p>
+          <h3>Scripts are shared episode by episode</h3>
+          <p>When an episode needs automation, the Apps Script code and setup steps will be shared on that episode page.</p>
+        </div>
+        <div class="card">
+          <h3>Keep credentials private</h3>
+          <p>When API credentials are needed, enter them only inside your own copied sheet or Apps Script setup. Never enter private credentials into a public template.</p>
         </div>
       </div>
     </section>

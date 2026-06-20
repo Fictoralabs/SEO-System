@@ -201,6 +201,12 @@ h2.section-title {
 .btn:hover { transform: translateY(-1px); }
 .btn.ghost { background: transparent; color: var(--yellow); }
 .btn.ghost:hover { background: rgba(231, 255, 0, 0.1); }
+.btn.disabled {
+  opacity: 0.62;
+  cursor: default;
+  box-shadow: none;
+}
+.btn.disabled:hover { transform: none; }
 
 /* ---------- Cards ---------- */
 .stat-card {
