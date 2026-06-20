@@ -57,7 +57,7 @@
         <div class="stat-card">
           <div class="stat-title">Script output</div>
           <div class="stat-value">Robots · Sitemap · Pages</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script tries to collect the technical page list automatically.</p>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script collects high-priority sitemap pages automatically.</p>
         </div>
       </div>
     </section>
@@ -177,7 +177,7 @@
         </div>
         <div class="card">
           <h3>Why use them?</h3>
-          <p>They help collect competitor pages faster. Instead of opening every page manually, the script can use sitemap data to build a page list for review.</p>
+          <p>They help collect competitor pages faster. Instead of opening every page manually, the script can use sitemap data to build a filtered page list for review.</p>
         </div>
       </div>
     </section>
@@ -188,7 +188,7 @@
       <div class="grid cols-2">
         <div class="card">
           <h3>What this tab contains</h3>
-          <p>After sitemap extraction, this tab lists discovered competitor page URLs, page paths, sitemap priority, last modified date, page type notes, and source sitemap.</p>
+          <p>After sitemap extraction, this tab lists only competitor sitemap URLs with priority 1.0, 0.9, or 0.8, along with page paths, last modified date, page type notes, and source sitemap.</p>
           <div class="meta">
             <span class="tag warning">Script output</span>
           </div>
@@ -268,7 +268,7 @@
         <div>
           <h3>How this connects to the sheet</h3>
           <p><strong>EP01 COMPETITORS</strong> is for the search result research. Add the exact ranking page URL and the competitor domain here. The ranking page explains the page type that is currently winning for the keyword.</p>
-          <p><strong>EP01 SITE STRUCTURE</strong> is for the page inventory. The script adds sitemap pages here when the competitor website exposes them. This tab is then reviewed to decide the pages needed for the website being planned.</p>
+          <p><strong>EP01 SITE STRUCTURE</strong> is for the page inventory. The script adds only priority 1.0, 0.9, and 0.8 sitemap pages here when the competitor website exposes them. This tab is then reviewed to decide the pages needed for the website being planned.</p>
         </div>
         <div>
           <div class="kit">
@@ -301,7 +301,7 @@
         </div>
         <div class="card">
           <h3>Priority and dates may be missing</h3>
-          <p>Many sitemaps do not include priority or last modified date. Blank values are normal in those cases.</p>
+          <p>Many sitemaps do not include priority or last modified date. EP01 skips URLs with missing priority and keeps only priority 1.0, 0.9, and 0.8 pages so the tab stays focused.</p>
         </div>
       </div>
     </section>
@@ -319,6 +319,7 @@ const EP01_COMPETITORS_SHEET = 'EP01 COMPETITORS';
 const EP01_SITE_STRUCTURE_SHEET = 'EP01 SITE STRUCTURE';
 const EP01_MAX_PAGES_PER_COMPETITOR = 250;
 const EP01_MAX_CHILD_SITEMAPS = 20;
+const EP01_ALLOWED_SITEMAP_PRIORITIES = ['1.0', '0.9', '0.8'];
 
 function onOpen() {
   ep01CreateMenu_();
@@ -451,7 +452,7 @@ function ep01ExtractSitemapPages() {
     structure.getRange(5, 1, pageRows.length, 8).setValues(pageRows);
   }
 
-  SpreadsheetApp.getUi().alert('EP01 sitemap page extraction complete. Rows added: ' + pageRows.length);
+  SpreadsheetApp.getUi().alert('EP01 sitemap page extraction complete. Rows added: ' + pageRows.length + '. Only priority 1.0, 0.9, and 0.8 pages are included.');
 }
 
 function ep01PrepareCompetitorSheet_(sheet) {
@@ -480,7 +481,7 @@ function ep01PrepareCompetitorSheet_(sheet) {
 function ep01PrepareStructureSheet_(sheet) {
   sheet.clearContents();
   sheet.getRange('A1:H1').breakApart().merge().setValue('EP01 SITE STRUCTURE');
-  sheet.getRange('A2:H2').breakApart().merge().setValue('Pages found from competitor sitemaps. Review these pages to understand repeated site-structure patterns.');
+  sheet.getRange('A2:H2').breakApart().merge().setValue('Only sitemap pages with priority 1.0, 0.9, or 0.8 are added. Review these pages to understand repeated site-structure patterns.');
   sheet.getRange('A4:H4').setValues([[
     'Competitor',
     'Domain',
@@ -559,10 +560,12 @@ function ep01CollectPagesFromSitemap_(sitemapUrl, limit) {
       if (pages.length >= limit) return;
       var loc = ep01ExtractTag_(block, 'loc');
       if (!loc) return;
+      var priority = ep01ExtractTag_(block, 'priority');
+      if (!ep01IsAllowedSitemapPriority_(priority)) return;
       pages.push({
         loc: loc,
         lastmod: ep01ExtractTag_(block, 'lastmod'),
-        priority: ep01ExtractTag_(block, 'priority'),
+        priority: priority,
         source: current
       });
     });
@@ -602,6 +605,17 @@ function ep01ExtractSitemapLines_(robotsText) {
 function ep01LooksLikeSitemap_(text) {
   var body = String(text || '').toLowerCase();
   return body.indexOf('<urlset') !== -1 || body.indexOf('<sitemapindex') !== -1 || body.indexOf('<loc>') !== -1;
+}
+
+function ep01IsAllowedSitemapPriority_(priority) {
+  var normalized = String(priority || '').trim();
+  if (!normalized) return false;
+  if (normalized.charAt(0) === '.') normalized = '0' + normalized;
+
+  var numberValue = Number(normalized);
+  if (isNaN(numberValue)) return false;
+
+  return EP01_ALLOWED_SITEMAP_PRIORITIES.indexOf(numberValue.toFixed(1)) !== -1;
 }
 
 function ep01ExtractBlocks_(xml, tag) {
