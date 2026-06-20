@@ -137,6 +137,7 @@ h2.section-title {
 }
 
 .section { margin-top: 56px; }
+.section-subhead { margin-top: 22px; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -149,14 +150,20 @@ h2.section-title {
   align-items: center;
   padding: 36px 32px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--green-dark), #102018);
+  background: linear-gradient(135deg, #087f83 0%, #0f4a43 42%, #081b33 100%);
   color: var(--panel-text);
   box-shadow: var(--shadow);
 }
 
 .hero > *, .episode > *, .card, .resource-card, .kit { min-width: 0; }
 .hero .lead { color: var(--panel-text); }
+.hero .stat-card {
+  background: rgba(6, 31, 45, 0.58);
+  border-color: rgba(216, 236, 209, 0.22);
+  box-shadow: inset 0 1px 0 rgba(248, 255, 245, 0.08);
+}
 .hero .stat-card p { color: var(--panel-muted) !important; }
+.hero .stat-value { color: var(--panel-text); }
 
 .badge {
   display: inline-flex;
