@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EP01 · Site Structure · SEO + GEO Series</title>
-  <meta name="description" content="Create the site structure by searching the main keyword, listing top competitors, and studying the pages they have created." />
+  <meta name="description" content="Set up EP01 tabs, add competitor domains, and use Apps Script to find robots.txt, sitemap URLs, and sitemap pages for site-structure planning." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -39,67 +39,175 @@
 
     <section class="hero">
       <div>
-        <div class="badge">Episode 01 · Site structure</div>
-        <h1>Create the site structure first</h1>
-        <p class="lead">SEO starts when the website idea is being planned. The first task is to search the main keyword, study the companies already ranking, and understand what pages the website should have.</p>
+        <div class="badge">Episode 01 · Site Structure</div>
+        <h1>Create the Site Structure First</h1>
+        <p class="lead">Start EP01 by setting up the sheet. Add competitor domains from Google search, then use the script to find robots.txt, sitemap URLs, and sitemap pages where available.</p>
         <div class="cta-row">
-          <a class="btn" href="#episode-document">Read EP01 document</a>
-          <a class="btn ghost" href="#sheet-task">Sheet instructions</a>
+          <a class="btn" href="#apps-script">Copy EP01 Script</a>
+          <a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1sDVymfQX5SBghITELgcZa0ImaO1Okbah/edit?usp=sharing&ouid=101767337654551936429&rtpof=true&sd=true" target="_blank" rel="noopener">Open Main Template Sheet</a>
+          <a class="btn ghost" href="#concept">Read Concept</a>
         </div>
       </div>
       <div style="display:grid;gap:12px;">
         <div class="stat-card">
-          <div class="stat-title">Example keyword</div>
-          <div class="stat-value">whatsapp automation Dubai</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Use the main keyword the website should rank for.</p>
+          <div class="stat-title">Manual input</div>
+          <div class="stat-value">Competitor domains</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Add the competitors found from Google incognito search.</p>
         </div>
         <div class="stat-card">
-          <div class="stat-title">Relevant sheet tab</div>
-          <div class="stat-value">01 COMPETITORS</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Fill this tab after reading the EP01 task below.</p>
+          <div class="stat-title">Script output</div>
+          <div class="stat-value">Robots · Sitemap · Pages</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script tries to collect the technical page list automatically.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="episode-document">
-      <div class="eyebrow">Inline document</div>
-      <h2 class="section-title">Build the site structure from ranking websites</h2>
+    <section class="section">
+      <div class="eyebrow">Quick workflow</div>
+      <h2 class="section-title">Set up the sheet first</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>1 · Copy the template</h3>
+          <p>Open the main template sheet and make one copy. Use the same copied sheet for the full series.</p>
+        </div>
+        <div class="card">
+          <h3>2 · Run EP01 setup</h3>
+          <p>Paste the Apps Script below and click `Run` for `setupEP01`. The script creates the EP01 tabs.</p>
+        </div>
+        <div class="card">
+          <h3>3 · Add competitors</h3>
+          <p>Paste competitor names, ranking URLs, and domains. Then run the EP01 menu actions to collect sitemap data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="apps-script">
+      <div class="eyebrow">Apps Script</div>
+      <h2 class="section-title">EP01 setup script</h2>
       <div class="episode">
         <div>
-          <h3>Concept</h3>
-          <p>SEO starts when the idea is being planned and the website is about to be built. The first step is to create the site structure.</p>
-          <p>To create the site structure, search the main keyword in an incognito tab. In the reel example, the keyword is <strong>whatsapp automation Dubai</strong>. The companies ranking at the top show what Google already understands for that category.</p>
-          <p>Open each ranking website and list the pages they have created. The repeated page patterns help decide how many pages are needed and what the website structure should look like.</p>
-          <h3>Task steps</h3>
+          <h3>Setup steps</h3>
           <ul>
-            <li><strong>Open incognito.</strong> Search the main keyword the company should rank for. In the reel example, the keyword is <strong>whatsapp automation Dubai</strong>.</li>
-            <li><strong>List ranking companies.</strong> Record the companies or competitors appearing at the top of Google.</li>
-            <li><strong>Visit each website.</strong> Open every competitor website and list the pages they have created.</li>
-            <li><strong>Find the pattern.</strong> Use the collected pages to understand how many pages should be created and what the site structure should look like.</li>
+            <li>Open this EP01 page.</li>
+            <li>Copy the Apps Script code below.</li>
+            <li>Open your copied Google Sheet.</li>
+            <li>Go to `Extensions > Apps Script`.</li>
+            <li>Paste the code into the Apps Script editor.</li>
+            <li>Click `Run` for the function named `setupEP01`.</li>
+            <li>Complete the authorization prompt if Google asks for permission.</li>
+            <li>Return to the Google Sheet and refresh the browser tab.</li>
+            <li>Use `SEO/GEO Series > EP01: Find Sitemaps`.</li>
+            <li>Use `SEO/GEO Series > EP01: Extract Sitemap Pages`.</li>
           </ul>
         </div>
-        <div id="sheet-task">
+        <div>
           <div class="kit">
-            <h4>Use this sheet tab</h4>
-            <p><strong>01 COMPETITORS</strong></p>
-            <p>Open the latest master sheet and use this tab for EP01. Enter the competitor list created from the Google search. Use one row per competitor.</p>
+            <h4>What the script creates</h4>
+            <p><strong>EP01 COMPETITORS</strong></p>
+            <p><strong>EP01 SITE STRUCTURE</strong></p>
           </div>
           <div class="kit">
-            <h4>Sheet task</h4>
+            <h4>What to add manually</h4>
             <ul>
-              <li>Fill the ranking page URL, competitor name, and domain.</li>
-              <li>Use the robots.txt and sitemap helper fields when available.</li>
-              <li>Use the sitemap/page output to understand the important pages competitors have created.</li>
+              <li>Search position</li>
+              <li>Competitor name</li>
+              <li>Ranking page URL</li>
+              <li>Domain</li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div class="script-panel">
+        <div class="script-panel-head">
+          <h3>Copy this Apps Script</h3>
+          <button class="resource-link" type="button" data-copy-code>Copy code</button>
+        </div>
+        <pre class="script-code"><code id="ep01-apps-script">Loading EP01 Apps Script...</code></pre>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Sheet task</div>
+      <h2 class="section-title">What to add and what gets generated</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>EP01 COMPETITORS</h3>
+          <p>Add the competitor list after searching the main keyword in Google incognito. The important manual fields are competitor name, ranking page URL, and domain.</p>
+          <div class="meta">
+            <span class="tag warning">Manual input</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Generated fields</h3>
+          <p>The script tries to fill robots.txt URL, robots status, sitemap URL, and sitemap status from the competitor domain.</p>
+          <div class="meta">
+            <span class="tag warning">Script output</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>EP01 SITE STRUCTURE</h3>
+          <p>After sitemap extraction, this tab lists discovered page URLs, page paths, sitemap priority, last modified date, and source sitemap.</p>
+          <div class="meta">
+            <span class="tag warning">Script output</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Manual review</h3>
+          <p>Use the generated page list to identify repeated pages across competitors. The script collects data, but the site-structure decision still comes from review.</p>
+          <div class="meta">
+            <span class="tag warning">Human decision</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Limitations</div>
+      <h2 class="section-title">What automation can and cannot do</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Robots.txt may not show a sitemap</h3>
+          <p>The script checks `https://domain.com/robots.txt`. If the sitemap is not listed there, it also tries `/sitemap.xml`.</p>
+        </div>
+        <div class="card">
+          <h3>Some websites block automated access</h3>
+          <p>If a competitor blocks requests or hides sitemap data, review the website navigation manually and note the important pages.</p>
+        </div>
+        <div class="card">
+          <h3>Sitemaps may be incomplete</h3>
+          <p>Some important pages may not appear in the sitemap. The sitemap is a helper, not the final answer.</p>
+        </div>
+        <div class="card">
+          <h3>Priority and dates may be missing</h3>
+          <p>Many sitemaps do not include priority or last modified date. Blank values are normal in those cases.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="concept">
+      <div class="eyebrow">Concept document</div>
+      <h2 class="section-title">Why site structure comes first</h2>
+      <div class="episode">
+        <div>
+          <h3>EP01 concept</h3>
+          <p>SEO starts when the website idea is being planned. It should not wait until after the website is built.</p>
+          <p>The first step is to create the site structure. To do that, search the main keyword the company wants to rank for. In the reel example, the keyword is <strong>whatsapp automation Dubai</strong>.</p>
+          <p>Open Google in an incognito tab and search that keyword. List the competitors ranking at the top. Then open each competitor website and understand what pages they have created.</p>
+          <p>The goal is not to copy one competitor. The goal is to identify the common pages created across the category and use that pattern to plan the website structure.</p>
+        </div>
+        <div>
           <div class="kit">
-            <h4>Automation note</h4>
-            <p>The robots.txt and sitemap helpers are only there to make page collection easier. The decision still comes from reviewing competitor pages and finding the repeated structure.</p>
+            <h4>Reel</h4>
+            <p>Instagram embed will be added here once the reel URL is shared.</p>
+          </div>
+          <div class="kit">
+            <h4>Supporting PDF</h4>
+            <a href="assets/kits/ep01-site-structure-guide.pdf" target="_blank" rel="noopener">Open EP01 PDF document</a>
           </div>
           <div class="kit">
             <h4>Next step</h4>
             <a class="no-icon" href="ep02.html">EP02 · Page Structure</a>
-            <a class="no-icon" href="https://instagram.com/baisilboban" target="_blank" rel="noopener">Follow for the next drop</a>
           </div>
         </div>
       </div>
@@ -112,5 +220,346 @@
   </div>
 </div>
 <script src="assets/js/email-capture.js"></script>
+<script>
+  const ep01AppsScript = String.raw`
+const EP01_COMPETITORS_SHEET = 'EP01 COMPETITORS';
+const EP01_SITE_STRUCTURE_SHEET = 'EP01 SITE STRUCTURE';
+const EP01_MAX_PAGES_PER_COMPETITOR = 250;
+const EP01_MAX_CHILD_SITEMAPS = 20;
+
+function onOpen() {
+  ep01CreateMenu_();
+}
+
+function ep01CreateMenu_() {
+  SpreadsheetApp.getUi()
+    .createMenu('SEO/GEO Series')
+    .addItem('EP01: Setup Tabs', 'setupEP01')
+    .addItem('EP01: Find Sitemaps', 'ep01FindSitemaps')
+    .addItem('EP01: Extract Sitemap Pages', 'ep01ExtractSitemapPages')
+    .addToUi();
+}
+
+function setupEP01() {
+  ep01SetupTabs_(true);
+}
+
+function ep01SetupTabs_(showAlert) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var competitors = ss.getSheetByName(EP01_COMPETITORS_SHEET) || ss.insertSheet(EP01_COMPETITORS_SHEET);
+  var structure = ss.getSheetByName(EP01_SITE_STRUCTURE_SHEET) || ss.insertSheet(EP01_SITE_STRUCTURE_SHEET);
+
+  ep01PrepareCompetitorSheet_(competitors);
+  ep01PrepareStructureSheet_(structure);
+  ep01CreateMenu_();
+
+  if (showAlert) {
+    SpreadsheetApp.getUi().alert('EP01 tabs are ready. Add competitor domains in the EP01 COMPETITORS tab.');
+  }
+}
+
+function ep01FindSitemaps() {
+  ep01SetupTabs_(false);
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(EP01_COMPETITORS_SHEET);
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 5) {
+    SpreadsheetApp.getUi().alert('Add competitor rows first.');
+    return;
+  }
+
+  var values = sheet.getRange(5, 1, lastRow - 4, 9).getValues();
+  var output = [];
+
+  values.forEach(function(row) {
+    var rankingUrl = row[2];
+    var domainInput = row[3] || rankingUrl;
+    var origin = ep01NormalizeOrigin_(domainInput);
+
+    if (!origin) {
+      output.push([row[3], '', 'Missing domain', '', '', row[8]]);
+      return;
+    }
+
+    var robotsUrl = origin + '/robots.txt';
+    var robots = ep01FetchText_(robotsUrl);
+    var robotsStatus = robots.ok ? 'Found' : 'Not found or blocked: ' + robots.status;
+    var sitemapCandidates = robots.ok ? ep01ExtractSitemapLines_(robots.text) : [];
+
+    if (!sitemapCandidates.length) {
+      sitemapCandidates.push(origin + '/sitemap.xml');
+    }
+
+    var sitemapResult = ep01FindWorkingSitemap_(sitemapCandidates);
+    var note = sitemapResult.url ? sitemapResult.note : 'Review manually if no sitemap is available';
+
+    output.push([
+      origin,
+      robotsUrl,
+      robotsStatus,
+      sitemapResult.url || '',
+      sitemapResult.status || 'No sitemap found',
+      note
+    ]);
+  });
+
+  if (output.length) {
+    sheet.getRange(5, 4, output.length, 6).setValues(output);
+  }
+
+  SpreadsheetApp.getUi().alert('EP01 sitemap check complete.');
+}
+
+function ep01ExtractSitemapPages() {
+  ep01SetupTabs_(false);
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var competitors = ss.getSheetByName(EP01_COMPETITORS_SHEET);
+  var structure = ss.getSheetByName(EP01_SITE_STRUCTURE_SHEET);
+  var lastRow = competitors.getLastRow();
+  if (lastRow < 5) {
+    SpreadsheetApp.getUi().alert('Add competitor rows first.');
+    return;
+  }
+
+  ep01PrepareStructureSheet_(structure);
+
+  var competitorRows = competitors.getRange(5, 1, lastRow - 4, 9).getValues();
+  var pageRows = [];
+
+  competitorRows.forEach(function(row) {
+    var competitorName = row[1] || '';
+    var rankingUrl = row[2] || '';
+    var domain = ep01NormalizeOrigin_(row[3] || rankingUrl);
+    var sitemapUrl = row[6] || '';
+    if (!domain || !sitemapUrl) return;
+
+    var pages = ep01CollectPagesFromSitemap_(sitemapUrl, EP01_MAX_PAGES_PER_COMPETITOR);
+    pages.forEach(function(page) {
+      pageRows.push([
+        competitorName,
+        domain,
+        page.loc,
+        ep01PagePath_(page.loc),
+        page.priority || '',
+        page.lastmod || '',
+        'Review manually',
+        page.source
+      ]);
+    });
+  });
+
+  if (pageRows.length) {
+    structure.getRange(5, 1, pageRows.length, 8).setValues(pageRows);
+  }
+
+  SpreadsheetApp.getUi().alert('EP01 sitemap page extraction complete. Rows added: ' + pageRows.length);
+}
+
+function ep01PrepareCompetitorSheet_(sheet) {
+  sheet.getRange('A1:I2').clearContent();
+  sheet.getRange('A1:I1').breakApart().merge().setValue('EP01 COMPETITORS');
+  sheet.getRange('A2:I2').breakApart().merge().setValue('Add competitors from Google incognito search. Add competitor name, ranking URL, and domain. The script fills robots.txt and sitemap fields where available.');
+  sheet.getRange('A4:I4').setValues([[
+    'Search Position',
+    'Competitor Name',
+    'Ranking Page URL',
+    'Domain',
+    'Robots.txt URL',
+    'Robots Status',
+    'Sitemap URL',
+    'Sitemap Status',
+    'Notes'
+  ]]);
+
+  var positions = [];
+  for (var i = 1; i <= 10; i++) positions.push([i]);
+  sheet.getRange(5, 1, 10, 1).setValues(positions);
+  ep01StyleSheet_(sheet, 9);
+}
+
+function ep01PrepareStructureSheet_(sheet) {
+  sheet.clearContents();
+  sheet.getRange('A1:H1').breakApart().merge().setValue('EP01 SITE STRUCTURE');
+  sheet.getRange('A2:H2').breakApart().merge().setValue('Pages found from competitor sitemaps. Review these pages to understand repeated site-structure patterns.');
+  sheet.getRange('A4:H4').setValues([[
+    'Competitor',
+    'Domain',
+    'Page URL',
+    'Page Path',
+    'Sitemap Priority',
+    'Last Modified',
+    'Page Type Notes',
+    'Source Sitemap'
+  ]]);
+  ep01StyleSheet_(sheet, 8);
+}
+
+function ep01StyleSheet_(sheet, columns) {
+  sheet.setFrozenRows(4);
+  sheet.getRange(1, 1, 1, columns).setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
+  sheet.getRange(2, 1, 1, columns).setBackground('#D8ECD1').setFontColor('#102018').setWrap(true);
+  sheet.getRange(4, 1, 1, columns).setBackground('#102018').setFontColor('#FFFFFF').setFontWeight('bold').setWrap(true);
+  sheet.getDataRange().setVerticalAlignment('top');
+  sheet.setColumnWidths(1, columns, 160);
+  sheet.setColumnWidth(3, 320);
+  if (columns >= 8) sheet.setColumnWidth(8, 260);
+}
+
+function ep01FindWorkingSitemap_(urls) {
+  var seen = {};
+  for (var i = 0; i < urls.length; i++) {
+    var url = String(urls[i] || '').trim();
+    if (!url || seen[url]) continue;
+    seen[url] = true;
+
+    var result = ep01FetchText_(url);
+    if (result.ok && ep01LooksLikeSitemap_(result.text)) {
+      return {
+        url: url,
+        status: 'Found',
+        note: i === 0 ? 'Sitemap found from robots.txt' : 'Sitemap found from fallback check'
+      };
+    }
+  }
+  return { url: '', status: 'No sitemap found', note: '' };
+}
+
+function ep01CollectPagesFromSitemap_(sitemapUrl, limit) {
+  var pages = [];
+  var queue = [sitemapUrl];
+  var seen = {};
+  var childSitemapCount = 0;
+
+  while (queue.length && pages.length < limit) {
+    var current = queue.shift();
+    if (!current || seen[current]) continue;
+    seen[current] = true;
+
+    var result = ep01FetchText_(current);
+    if (!result.ok) continue;
+
+    var sitemapBlocks = ep01ExtractBlocks_(result.text, 'sitemap');
+    if (sitemapBlocks.length) {
+      sitemapBlocks.forEach(function(block) {
+        if (childSitemapCount >= EP01_MAX_CHILD_SITEMAPS) return;
+        var loc = ep01ExtractTag_(block, 'loc');
+        if (loc && !seen[loc]) {
+          queue.push(loc);
+          childSitemapCount++;
+        }
+      });
+      continue;
+    }
+
+    var urlBlocks = ep01ExtractBlocks_(result.text, 'url');
+    urlBlocks.forEach(function(block) {
+      if (pages.length >= limit) return;
+      var loc = ep01ExtractTag_(block, 'loc');
+      if (!loc) return;
+      pages.push({
+        loc: loc,
+        lastmod: ep01ExtractTag_(block, 'lastmod'),
+        priority: ep01ExtractTag_(block, 'priority'),
+        source: current
+      });
+    });
+  }
+
+  return pages;
+}
+
+function ep01FetchText_(url) {
+  try {
+    var response = UrlFetchApp.fetch(url, {
+      method: 'get',
+      muteHttpExceptions: true,
+      followRedirects: true
+    });
+    var status = response.getResponseCode();
+    return {
+      ok: status >= 200 && status <= 399,
+      status: status,
+      text: response.getContentText()
+    };
+  } catch (error) {
+    return { ok: false, status: 'error', text: String(error) };
+  }
+}
+
+function ep01ExtractSitemapLines_(robotsText) {
+  var matches = [];
+  var regex = /^sitemap:\s*(.+)$/gim;
+  var match;
+  while ((match = regex.exec(String(robotsText || ''))) !== null) {
+    matches.push(match[1].trim());
+  }
+  return matches;
+}
+
+function ep01LooksLikeSitemap_(text) {
+  var body = String(text || '').toLowerCase();
+  return body.indexOf('<urlset') !== -1 || body.indexOf('<sitemapindex') !== -1 || body.indexOf('<loc>') !== -1;
+}
+
+function ep01ExtractBlocks_(xml, tag) {
+  var blocks = [];
+  var pattern = '<(?:[A-Za-z0-9_]+:)?' + tag + '\\b[^>]*>([\\s\\S]*?)<\\/(?:[A-Za-z0-9_]+:)?' + tag + '>';
+  var regex = new RegExp(pattern, 'gi');
+  var match;
+  while ((match = regex.exec(String(xml || ''))) !== null) {
+    blocks.push(match[1]);
+  }
+  return blocks;
+}
+
+function ep01ExtractTag_(xml, tag) {
+  var pattern = '<(?:[A-Za-z0-9_]+:)?' + tag + '\\b[^>]*>([\\s\\S]*?)<\\/(?:[A-Za-z0-9_]+:)?' + tag + '>';
+  var regex = new RegExp(pattern, 'i');
+  var match = regex.exec(String(xml || ''));
+  return match ? ep01CleanXmlText_(match[1]) : '';
+}
+
+function ep01CleanXmlText_(value) {
+  return String(value || '')
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .trim();
+}
+
+function ep01NormalizeOrigin_(value) {
+  var text = String(value || '').trim();
+  if (!text) return '';
+  if (text.indexOf('http://') !== 0 && text.indexOf('https://') !== 0) {
+    text = 'https://' + text;
+  }
+  var match = text.match(/^(https?:\/\/[^\/?#]+)/i);
+  return match ? match[1].replace(/\/$/, '') : '';
+}
+
+function ep01PagePath_(pageUrl) {
+  var path = String(pageUrl || '').replace(/^https?:\/\/[^\/]+/i, '');
+  path = path.split('#')[0].split('?')[0];
+  return path || '/';
+}
+`;
+
+  const ep01Code = document.getElementById('ep01-apps-script');
+  if (ep01Code) ep01Code.textContent = ep01AppsScript.trim();
+
+  const copyButton = document.querySelector('[data-copy-code]');
+  if (copyButton && ep01Code) {
+    copyButton.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(ep01AppsScript.trim());
+      copyButton.textContent = 'Copied';
+      setTimeout(() => { copyButton.textContent = 'Copy code'; }, 1800);
+    });
+  }
+</script>
 </body>
 </html>

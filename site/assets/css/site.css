@@ -395,6 +395,43 @@ h2.section-title {
 .kit ul { margin: 8px 0 0 18px; }
 .kit li { color: var(--text); font-size: 14px; margin-bottom: 6px; }
 
+.script-panel {
+  margin-top: 22px;
+  background: rgba(16, 32, 24, 0.92);
+  border: 1px solid rgba(231, 255, 0, 0.22);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.script-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(7, 52, 47, 0.86);
+  border-bottom: 1px solid rgba(231, 255, 0, 0.18);
+}
+
+.script-panel-head h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  letter-spacing: 0;
+}
+
+.script-code {
+  max-height: 620px;
+  overflow: auto;
+  padding: 18px;
+  color: #f8fff5;
+  font-size: 12.5px;
+  line-height: 1.55;
+  white-space: pre;
+}
+
 .coming { opacity: 0.75; }
 
 /* ---------- Footer ---------- */
