@@ -378,6 +378,14 @@ h2.section-title {
 .kit a::before { content: "↓  "; color: var(--green); font-weight: 700; }
 .kit a.no-icon::before { content: ""; }
 
+.kit p {
+  font-size: 14px;
+  color: var(--text);
+  margin-top: 8px;
+}
+
+.kit p:first-of-type { margin-top: 0; }
+
 .coming { opacity: 0.75; }
 
 /* ---------- Footer ---------- */
