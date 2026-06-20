@@ -41,7 +41,7 @@
       <div>
         <div class="badge">Episode 01 · Site Structure</div>
         <h1>Create the Site Structure First</h1>
-        <p class="lead">Start EP01 by setting up the sheet. Add competitor domains from Google search, then use the script to find robots.txt, sitemap URLs, and sitemap pages where available.</p>
+        <p class="lead">Start EP01 by setting up two tabs: one for the competitors ranking on Google, and one for the pages found from their websites. Add the ranking page and domain, then let the script find robots.txt, sitemap URLs, and sitemap pages where available.</p>
         <div class="cta-row">
           <a class="btn" href="#apps-script">Copy EP01 Script</a>
           <a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1sDVymfQX5SBghITELgcZa0ImaO1Okbah/edit?usp=sharing&ouid=101767337654551936429&rtpof=true&sd=true" target="_blank" rel="noopener">Open Main Template Sheet</a>
@@ -51,8 +51,8 @@
       <div style="display:grid;gap:12px;">
         <div class="stat-card">
           <div class="stat-title">Manual input</div>
-          <div class="stat-value">Competitor domains</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Add the competitors found from Google incognito search.</p>
+          <div class="stat-value">Ranking page + domain</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The ranking page shows what type of page is winning. The domain is used for sitemap discovery.</p>
         </div>
         <div class="stat-card">
           <div class="stat-title">Script output</div>
@@ -72,11 +72,11 @@
         </div>
         <div class="card">
           <h3>2 · Run EP01 setup</h3>
-          <p>Paste the Apps Script below and click `Run` for `setupEP01`. The script creates the EP01 tabs.</p>
+          <p>Paste the Apps Script below and click <code>Run</code> for <code>setupEP01</code>. The script creates the EP01 tabs.</p>
         </div>
         <div class="card">
           <h3>3 · Add competitors</h3>
-          <p>Paste competitor names, ranking URLs, and domains. Then run the EP01 menu actions to collect sitemap data.</p>
+          <p>Add the competitor name, ranking page URL, ranking page type, and domain. Then run the EP01 menu actions to collect sitemap data.</p>
         </div>
       </div>
     </section>
@@ -91,13 +91,13 @@
             <li>Open this EP01 page.</li>
             <li>Copy the Apps Script code below.</li>
             <li>Open your copied Google Sheet.</li>
-            <li>Go to `Extensions > Apps Script`.</li>
+            <li>Go to <code>Extensions &gt; Apps Script</code>.</li>
             <li>Paste the code into the Apps Script editor.</li>
-            <li>Click `Run` for the function named `setupEP01`.</li>
+            <li>Click <code>Run</code> for the function named <code>setupEP01</code>.</li>
             <li>Complete the authorization prompt if Google asks for permission.</li>
             <li>Return to the Google Sheet and refresh the browser tab.</li>
-            <li>Use `SEO/GEO Series > EP01: Find Sitemaps`.</li>
-            <li>Use `SEO/GEO Series > EP01: Extract Sitemap Pages`.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP01: Find Sitemaps</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP01: Extract Sitemap Pages</code>.</li>
           </ul>
         </div>
         <div>
@@ -112,6 +112,7 @@
               <li>Search position</li>
               <li>Competitor name</li>
               <li>Ranking page URL</li>
+              <li>Ranking page type</li>
               <li>Domain</li>
             </ul>
           </div>
@@ -127,34 +128,88 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="eyebrow">Sheet task</div>
-      <h2 class="section-title">What to add and what gets generated</h2>
+    <section class="section" id="competitors-tab">
+      <div class="eyebrow">Tab 1</div>
+      <h2 class="section-title">EP01 COMPETITORS: record what is ranking</h2>
       <div class="grid cols-2">
         <div class="card">
-          <h3>EP01 COMPETITORS</h3>
-          <p>Add the competitor list after searching the main keyword in Google incognito. The important manual fields are competitor name, ranking page URL, and domain.</p>
+          <h3>Ranking page URL</h3>
+          <p>Add the exact page that is ranking for the keyword, not only the homepage. This helps identify the page type Google is rewarding for that search.</p>
           <div class="meta">
             <span class="tag warning">Manual input</span>
           </div>
         </div>
         <div class="card">
-          <h3>Generated fields</h3>
-          <p>The script tries to fill robots.txt URL, robots status, sitemap URL, and sitemap status from the competitor domain.</p>
+          <h3>Ranking page type</h3>
+          <p>Classify the ranking page as homepage, service page, location page, blog page, comparison/list page, directory page, or another clear type.</p>
+          <div class="meta">
+            <span class="tag warning">Manual review</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Domain</h3>
+          <p>Add the competitor domain. The script uses this domain to check <code>/robots.txt</code>, discover sitemap URLs, and collect sitemap pages.</p>
+          <div class="meta">
+            <span class="tag warning">Manual input</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Generated columns</h3>
+          <p>The script tries to fill robots.txt URL, robots status, sitemap URL, sitemap status, and notes. These fields should not be filled manually unless automation fails.</p>
+          <div class="meta">
+            <span class="tag warning">Script output</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Technical basics</div>
+      <h2 class="section-title">Why robots.txt and sitemap are used</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>What is robots.txt?</h3>
+          <p><code>robots.txt</code> is a public file usually found at <code>domain.com/robots.txt</code>. It gives crawler instructions and often lists the website sitemap.</p>
+        </div>
+        <div class="card">
+          <h3>What is a sitemap?</h3>
+          <p>A sitemap is usually an XML file that lists website URLs. It can also include priority and last modified date when the website provides those fields.</p>
+        </div>
+        <div class="card">
+          <h3>Why use them?</h3>
+          <p>They help collect competitor pages faster. Instead of opening every page manually, the script can use sitemap data to build a page list for review.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="site-structure-tab">
+      <div class="eyebrow">Tab 2</div>
+      <h2 class="section-title">EP01 SITE STRUCTURE: turn pages into a plan</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>What this tab contains</h3>
+          <p>After sitemap extraction, this tab lists discovered competitor page URLs, page paths, sitemap priority, last modified date, page type notes, and source sitemap.</p>
           <div class="meta">
             <span class="tag warning">Script output</span>
           </div>
         </div>
         <div class="card">
-          <h3>EP01 SITE STRUCTURE</h3>
-          <p>After sitemap extraction, this tab lists discovered page URLs, page paths, sitemap priority, last modified date, and source sitemap.</p>
+          <h3>How to use it</h3>
+          <p>Review the pages across competitors and look for patterns. Service pages, location pages, blog/resource pages, FAQ, case studies, testimonials, about, and contact pages can all indicate what the new website may need.</p>
           <div class="meta">
-            <span class="tag warning">Script output</span>
+            <span class="tag warning">Manual review</span>
           </div>
         </div>
         <div class="card">
-          <h3>Manual review</h3>
-          <p>Use the generated page list to identify repeated pages across competitors. The script collects data, but the site-structure decision still comes from review.</p>
+          <h3>Final decision</h3>
+          <p>The tab helps create the website page plan. Pages repeated across many competitors are baseline pages. Pages only a few competitors have may reveal gaps or opportunities.</p>
+          <div class="meta">
+            <span class="tag warning">Planning step</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Not a copy exercise</h3>
+          <p>The goal is not to copy one competitor. The goal is to understand the category baseline and then decide the right page structure for the website being built.</p>
           <div class="meta">
             <span class="tag warning">Human decision</span>
           </div>
@@ -168,7 +223,7 @@
       <div class="grid cols-2">
         <div class="card">
           <h3>Robots.txt may not show a sitemap</h3>
-          <p>The script checks `https://domain.com/robots.txt`. If the sitemap is not listed there, it also tries `/sitemap.xml`.</p>
+          <p>The script checks <code>https://domain.com/robots.txt</code>. If the sitemap is not listed there, it also tries <code>/sitemap.xml</code>.</p>
         </div>
         <div class="card">
           <h3>Some websites block automated access</h3>
@@ -193,8 +248,9 @@
           <h3>EP01 concept</h3>
           <p>SEO starts when the website idea is being planned. It should not wait until after the website is built.</p>
           <p>The first step is to create the site structure. To do that, search the main keyword the company wants to rank for. In the reel example, the keyword is <strong>whatsapp automation Dubai</strong>.</p>
-          <p>Open Google in an incognito tab and search that keyword. List the competitors ranking at the top. Then open each competitor website and understand what pages they have created.</p>
-          <p>The goal is not to copy one competitor. The goal is to identify the common pages created across the category and use that pattern to plan the website structure.</p>
+          <p>Open Google in an incognito tab and search that keyword. List the competitors ranking at the top and record the exact ranking page URL. The ranking page tells what type of page Google is showing for the keyword.</p>
+          <p>Then use the competitor domain to collect robots.txt and sitemap data. The sitemap page list helps understand what pages competitors have created across their websites.</p>
+          <p>The goal is to identify the common pages created across the category and use that pattern to plan the website structure.</p>
         </div>
         <div>
           <div class="kit">
@@ -269,16 +325,21 @@ function ep01FindSitemaps() {
     return;
   }
 
-  var values = sheet.getRange(5, 1, lastRow - 4, 9).getValues();
+  var values = sheet.getRange(5, 1, lastRow - 4, 10).getValues();
   var output = [];
 
   values.forEach(function(row) {
     var rankingUrl = row[2];
-    var domainInput = row[3] || rankingUrl;
+    var domainInput = row[4] || rankingUrl;
     var origin = ep01NormalizeOrigin_(domainInput);
 
+    if (!row[1] && !rankingUrl && !row[4]) {
+      output.push(['', '', '', '', '']);
+      return;
+    }
+
     if (!origin) {
-      output.push([row[3], '', 'Missing domain', '', '', row[8]]);
+      output.push(['', 'Missing domain', '', '', row[9] || 'Add competitor domain or ranking page URL']);
       return;
     }
 
@@ -295,7 +356,6 @@ function ep01FindSitemaps() {
     var note = sitemapResult.url ? sitemapResult.note : 'Review manually if no sitemap is available';
 
     output.push([
-      origin,
       robotsUrl,
       robotsStatus,
       sitemapResult.url || '',
@@ -305,7 +365,7 @@ function ep01FindSitemaps() {
   });
 
   if (output.length) {
-    sheet.getRange(5, 4, output.length, 6).setValues(output);
+    sheet.getRange(5, 6, output.length, 5).setValues(output);
   }
 
   SpreadsheetApp.getUi().alert('EP01 sitemap check complete.');
@@ -325,14 +385,14 @@ function ep01ExtractSitemapPages() {
 
   ep01PrepareStructureSheet_(structure);
 
-  var competitorRows = competitors.getRange(5, 1, lastRow - 4, 9).getValues();
+  var competitorRows = competitors.getRange(5, 1, lastRow - 4, 10).getValues();
   var pageRows = [];
 
   competitorRows.forEach(function(row) {
     var competitorName = row[1] || '';
     var rankingUrl = row[2] || '';
-    var domain = ep01NormalizeOrigin_(row[3] || rankingUrl);
-    var sitemapUrl = row[6] || '';
+    var domain = ep01NormalizeOrigin_(row[4] || rankingUrl);
+    var sitemapUrl = row[7] || '';
     if (!domain || !sitemapUrl) return;
 
     var pages = ep01CollectPagesFromSitemap_(sitemapUrl, EP01_MAX_PAGES_PER_COMPETITOR);
@@ -358,13 +418,14 @@ function ep01ExtractSitemapPages() {
 }
 
 function ep01PrepareCompetitorSheet_(sheet) {
-  sheet.getRange('A1:I2').clearContent();
-  sheet.getRange('A1:I1').breakApart().merge().setValue('EP01 COMPETITORS');
-  sheet.getRange('A2:I2').breakApart().merge().setValue('Add competitors from Google incognito search. Add competitor name, ranking URL, and domain. The script fills robots.txt and sitemap fields where available.');
-  sheet.getRange('A4:I4').setValues([[
+  sheet.getRange('A1:J2').clearContent();
+  sheet.getRange('A1:J1').breakApart().merge().setValue('EP01 COMPETITORS');
+  sheet.getRange('A2:J2').breakApart().merge().setValue('Add competitors from Google incognito search. Add competitor name, ranking page URL, ranking page type, and domain. The script fills robots.txt and sitemap fields where available.');
+  sheet.getRange('A4:J4').setValues([[
     'Search Position',
     'Competitor Name',
     'Ranking Page URL',
+    'Ranking Page Type',
     'Domain',
     'Robots.txt URL',
     'Robots Status',
@@ -376,7 +437,7 @@ function ep01PrepareCompetitorSheet_(sheet) {
   var positions = [];
   for (var i = 1; i <= 10; i++) positions.push([i]);
   sheet.getRange(5, 1, 10, 1).setValues(positions);
-  ep01StyleSheet_(sheet, 9);
+  ep01StyleSheet_(sheet, 10);
 }
 
 function ep01PrepareStructureSheet_(sheet) {
@@ -404,7 +465,10 @@ function ep01StyleSheet_(sheet, columns) {
   sheet.getDataRange().setVerticalAlignment('top');
   sheet.setColumnWidths(1, columns, 160);
   sheet.setColumnWidth(3, 320);
+  sheet.setColumnWidth(4, 180);
+  sheet.setColumnWidth(5, 220);
   if (columns >= 8) sheet.setColumnWidth(8, 260);
+  if (columns >= 10) sheet.setColumnWidth(10, 260);
 }
 
 function ep01FindWorkingSitemap_(urls) {
