@@ -188,14 +188,14 @@
       <div class="grid cols-2">
         <div class="card">
           <h3>What this tab contains</h3>
-          <p>After sitemap extraction, this tab shows only the first page path after the domain. For example, <code>example.com/services/web-design/</code> becomes <code>/services/</code>.</p>
+          <p>After sitemap extraction, this tab shows a page-type matrix. Common page types are listed down the rows, competitors are listed across C1 to C10, and matching top-level paths are marked in each competitor column.</p>
           <div class="meta">
             <span class="tag warning">Script output</span>
           </div>
         </div>
         <div class="card">
           <h3>How to use it</h3>
-          <p>Compare the top-level paths that repeat across competitors. This avoids hundreds of article URLs and makes the common website structure easier to see.</p>
+          <p>Use the count and decision columns to see which page types repeat across competitors. Deep URLs are reduced to the first useful path, so article lists do not overwhelm the planning view.</p>
           <div class="meta">
             <span class="tag warning">Manual review</span>
           </div>
@@ -268,7 +268,7 @@
         <div>
           <h3>How this connects to the sheet</h3>
           <p><strong>EP01 COMPETITORS</strong> is for the search result research. Add the exact ranking page URL and the competitor domain here. The ranking page explains the page type that is currently winning for the keyword.</p>
-          <p><strong>EP01 SITE STRUCTURE</strong> is for the top-level page inventory. The script keeps only priority 1.0, 0.9, and 0.8 sitemap URLs, reduces each URL to the first path after the domain, and groups those paths across competitors.</p>
+          <p><strong>EP01 SITE STRUCTURE</strong> is for the page-type coverage matrix. The script keeps only priority 1.0, 0.9, and 0.8 sitemap URLs, reduces each URL to the first useful path, and shows which competitors have each common page type.</p>
         </div>
         <div>
           <div class="kit">
@@ -423,43 +423,65 @@ function ep01ExtractSitemapPages() {
 
   ep01PrepareStructureSheet_(structure);
 
-  var competitorRows = competitors.getRange(5, 1, lastRow - 4, 10).getValues();
-  var topLevelGroups = {};
+  var competitorRows = competitors.getRange(5, 1, Math.min(lastRow - 4, 10), 10).getValues();
+  var pageTypes = ep01PageTypeDefinitions_();
+  var competitorSummaries = [];
 
-  competitorRows.forEach(function(row) {
+  competitorRows.forEach(function(row, index) {
     var competitorName = row[1] || '';
     var rankingUrl = row[2] || '';
+    var domainInput = row[4] || '';
     var domain = ep01NormalizeOrigin_(row[4] || rankingUrl);
     var sitemapUrl = row[7] || '';
-    if (!domain || !sitemapUrl) return;
+    if (!competitorName && !rankingUrl && !domainInput && !sitemapUrl) return;
+
+    var summary = {
+      code: 'C' + (index + 1),
+      name: competitorName || domain || '',
+      domain: domain,
+      sitemapUrl: sitemapUrl,
+      totalPages: 0,
+      topLevelPaths: {},
+      matches: {},
+      note: ''
+    };
+
+    if (!domain || !sitemapUrl) {
+      summary.note = 'Missing domain or sitemap URL';
+      competitorSummaries[index] = summary;
+      return;
+    }
 
     var pages = ep01CollectPagesFromSitemap_(sitemapUrl, EP01_MAX_PAGES_PER_COMPETITOR);
+    summary.totalPages = pages.length;
+
     pages.forEach(function(page) {
       var topLevelPath = ep01TopLevelPagePath_(page.loc);
-      var key = topLevelPath.toLowerCase();
-      if (!topLevelGroups[key]) {
-        topLevelGroups[key] = {
-          path: topLevelPath,
-          competitors: {},
-          examples: {},
-          priorities: {}
-        };
-      }
+      var pageTypeIndex = ep01FindPageTypeIndex_(topLevelPath, pageTypes);
+      summary.topLevelPaths[topLevelPath] = true;
 
-      topLevelGroups[key].competitors[competitorName || domain] = true;
-      topLevelGroups[key].examples[ep01TopLevelPageUrl_(page.loc, topLevelPath)] = true;
-      topLevelGroups[key].priorities[page.priority || ''] = true;
+      if (pageTypeIndex === -1) return;
+      if (!summary.matches[pageTypeIndex]) summary.matches[pageTypeIndex] = {};
+      summary.matches[pageTypeIndex][topLevelPath] = true;
     });
+
+    competitorSummaries[index] = summary;
   });
 
-  var structureRows = ep01BuildTopLevelStructureRows_(topLevelGroups);
+  var matrixRows = ep01BuildPageTypeMatrixRows_(pageTypes, competitorSummaries);
+  var totalsRows = ep01BuildCompetitorTotalsRows_(competitorSummaries);
 
-  if (structureRows.length) {
-    structure.getRange(5, 1, structureRows.length, 7).setValues(structureRows);
-    ep01ApplyStructureFilter_(structure, structureRows.length);
+  if (matrixRows.length) {
+    structure.getRange(6, 1, matrixRows.length, 15).setValues(matrixRows);
+    ep01ApplyDecisionValidation_(structure, 6, matrixRows.length);
   }
 
-  SpreadsheetApp.getUi().alert('EP01 sitemap page extraction complete. Top-level paths added: ' + structureRows.length + '. Only priority 1.0, 0.9, and 0.8 pages are included.');
+  if (totalsRows.length) {
+    var totalsStartRow = 6 + matrixRows.length + 2;
+    ep01WriteCompetitorTotals_(structure, totalsStartRow, totalsRows);
+  }
+
+  SpreadsheetApp.getUi().alert('EP01 sitemap page extraction complete. Page-type matrix updated. Only exact priority 1.0, 0.9, and 0.8 pages are included.');
 }
 
 function ep01PrepareCompetitorSheet_(sheet) {
@@ -488,25 +510,32 @@ function ep01PrepareCompetitorSheet_(sheet) {
 function ep01PrepareStructureSheet_(sheet) {
   if (sheet.getFilter()) sheet.getFilter().remove();
   sheet.clearContents();
-  sheet.getRange('A1:G1').breakApart().merge().setValue('EP01 SITE STRUCTURE');
-  sheet.getRange('A2:G2').breakApart().merge().setValue('Only priority 1.0, 0.9, and 0.8 sitemap URLs are used. Each URL is reduced to the first path after the domain, such as /services/ or /blog/.');
-  sheet.getRange('A4:G4').setValues([[
-    'Top-Level Page Path',
-    'Competitor Count',
-    'Competitors Found',
-    'Example Top-Level URLs',
-    'Sitemap Priorities Found',
-    'Page Type Notes',
-    'Decision Notes'
+  sheet.getRange('A1:O1').breakApart().merge().setValue('EP01 SITE STRUCTURE');
+  sheet.getRange('A2:O2').breakApart().merge().setValue('Only exact priority 1.0, 0.9, and 0.8 sitemap URLs are used. Deep URLs are reduced to top-level paths and matched to common page types.');
+  sheet.getRange('A4:O4').breakApart().merge().setValue('A. Common page types across competitors');
+  sheet.getRange('A5:O5').setValues([[
+    'Page Type',
+    'URL Pattern',
+    'C1',
+    'C2',
+    'C3',
+    'C4',
+    'C5',
+    'C6',
+    'C7',
+    'C8',
+    'C9',
+    'C10',
+    'Count',
+    'Decision',
+    'Notes'
   ]]);
-  ep01StyleSheet_(sheet, 7);
-  sheet.setColumnWidth(1, 220);
-  sheet.setColumnWidth(2, 150);
-  sheet.setColumnWidth(3, 280);
-  sheet.setColumnWidth(4, 380);
-  sheet.setColumnWidth(5, 180);
-  sheet.setColumnWidth(6, 220);
-  sheet.setColumnWidth(7, 220);
+
+  ep01StyleStructureSheet_(sheet);
+
+  var blankRows = ep01BuildPageTypeMatrixRows_(ep01PageTypeDefinitions_(), []);
+  sheet.getRange(6, 1, blankRows.length, 15).setValues(blankRows);
+  ep01ApplyDecisionValidation_(sheet, 6, blankRows.length);
 }
 
 function ep01StyleSheet_(sheet, columns) {
@@ -521,6 +550,21 @@ function ep01StyleSheet_(sheet, columns) {
   sheet.setColumnWidth(5, 220);
   if (columns >= 8) sheet.setColumnWidth(8, 260);
   if (columns >= 10) sheet.setColumnWidth(10, 260);
+}
+
+function ep01StyleStructureSheet_(sheet) {
+  sheet.setFrozenRows(5);
+  sheet.getRange('A1:O1').setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
+  sheet.getRange('A2:O2').setBackground('#D8ECD1').setFontColor('#102018').setWrap(true);
+  sheet.getRange('A4:O4').setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
+  sheet.getRange('A5:O5').setBackground('#102018').setFontColor('#FFFFFF').setFontWeight('bold').setWrap(true);
+  sheet.getDataRange().setVerticalAlignment('top');
+  sheet.setColumnWidth(1, 210);
+  sheet.setColumnWidth(2, 280);
+  sheet.setColumnWidths(3, 10, 90);
+  sheet.setColumnWidth(13, 90);
+  sheet.setColumnWidth(14, 140);
+  sheet.setColumnWidth(15, 260);
 }
 
 function ep01FindWorkingSitemap_(urls) {
@@ -574,8 +618,8 @@ function ep01CollectPagesFromSitemap_(sitemapUrl, limit) {
       if (pages.length >= limit) return;
       var loc = ep01ExtractTag_(block, 'loc');
       if (!loc) return;
-      var priority = ep01ExtractTag_(block, 'priority');
-      if (!ep01IsAllowedSitemapPriority_(priority)) return;
+      var priority = ep01NormalizeSitemapPriority_(ep01ExtractTag_(block, 'priority'));
+      if (!priority) return;
       pages.push({
         loc: loc,
         lastmod: ep01ExtractTag_(block, 'lastmod'),
@@ -621,58 +665,140 @@ function ep01LooksLikeSitemap_(text) {
   return body.indexOf('<urlset') !== -1 || body.indexOf('<sitemapindex') !== -1 || body.indexOf('<loc>') !== -1;
 }
 
-function ep01ApplyStructureFilter_(sheet, rowCount) {
-  if (sheet.getFilter()) sheet.getFilter().remove();
-  sheet.getRange(4, 1, rowCount + 1, 7).createFilter();
+function ep01ApplyDecisionValidation_(sheet, startRow, rowCount) {
+  var rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['Include', 'Review', 'Optional'], true)
+    .setAllowInvalid(true)
+    .build();
+  sheet.getRange(startRow, 14, rowCount, 1).setDataValidation(rule);
 }
 
-function ep01BuildTopLevelStructureRows_(groups) {
-  return Object.keys(groups).map(function(key) {
-    var group = groups[key];
-    var competitors = Object.keys(group.competitors).sort();
-    var examples = Object.keys(group.examples).sort();
-    var priorities = Object.keys(group.priorities).filter(Boolean).sort().reverse();
-
-    return [
-      group.path,
-      competitors.length,
-      competitors.join(', '),
-      examples.join('\n'),
-      priorities.join(', '),
-      '',
-      ''
-    ];
-  }).sort(ep01CompareTopLevelRows_);
+function ep01WriteCompetitorTotals_(sheet, startRow, totalsRows) {
+  sheet.getRange(startRow, 1, 1, 7).breakApart().merge().setValue('B. Total qualifying sitemap pages by competitor');
+  sheet.getRange(startRow + 1, 1, 1, 7).setValues([[
+    'Competitor Code',
+    'Competitor',
+    'Domain',
+    'Qualifying Sitemap URLs Found',
+    'Top-Level Path Count',
+    'Top-Level Paths Found',
+    'Notes'
+  ]]);
+  sheet.getRange(startRow + 2, 1, totalsRows.length, 7).setValues(totalsRows);
+  sheet.getRange(startRow, 1, 1, 7).setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
+  sheet.getRange(startRow + 1, 1, 1, 7).setBackground('#102018').setFontColor('#FFFFFF').setFontWeight('bold').setWrap(true);
+  sheet.getRange(startRow + 2, 1, totalsRows.length, 7).setWrap(true);
 }
 
-function ep01CompareTopLevelRows_(a, b) {
-  return ep01CompareNumber_(Number(b[1] || 0), Number(a[1] || 0)) ||
-    ep01CompareText_(a[0], b[0]);
+function ep01BuildPageTypeMatrixRows_(pageTypes, competitors) {
+  return pageTypes.map(function(pageType, pageTypeIndex) {
+    var row = [pageType.label, pageType.displayPattern];
+    var count = 0;
+
+    for (var i = 0; i < 10; i++) {
+      var competitor = competitors[i];
+      var matchedPaths = competitor && competitor.matches[pageTypeIndex]
+        ? Object.keys(competitor.matches[pageTypeIndex]).sort()
+        : [];
+      if (matchedPaths.length) count++;
+      row.push(matchedPaths.join('\n'));
+    }
+
+    row.push(count);
+    row.push(ep01DefaultDecision_(count));
+    row.push('');
+    return row;
+  });
 }
 
-function ep01CompareNumber_(a, b) {
-  if (a < b) return -1;
-  if (a > b) return 1;
-  return 0;
+function ep01BuildCompetitorTotalsRows_(competitors) {
+  var rows = [];
+
+  competitors.forEach(function(competitor) {
+    if (!competitor || (!competitor.name && !competitor.domain)) return;
+    var topLevelPaths = Object.keys(competitor.topLevelPaths).sort();
+    rows.push([
+      competitor.code,
+      competitor.name,
+      competitor.domain,
+      competitor.totalPages,
+      topLevelPaths.length,
+      topLevelPaths.join('\n'),
+      competitor.note
+    ]);
+  });
+
+  return rows;
 }
 
-function ep01CompareText_(a, b) {
-  var left = String(a || '').toLowerCase();
-  var right = String(b || '').toLowerCase();
-  if (left < right) return -1;
-  if (left > right) return 1;
-  return 0;
+function ep01DefaultDecision_(count) {
+  if (count >= 3) return 'Include';
+  if (count >= 2) return 'Review';
+  return 'Optional';
+}
+
+function ep01PageTypeDefinitions_() {
+  return [
+    { label: 'Home', displayPattern: 'homepage', tokens: [''] },
+    { label: 'Services / Solutions', displayPattern: '/service/|/services/|/solution/|/solutions/', tokens: ['service', 'services', 'solution', 'solutions'] },
+    { label: 'Product / Features', displayPattern: '/product/|/products/|/feature/|/features/|/platform/', tokens: ['product', 'products', 'feature', 'features', 'platform'] },
+    { label: 'Pricing', displayPattern: '/pricing/|/price/|/plans/|/packages/', tokens: ['pricing', 'price', 'plans', 'packages'] },
+    { label: 'Blog / Resources', displayPattern: '/blog/|/blogs/|/resources/|/guide/|/article/|/articles/', tokens: ['blog', 'blogs', 'resources', 'resource', 'guide', 'guides', 'article', 'articles', 'news', 'insights'] },
+    { label: 'Case Studies / Work', displayPattern: '/case-study/|/case-studies/|/cases/|/customers/|/portfolio/|/work/', tokens: ['case-study', 'case-studies', 'cases', 'customers', 'portfolio', 'our-portfolio', 'work', 'projects'] },
+    { label: 'FAQ', displayPattern: '/faq/|/faqs/', tokens: ['faq', 'faqs'] },
+    { label: 'About', displayPattern: '/about/|/about-us/|/company/', tokens: ['about', 'about-us', 'company', 'who-we-are'] },
+    { label: 'Contact', displayPattern: '/contact/|/contact-us/', tokens: ['contact', 'contact-us'] },
+    { label: 'Locations', displayPattern: '/location/|/locations/|city/country landing pages', tokens: ['location', 'locations', 'dubai', 'uae', 'ksa', 'saudi', 'saudi-arabia', 'riyadh', 'jeddah', 'qatar', 'doha'] },
+    { label: 'Comparisons', displayPattern: '/compare/|/comparison/|/vs/', tokens: ['compare', 'comparison', 'vs', 'versus'] },
+    { label: 'Alternatives', displayPattern: '/alternative/|/alternatives/', tokens: ['alternative', 'alternatives'] },
+    { label: 'Integrations', displayPattern: '/integration/|/integrations/|/apps/|/marketplace/', tokens: ['integration', 'integrations', 'apps', 'marketplace'] },
+    { label: 'Demo / Book', displayPattern: '/demo/|/book/|/booking/|/consultation/', tokens: ['demo', 'book', 'booking', 'consultation', 'schedule', 'meeting'] },
+    { label: 'Legal / Policy', displayPattern: '/privacy/|/privacy-policy/|/terms/|/cookie/|/accessibility/', tokens: ['privacy', 'privacy-policy', 'terms', 'terms-of-service', 'cookie', 'cookie-consent', 'accessibility'] },
+    { label: 'Other / Manual Review', displayPattern: 'unmatched top-level paths', tokens: ['*'] }
+  ];
+}
+
+function ep01FindPageTypeIndex_(topLevelPath, pageTypes) {
+  for (var i = 0; i < pageTypes.length; i++) {
+    if (pageTypes[i].tokens.indexOf('*') !== -1) continue;
+    if (ep01PathMatchesPageType_(topLevelPath, pageTypes[i])) return i;
+  }
+
+  for (var j = 0; j < pageTypes.length; j++) {
+    if (pageTypes[j].tokens.indexOf('*') !== -1) return j;
+  }
+
+  return -1;
+}
+
+function ep01PathMatchesPageType_(topLevelPath, pageType) {
+  var token = String(topLevelPath || '/').toLowerCase().replace(/^\/|\/$/g, '');
+  if (!token && pageType.tokens.indexOf('') !== -1) return true;
+
+  return pageType.tokens.some(function(patternToken) {
+    if (!patternToken) return false;
+    return token === patternToken || token.indexOf(patternToken) !== -1;
+  });
 }
 
 function ep01IsAllowedSitemapPriority_(priority) {
+  return !!ep01NormalizeSitemapPriority_(priority);
+}
+
+function ep01NormalizeSitemapPriority_(priority) {
   var normalized = String(priority || '').trim();
-  if (!normalized) return false;
+  if (!normalized) return '';
   if (normalized.charAt(0) === '.') normalized = '0' + normalized;
 
   var numberValue = Number(normalized);
-  if (isNaN(numberValue)) return false;
+  if (isNaN(numberValue)) return '';
 
-  return EP01_ALLOWED_SITEMAP_PRIORITIES.indexOf(numberValue.toFixed(1)) !== -1;
+  for (var i = 0; i < EP01_ALLOWED_SITEMAP_PRIORITIES.length; i++) {
+    var allowed = EP01_ALLOWED_SITEMAP_PRIORITIES[i];
+    if (Math.abs(numberValue - Number(allowed)) < 0.000001) return allowed;
+  }
+
+  return '';
 }
 
 function ep01ExtractBlocks_(xml, tag) {
@@ -723,6 +849,9 @@ function ep01PagePath_(pageUrl) {
 function ep01TopLevelPagePath_(pageUrl) {
   var path = ep01PagePath_(pageUrl).replace(/\/+/g, '/');
   var segments = path.split('/').filter(Boolean);
+  while (segments.length && ep01IsLocaleSegment_(segments[0])) {
+    segments.shift();
+  }
   if (!segments.length) return '/';
   return '/' + segments[0] + '/';
 }
@@ -730,6 +859,10 @@ function ep01TopLevelPagePath_(pageUrl) {
 function ep01TopLevelPageUrl_(pageUrl, topLevelPath) {
   var origin = ep01NormalizeOrigin_(pageUrl);
   return origin ? origin + topLevelPath : topLevelPath;
+}
+
+function ep01IsLocaleSegment_(segment) {
+  return /^(en|ar|es|pt|fr|de|it|tr|id|zh|zh-hans|zh-hant|en-us|en-gb|pt-br)$/.test(String(segment || '').toLowerCase());
 }
 `;
 
