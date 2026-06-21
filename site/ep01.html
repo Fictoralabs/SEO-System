@@ -188,14 +188,14 @@
       <div class="grid cols-2">
         <div class="card">
           <h3>What this tab contains</h3>
-          <p>After sitemap extraction, this tab lists only competitor sitemap URLs with priority 1.0, 0.9, or 0.8. Rows are sorted by page pattern first, so similar page types from different competitors sit together.</p>
+          <p>After sitemap extraction, this tab shows only the first page path after the domain. For example, <code>example.com/services/web-design/</code> becomes <code>/services/</code>.</p>
           <div class="meta">
             <span class="tag warning">Script output</span>
           </div>
         </div>
         <div class="card">
           <h3>How to use it</h3>
-          <p>Review one page-pattern group at a time. Service pages, location pages, blog/resource pages, FAQ, case studies, testimonials, about, and contact pages can all indicate what the new website may need.</p>
+          <p>Compare the top-level paths that repeat across competitors. This avoids hundreds of article URLs and makes the common website structure easier to see.</p>
           <div class="meta">
             <span class="tag warning">Manual review</span>
           </div>
@@ -268,7 +268,7 @@
         <div>
           <h3>How this connects to the sheet</h3>
           <p><strong>EP01 COMPETITORS</strong> is for the search result research. Add the exact ranking page URL and the competitor domain here. The ranking page explains the page type that is currently winning for the keyword.</p>
-          <p><strong>EP01 SITE STRUCTURE</strong> is for the page inventory. The script adds only priority 1.0, 0.9, and 0.8 sitemap pages here, labels each URL with a page pattern, and sorts the rows for cross-competitor comparison.</p>
+          <p><strong>EP01 SITE STRUCTURE</strong> is for the top-level page inventory. The script keeps only priority 1.0, 0.9, and 0.8 sitemap URLs, reduces each URL to the first path after the domain, and groups those paths across competitors.</p>
         </div>
         <div>
           <div class="kit">
@@ -424,7 +424,7 @@ function ep01ExtractSitemapPages() {
   ep01PrepareStructureSheet_(structure);
 
   var competitorRows = competitors.getRange(5, 1, lastRow - 4, 10).getValues();
-  var pageRows = [];
+  var topLevelGroups = {};
 
   competitorRows.forEach(function(row) {
     var competitorName = row[1] || '';
@@ -435,29 +435,31 @@ function ep01ExtractSitemapPages() {
 
     var pages = ep01CollectPagesFromSitemap_(sitemapUrl, EP01_MAX_PAGES_PER_COMPETITOR);
     pages.forEach(function(page) {
-      var pagePath = ep01PagePath_(page.loc);
-      pageRows.push([
-        ep01PagePattern_(pagePath),
-        competitorName,
-        domain,
-        page.loc,
-        pagePath,
-        page.priority || '',
-        page.lastmod || '',
-        'Review manually',
-        page.source
-      ]);
+      var topLevelPath = ep01TopLevelPagePath_(page.loc);
+      var key = topLevelPath.toLowerCase();
+      if (!topLevelGroups[key]) {
+        topLevelGroups[key] = {
+          path: topLevelPath,
+          competitors: {},
+          examples: {},
+          priorities: {}
+        };
+      }
+
+      topLevelGroups[key].competitors[competitorName || domain] = true;
+      topLevelGroups[key].examples[ep01TopLevelPageUrl_(page.loc, topLevelPath)] = true;
+      topLevelGroups[key].priorities[page.priority || ''] = true;
     });
   });
 
-  pageRows.sort(ep01CompareStructureRows_);
+  var structureRows = ep01BuildTopLevelStructureRows_(topLevelGroups);
 
-  if (pageRows.length) {
-    structure.getRange(5, 1, pageRows.length, 9).setValues(pageRows);
-    ep01ApplyStructureFilter_(structure, pageRows.length);
+  if (structureRows.length) {
+    structure.getRange(5, 1, structureRows.length, 7).setValues(structureRows);
+    ep01ApplyStructureFilter_(structure, structureRows.length);
   }
 
-  SpreadsheetApp.getUi().alert('EP01 sitemap page extraction complete. Rows added: ' + pageRows.length + '. Only priority 1.0, 0.9, and 0.8 pages are included.');
+  SpreadsheetApp.getUi().alert('EP01 sitemap page extraction complete. Top-level paths added: ' + structureRows.length + '. Only priority 1.0, 0.9, and 0.8 pages are included.');
 }
 
 function ep01PrepareCompetitorSheet_(sheet) {
@@ -486,24 +488,25 @@ function ep01PrepareCompetitorSheet_(sheet) {
 function ep01PrepareStructureSheet_(sheet) {
   if (sheet.getFilter()) sheet.getFilter().remove();
   sheet.clearContents();
-  sheet.getRange('A1:I1').breakApart().merge().setValue('EP01 SITE STRUCTURE');
-  sheet.getRange('A2:I2').breakApart().merge().setValue('Only sitemap pages with priority 1.0, 0.9, or 0.8 are added. Rows are sorted by page pattern so repeated structures can be compared across competitors.');
-  sheet.getRange('A4:I4').setValues([[
-    'Page Pattern',
-    'Competitor',
-    'Domain',
-    'Page URL',
-    'Page Path',
-    'Sitemap Priority',
-    'Last Modified',
+  sheet.getRange('A1:G1').breakApart().merge().setValue('EP01 SITE STRUCTURE');
+  sheet.getRange('A2:G2').breakApart().merge().setValue('Only priority 1.0, 0.9, and 0.8 sitemap URLs are used. Each URL is reduced to the first path after the domain, such as /services/ or /blog/.');
+  sheet.getRange('A4:G4').setValues([[
+    'Top-Level Page Path',
+    'Competitor Count',
+    'Competitors Found',
+    'Example Top-Level URLs',
+    'Sitemap Priorities Found',
     'Page Type Notes',
-    'Source Sitemap'
+    'Decision Notes'
   ]]);
-  ep01StyleSheet_(sheet, 9);
+  ep01StyleSheet_(sheet, 7);
   sheet.setColumnWidth(1, 220);
-  sheet.setColumnWidth(4, 320);
+  sheet.setColumnWidth(2, 150);
+  sheet.setColumnWidth(3, 280);
+  sheet.setColumnWidth(4, 380);
   sheet.setColumnWidth(5, 180);
-  sheet.setColumnWidth(9, 260);
+  sheet.setColumnWidth(6, 220);
+  sheet.setColumnWidth(7, 220);
 }
 
 function ep01StyleSheet_(sheet, columns) {
@@ -620,14 +623,37 @@ function ep01LooksLikeSitemap_(text) {
 
 function ep01ApplyStructureFilter_(sheet, rowCount) {
   if (sheet.getFilter()) sheet.getFilter().remove();
-  sheet.getRange(4, 1, rowCount + 1, 9).createFilter();
+  sheet.getRange(4, 1, rowCount + 1, 7).createFilter();
 }
 
-function ep01CompareStructureRows_(a, b) {
-  return ep01CompareText_(a[0], b[0]) ||
-    ep01CompareText_(a[4], b[4]) ||
-    ep01CompareText_(a[1], b[1]) ||
-    ep01CompareText_(a[3], b[3]);
+function ep01BuildTopLevelStructureRows_(groups) {
+  return Object.keys(groups).map(function(key) {
+    var group = groups[key];
+    var competitors = Object.keys(group.competitors).sort();
+    var examples = Object.keys(group.examples).sort();
+    var priorities = Object.keys(group.priorities).filter(Boolean).sort().reverse();
+
+    return [
+      group.path,
+      competitors.length,
+      competitors.join(', '),
+      examples.join('\n'),
+      priorities.join(', '),
+      '',
+      ''
+    ];
+  }).sort(ep01CompareTopLevelRows_);
+}
+
+function ep01CompareTopLevelRows_(a, b) {
+  return ep01CompareNumber_(Number(b[1] || 0), Number(a[1] || 0)) ||
+    ep01CompareText_(a[0], b[0]);
+}
+
+function ep01CompareNumber_(a, b) {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
 }
 
 function ep01CompareText_(a, b) {
@@ -694,69 +720,16 @@ function ep01PagePath_(pageUrl) {
   return path || '/';
 }
 
-function ep01PagePattern_(pagePath) {
-  var cleanPath = ep01ComparablePath_(pagePath);
-  var segments = cleanPath.split('/').filter(Boolean);
-  if (!segments.length) return 'Home';
-
-  var firstSegment = segments[0];
-  if (ep01PathHasSegment_(segments, ['terms', 'privacy', 'security', 'data-deletion', 'refund-policy', 'shipping-and-delivery']) || ep01PathContainsAny_(cleanPath, ['privacy-policy', 'terms-of-service', 'vulnerability-disclosure', 'google-disclosure'])) return 'Legal / Trust';
-  if (ep01PathHasSegment_(segments, ['contact', 'contact-us', 'contactanos', 'entre-em-contato'])) return 'Contact';
-  if (ep01PathHasSegment_(segments, ['about', 'about-us'])) return 'About';
-  if (ep01PathHasSegment_(segments, ['partners', 'partner-program', 'socios', 'parceiros']) || ep01PathContainsAny_(cleanPath, ['our-partners', 'become-partner', 'convertirse-en-socio', 'torne-se-parceiro', 'affiliate'])) return 'Partner Page';
-  if (ep01PathContainsAny_(cleanPath, ['client-reviews', 'reviews', 'resenas-de-cliente', 'avaliacoes-de-clientes', 'testimonials'])) return 'Review / Testimonial';
-  if (ep01PathHasSegment_(segments, ['pricing', 'precos', 'precios', 'buy', 'beli']) || ep01PathContainsAny_(cleanPath, ['tariff', 'price', 'plans', 'planos'])) return 'Pricing / Plans';
-  if (ep01PathHasSegment_(segments, ['case-studies', 'cases', 'casos', 'estudo-de-caso']) || ep01PathContainsAny_(cleanPath, ['customer-stories'])) return 'Case Study';
-  if (ep01PathHasSegment_(segments, ['blog', 'blogs'])) return 'Blog / Guide';
-  if (ep01PathHasSegment_(segments, ['support', 'docs', 'developers', 'tutorials', 'kb', 'academy', 'faq'])) return 'Support / Tutorial';
-  if (ep01PathHasSegment_(segments, ['integrations', 'integracoes', 'integraciones']) || ep01PathContainsAny_(cleanPath, ['integration', 'integracao'])) return 'Integration Page';
-  if (ep01PathContainsAny_(cleanPath, ['alternative', 'alternatives', 'vs-'])) return 'Comparison Page';
-  if (ep01PathContainsAny_(cleanPath, ['template', 'templates', 'message-template', 'whatsapp-marketing-template'])) return 'Template / Example';
-  if (ep01PathContainsAny_(cleanPath, ['generator', 'calculator', 'qr-code', 'link-generator', 'catalog'])) return 'Tool / Utility';
-  if (firstSegment === 'industries' || firstSegment === 'industry' || firstSegment === 'industrias') return segments.length > 1 ? 'Industry / Use Case' : 'Industry Index';
-
-  var hasLocation = ep01PathContainsAny_(cleanPath, ep01LocationTerms_());
-  var hasIndustry = ep01PathContainsAny_(cleanPath, ep01IndustryTerms_());
-  if (hasLocation && hasIndustry) return 'Industry + Location Page';
-  if (hasLocation) return 'Location Page';
-  if (hasIndustry) return 'Industry / Use Case';
-  if (ep01PathContainsAny_(cleanPath, ['ai-calling', 'ai-ivr', 'ai-agent', 'ai-whatsapp', 'ai-training'])) return 'AI Product / Feature';
-  if (ep01PathContainsAny_(cleanPath, ['whatsapp-api', 'whatsapp-business-api', 'whatsapp-automation', 'whatsapp-marketing', 'whatsapp-chatbot', 'whatsapp-chatbots', 'whatsapp-broadcast', 'whatsapp-bulk', 'whatsapp-drip', 'click-to-whatsapp', 'whatsapp-payments', 'whatsapp-catalog', 'n8n-whatsapp'])) return 'WhatsApp Product / Feature';
-
-  return 'Other / Review';
-}
-
-function ep01ComparablePath_(pagePath) {
-  var path = String(pagePath || '/').toLowerCase().replace(/\/+/g, '/');
+function ep01TopLevelPagePath_(pageUrl) {
+  var path = ep01PagePath_(pageUrl).replace(/\/+/g, '/');
   var segments = path.split('/').filter(Boolean);
-  while (segments.length && ep01IsLocaleSegment_(segments[0])) {
-    segments.shift();
-  }
-  return '/' + segments.join('/');
+  if (!segments.length) return '/';
+  return '/' + segments[0] + '/';
 }
 
-function ep01IsLocaleSegment_(segment) {
-  return /^(en|es|br|id|tr|ar|pt|pt-br|zh-hant|zh-hans)$/.test(String(segment || '').toLowerCase());
-}
-
-function ep01PathHasSegment_(segments, values) {
-  return values.some(function(value) {
-    return segments.indexOf(value) !== -1;
-  });
-}
-
-function ep01PathContainsAny_(path, values) {
-  return values.some(function(value) {
-    return path.indexOf(value) !== -1;
-  });
-}
-
-function ep01LocationTerms_() {
-  return ['dubai', 'uae', 'abu-dhabi', 'qatar', 'doha', 'saudi', 'riyadh', 'jeddah', 'india', 'agra', 'ahmedabad', 'amritsar', 'aurangabad', 'bangalore', 'bhopal', 'bhubaneswar', 'chandigarh', 'chennai', 'coimbatore', 'dehradun', 'delhi', 'faridabad', 'ghaziabad', 'gurgaon', 'guwahati', 'gwalior', 'hubli', 'hyderabad', 'indore', 'jabalpur', 'jaipur', 'jammu', 'jodhpur', 'kanpur', 'kochi', 'kolkata', 'lucknow', 'ludhiana', 'madurai', 'mangalore', 'meerut', 'mumbai', 'mysore', 'nagpur', 'nashik', 'noida', 'patna', 'pune', 'raipur', 'rajkot', 'ranchi', 'salem', 'surat', 'thiruvananthapuram', 'tiruchirappalli', 'udaipur', 'vadodara', 'varanasi', 'vijayawada', 'visakhapatnam'];
-}
-
-function ep01IndustryTerms_() {
-  return ['automobile', 'automotive', 'b2b-sales', 'banking', 'finance', 'bfsi', 'construction', 'customer-support', 'debt-collection', 'education', 'ecommerce', 'e-commerce', 'events-webinars', 'healthcare', 'hospitality', 'insurance', 'logistics', 'manufacturing', 'nbfc', 'oil-gas', 'patient-reminders', 'payment-collection', 'payment-reminders', 'real-estate', 'retail', 'telecom', 'wholesale'];
+function ep01TopLevelPageUrl_(pageUrl, topLevelPath) {
+  var origin = ep01NormalizeOrigin_(pageUrl);
+  return origin ? origin + topLevelPath : topLevelPath;
 }
 `;
 
