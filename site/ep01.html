@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EP01 · Site Structure · SEO + GEO Series</title>
-  <meta name="description" content="Set up EP01 tabs, add ranking page URLs and competitor domains, and use Apps Script to find robots.txt, sitemap URLs, and sitemap pages for site-structure planning." />
+  <meta name="description" content="Set up EP01 tabs, add ranking page URLs and competitor domains, collect sitemap URL inventory, and use AI to group competitor pages into a proposed site structure." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -41,7 +41,7 @@
       <div>
         <div class="badge">Episode 01 · Site Structure</div>
         <h1>Create the Site Structure First</h1>
-        <p class="lead">Start EP01 by setting up two tabs: one for the competitors ranking on Google, and one for the pages found from their websites. Add the ranking page and domain, then let the script find robots.txt, sitemap URLs, and sitemap pages where available.</p>
+        <p class="lead">Start EP01 by recording the competitors ranking on Google, collecting their sitemap URL inventory, and using AI to group those URLs into a proposed site structure. The sheet keeps raw URLs visible, including language-prefixed paths like <code>/ar/service/</code>.</p>
         <div class="cta-row">
           <a class="btn" href="#apps-script">Copy EP01 Script</a>
           <a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1RcsHgU3wlQZ2DhEgZDP2uSCR5bPCiEUZb99kvWNaaaw/copy" target="_blank" rel="noopener">Make a Copy of the Sheet</a>
@@ -56,8 +56,8 @@
         </div>
         <div class="stat-card">
           <div class="stat-title">Script output</div>
-          <div class="stat-value">Robots · Sitemap · Pages</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script collects high-priority sitemap pages automatically.</p>
+          <div class="stat-value">Inventory · AI Matrix</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script collects sitemap URLs, preserves original paths, and asks AI to group page types.</p>
         </div>
       </div>
     </section>
@@ -76,7 +76,7 @@
         </div>
         <div class="card">
           <h3>3 · Add competitors</h3>
-          <p>Add the competitor name, ranking page URL, ranking page type, and domain. Then run the EP01 menu actions to collect sitemap data.</p>
+          <p>Add the competitor name, ranking page URL, ranking page type, and domain. Then run the EP01 menu actions to collect inventory and analyze the structure.</p>
         </div>
       </div>
     </section>
@@ -97,14 +97,18 @@
             <li>Complete the authorization prompt if Google asks for permission.</li>
             <li>Return to the Google Sheet and refresh the browser tab.</li>
             <li>Use <code>SEO/GEO Series &gt; EP01: Find Sitemaps</code>.</li>
-            <li>Use <code>SEO/GEO Series &gt; EP01: Extract Sitemap Pages</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP01: Extract Sitemap URLs</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP01: Set AI API Key</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP01: Analyze Site Structure with AI</code>.</li>
           </ul>
         </div>
         <div>
           <div class="kit">
             <h4>What the script creates</h4>
             <p><strong>EP01 COMPETITORS</strong></p>
+            <p><strong>EP01 URL INVENTORY</strong></p>
             <p><strong>EP01 SITE STRUCTURE</strong></p>
+            <p><strong>EP01 AI LOG</strong></p>
           </div>
           <div class="kit">
             <h4>What to add manually</h4>
@@ -148,7 +152,7 @@
         </div>
         <div class="card">
           <h3>Domain</h3>
-          <p>Add the competitor domain. The script uses this domain to check <code>/robots.txt</code>, discover sitemap URLs, and collect sitemap pages.</p>
+          <p>Add the competitor domain. The script uses this domain to check <code>/robots.txt</code>, discover sitemap URLs, and collect sitemap URLs.</p>
           <div class="meta">
             <span class="tag warning">Manual input</span>
           </div>
@@ -177,32 +181,32 @@
         </div>
         <div class="card">
           <h3>Why use them?</h3>
-          <p>They help collect competitor pages faster. Instead of opening every page manually, the script can use sitemap data to build a filtered page list for review.</p>
+          <p>They help collect competitor pages faster. Instead of opening every page manually, the script uses sitemap data to build a URL inventory for AI-assisted grouping.</p>
         </div>
       </div>
     </section>
 
     <section class="section" id="site-structure-tab">
-      <div class="eyebrow">Tab 2</div>
-      <h2 class="section-title">EP01 SITE STRUCTURE: turn pages into a plan</h2>
+      <div class="eyebrow">Tabs 2 and 3</div>
+      <h2 class="section-title">EP01 URL INVENTORY and SITE STRUCTURE</h2>
       <div class="grid cols-2">
         <div class="card">
-          <h3>What this tab contains</h3>
-          <p>After sitemap extraction, this tab shows a page-type matrix. Common page types are listed down the rows, competitors are listed across C1 to C10, and matching top-level paths are marked in each competitor column.</p>
+          <h3>URL inventory first</h3>
+          <p>The inventory tab stores the raw sitemap URLs, original paths, language prefix, functional path, priority, last modified date, and source sitemap. This is the audit trail before AI grouping.</p>
           <div class="meta">
             <span class="tag warning">Script output</span>
           </div>
         </div>
         <div class="card">
-          <h3>How to use it</h3>
-          <p>Use the count and decision columns to see which page types repeat across competitors. Deep URLs are reduced to the first useful path, so article lists do not overwhelm the planning view.</p>
+          <h3>AI grouping second</h3>
+          <p>The site-structure tab shows an AI-generated page-type matrix. Competitors are listed across C1 to C10, and cells contain the exact paths found for each competitor.</p>
           <div class="meta">
             <span class="tag warning">Manual review</span>
           </div>
         </div>
         <div class="card">
-          <h3>Final decision</h3>
-          <p>The tab helps create the website page plan. Pages repeated across many competitors are baseline pages. Pages only a few competitors have may reveal gaps or opportunities.</p>
+          <h3>Language is metadata</h3>
+          <p>A path like <code>/ar/service/digital-marketing/</code> is treated as an Arabic service page, not a location page. Location is inferred only from explicit city, country, region, or local-market terms.</p>
           <div class="meta">
             <span class="tag warning">Planning step</span>
           </div>
@@ -224,9 +228,9 @@
         <div>
           <h3>What is this process?</h3>
           <p>Most websites are planned by guessing the pages first and thinking about SEO later. EP01 reverses that order. The site structure is planned before the website is built by studying the websites Google is already rewarding for the main keyword.</p>
-          <p>The process starts with one target keyword. In the reel example, the keyword is <strong>whatsapp automation Dubai</strong>. Search it in an incognito Google tab, collect the competitors ranking on the first page, and record the exact page that is ranking.</p>
+          <p>The process starts with one target keyword. Search it in an incognito Google tab, collect the competitors ranking on the first page, and record the exact page that is ranking.</p>
           <p>The ranking page shows the page type Google is surfacing for that keyword. It may be a homepage, service page, location page, blog page, comparison page, directory page, or another type. That pattern helps decide what kind of page should be created.</p>
-          <p>After the ranking competitors are listed, the page inventory is collected from their websites. This is where robots.txt and sitemaps make the work faster. The goal is a data-backed website page plan that can be used before design or development starts.</p>
+          <p>After the ranking competitors are listed, the page inventory is collected from their websites. This is where robots.txt and sitemaps make the work faster. AI then groups the inventory into a proposed structure that can be reviewed before design or development starts.</p>
         </div>
         <div>
           <div class="kit">
@@ -255,12 +259,12 @@
           <p>Record 8 to 10 real competitors from the organic search results. Skip ads, featured snippets, and large directories when they are not the type of website being planned.</p>
         </div>
         <div class="card">
-          <h3>Step 3 · Audit every competitor page</h3>
-          <p>Use the competitor domain to find sitemap data, then review the discovered pages. Look for home, service, product, location, blog, resource, about, team, contact, FAQ, case study, testimonial, category, and archive pages.</p>
+          <h3>Step 3 · Collect URL inventory</h3>
+          <p>Use the competitor domain to find sitemap data, then collect the sitemap URLs into the inventory tab. Keep original paths visible, including language-prefixed URLs.</p>
         </div>
         <div class="card">
           <h3>Step 4 · Build the site structure</h3>
-          <p>Pages that appear across many competitors usually represent the category baseline. Pages that appear on only one or two competitors may point to gaps or opportunities. The final site structure should use these patterns, not copy one website.</p>
+          <p>Run the AI analysis to group the inventory into page types, competitor coverage, recommendations, and reasoning. The final site structure should use these patterns, not copy one website.</p>
         </div>
       </div>
 
@@ -268,7 +272,8 @@
         <div>
           <h3>How this connects to the sheet</h3>
           <p><strong>EP01 COMPETITORS</strong> is for the search result research. Add the exact ranking page URL and the competitor domain here. The ranking page explains the page type that is currently winning for the keyword.</p>
-          <p><strong>EP01 SITE STRUCTURE</strong> is for the page-type coverage matrix. The script keeps only priority 1.0, 0.9, and 0.8 sitemap URLs, reduces each URL to the first useful path, and shows which competitors have each common page type.</p>
+          <p><strong>EP01 URL INVENTORY</strong> is for raw sitemap URLs. It preserves the original path and also calculates language prefix, functional path, and top-level functional path.</p>
+          <p><strong>EP01 SITE STRUCTURE</strong> is for the AI-generated page-type coverage matrix. It shows which competitors have each page type, exact supporting paths, recommendation, and reasoning.</p>
         </div>
         <div>
           <div class="kit">
@@ -300,8 +305,8 @@
           <p>Some important pages may not appear in the sitemap. The sitemap is a helper, not the final answer.</p>
         </div>
         <div class="card">
-          <h3>Priority and dates may be missing</h3>
-          <p>Many sitemaps do not include priority or last modified date. EP01 skips URLs with missing priority and keeps only priority 1.0, 0.9, and 0.8 pages so the tab stays focused.</p>
+          <h3>AI suggestions need review</h3>
+          <p>AI grouping is used to reduce noise and find patterns, but it is still a planning assistant. Review the evidence paths before deciding the final site structure.</p>
         </div>
       </div>
     </section>
@@ -316,10 +321,15 @@
 <script>
   const ep01AppsScript = String.raw`
 const EP01_COMPETITORS_SHEET = 'EP01 COMPETITORS';
+const EP01_URL_INVENTORY_SHEET = 'EP01 URL INVENTORY';
 const EP01_SITE_STRUCTURE_SHEET = 'EP01 SITE STRUCTURE';
-const EP01_MAX_PAGES_PER_COMPETITOR = 250;
-const EP01_MAX_CHILD_SITEMAPS = 20;
-const EP01_ALLOWED_SITEMAP_PRIORITIES = ['1.0', '0.9', '0.8'];
+const EP01_AI_LOG_SHEET = 'EP01 AI LOG';
+const EP01_OPENAI_KEY_PROPERTY = 'EP01_OPENAI_API_KEY';
+const EP01_OPENAI_MODEL = 'gpt-4.1-mini';
+const EP01_OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
+const EP01_PROMPT_VERSION = 'ep01-site-structure-v2';
+const EP01_MAX_PAGES_PER_COMPETITOR = 1000;
+const EP01_MAX_CHILD_SITEMAPS = 50;
 
 function onOpen() {
   ep01CreateMenu_();
@@ -330,40 +340,44 @@ function ep01CreateMenu_() {
     .createMenu('SEO/GEO Series')
     .addItem('EP01: Setup Tabs', 'setupEP01')
     .addItem('EP01: Find Sitemaps', 'ep01FindSitemaps')
-    .addItem('EP01: Extract Sitemap Pages', 'ep01ExtractSitemapPages')
+    .addItem('EP01: Extract Sitemap URLs', 'ep01ExtractSitemapUrls')
+    .addItem('EP01: Set AI API Key', 'ep01SetAiApiKey')
+    .addItem('EP01: Analyze Site Structure with AI', 'ep01AnalyzeSiteStructureWithAi')
     .addToUi();
 }
 
 function setupEP01() {
-  ep01SetupTabs_(true);
+  var sheets = ep01EnsureEp01Sheets_();
+  ep01PrepareCompetitorSheet_(sheets.competitors);
+  ep01PrepareInventorySheet_(sheets.inventory);
+  ep01PrepareStructureSheet_(sheets.structure);
+  ep01PrepareAiLogSheet_(sheets.log);
+  ep01CreateMenu_();
+  SpreadsheetApp.getUi().alert('EP01 tabs are ready. Add competitor name, ranking page URL, ranking page type, and domain in EP01 COMPETITORS.');
 }
 
-function ep01SetupTabs_(showAlert) {
+function ep01EnsureEp01Sheets_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var competitors = ss.getSheetByName(EP01_COMPETITORS_SHEET) || ss.insertSheet(EP01_COMPETITORS_SHEET);
-  var structure = ss.getSheetByName(EP01_SITE_STRUCTURE_SHEET) || ss.insertSheet(EP01_SITE_STRUCTURE_SHEET);
-
-  ep01PrepareCompetitorSheet_(competitors);
-  ep01PrepareStructureSheet_(structure);
-  ep01CreateMenu_();
-
-  if (showAlert) {
-    SpreadsheetApp.getUi().alert('EP01 tabs are ready. Add competitor name, ranking page URL, ranking page type, and domain in the EP01 COMPETITORS tab.');
-  }
+  return {
+    competitors: ss.getSheetByName(EP01_COMPETITORS_SHEET) || ss.insertSheet(EP01_COMPETITORS_SHEET),
+    inventory: ss.getSheetByName(EP01_URL_INVENTORY_SHEET) || ss.insertSheet(EP01_URL_INVENTORY_SHEET),
+    structure: ss.getSheetByName(EP01_SITE_STRUCTURE_SHEET) || ss.insertSheet(EP01_SITE_STRUCTURE_SHEET),
+    log: ss.getSheetByName(EP01_AI_LOG_SHEET) || ss.insertSheet(EP01_AI_LOG_SHEET)
+  };
 }
 
 function ep01FindSitemaps() {
-  ep01SetupTabs_(false);
+  var sheets = ep01EnsureEp01Sheets_();
+  var sheet = sheets.competitors;
+  if (sheet.getLastRow() < 4) ep01PrepareCompetitorSheet_(sheet);
 
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName(EP01_COMPETITORS_SHEET);
   var lastRow = sheet.getLastRow();
   if (lastRow < 5) {
     SpreadsheetApp.getUi().alert('Add competitor rows first.');
     return;
   }
 
-  var values = sheet.getRange(5, 1, lastRow - 4, 10).getValues();
+  var values = sheet.getRange(5, 1, Math.min(lastRow - 4, 10), 10).getValues();
   var output = [];
 
   values.forEach(function(row) {
@@ -409,79 +423,131 @@ function ep01FindSitemaps() {
   SpreadsheetApp.getUi().alert('EP01 sitemap check complete.');
 }
 
-function ep01ExtractSitemapPages() {
-  ep01SetupTabs_(false);
-
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var competitors = ss.getSheetByName(EP01_COMPETITORS_SHEET);
-  var structure = ss.getSheetByName(EP01_SITE_STRUCTURE_SHEET);
+function ep01ExtractSitemapUrls() {
+  var sheets = ep01EnsureEp01Sheets_();
+  var competitors = sheets.competitors;
+  var inventory = sheets.inventory;
   var lastRow = competitors.getLastRow();
   if (lastRow < 5) {
     SpreadsheetApp.getUi().alert('Add competitor rows first.');
     return;
   }
 
-  ep01PrepareStructureSheet_(structure);
+  ep01PrepareInventorySheet_(inventory);
 
   var competitorRows = competitors.getRange(5, 1, Math.min(lastRow - 4, 10), 10).getValues();
-  var pageTypes = ep01PageTypeDefinitions_();
-  var competitorSummaries = [];
+  var outputRows = [];
+  var totalUrls = 0;
 
   competitorRows.forEach(function(row, index) {
+    var code = 'C' + (index + 1);
     var competitorName = row[1] || '';
     var rankingUrl = row[2] || '';
-    var domainInput = row[4] || '';
+    var rankingPageType = row[3] || '';
     var domain = ep01NormalizeOrigin_(row[4] || rankingUrl);
     var sitemapUrl = row[7] || '';
-    if (!competitorName && !rankingUrl && !domainInput && !sitemapUrl) return;
 
-    var summary = {
-      code: 'C' + (index + 1),
-      name: competitorName || domain || '',
-      domain: domain,
-      sitemapUrl: sitemapUrl,
-      totalPages: 0,
-      topLevelPaths: {},
-      matches: {},
-      note: ''
-    };
+    if (!competitorName && !rankingUrl && !row[4] && !sitemapUrl) return;
 
     if (!domain || !sitemapUrl) {
-      summary.note = 'Missing domain or sitemap URL';
-      competitorSummaries[index] = summary;
+      outputRows.push([
+        code,
+        competitorName,
+        domain,
+        rankingUrl,
+        rankingPageType,
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        sitemapUrl || 'Missing sitemap URL'
+      ]);
       return;
     }
 
     var pages = ep01CollectPagesFromSitemap_(sitemapUrl, EP01_MAX_PAGES_PER_COMPETITOR);
-    summary.totalPages = pages.length;
+    totalUrls += pages.length;
 
     pages.forEach(function(page) {
-      var topLevelPath = ep01TopLevelPagePath_(page.loc);
-      var pageTypeIndex = ep01FindPageTypeIndex_(topLevelPath, pageTypes);
-      summary.topLevelPaths[topLevelPath] = true;
-
-      if (pageTypeIndex === -1) return;
-      if (!summary.matches[pageTypeIndex]) summary.matches[pageTypeIndex] = {};
-      summary.matches[pageTypeIndex][topLevelPath] = true;
+      var pathInfo = ep01AnalyzeUrlPath_(page.loc);
+      outputRows.push([
+        code,
+        competitorName,
+        domain,
+        rankingUrl,
+        rankingPageType,
+        page.loc,
+        pathInfo.originalPath,
+        pathInfo.languagePrefix,
+        pathInfo.functionalPath,
+        pathInfo.topLevelFunctionalPath,
+        page.priority,
+        page.lastmod,
+        page.source
+      ]);
     });
-
-    competitorSummaries[index] = summary;
   });
 
-  var matrixRows = ep01BuildPageTypeMatrixRows_(pageTypes, competitorSummaries);
-  var totalsRows = ep01BuildCompetitorTotalsRows_(competitorSummaries);
-
-  if (matrixRows.length) {
-    structure.getRange(6, 1, matrixRows.length, 15).setValues(matrixRows);
-    ep01ApplyDecisionValidation_(structure, 6, matrixRows.length);
+  if (outputRows.length) {
+    inventory.getRange(5, 1, outputRows.length, 13).setValues(outputRows);
+    inventory.getRange(5, 1, outputRows.length, 13).setWrap(true);
   }
 
-  if (totalsRows.length) {
-    var totalsStartRow = 6 + matrixRows.length + 2;
-    ep01WriteCompetitorTotals_(structure, totalsStartRow, totalsRows);
+  SpreadsheetApp.getUi().alert('EP01 URL inventory complete. Total sitemap URLs collected: ' + totalUrls + '. No priority filter was applied.');
+}
+
+function ep01SetAiApiKey() {
+  var ui = SpreadsheetApp.getUi();
+  var response = ui.prompt(
+    'EP01 AI API Key',
+    'Paste your OpenAI API key. It is stored in your Google user properties, not in the visible sheet cells.',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  if (response.getSelectedButton() !== ui.Button.OK) return;
+  var key = String(response.getResponseText() || '').trim();
+  if (!key) {
+    ui.alert('No API key was saved.');
+    return;
   }
 
-  SpreadsheetApp.getUi().alert('EP01 sitemap page extraction complete. Page-type matrix updated. Only exact priority 1.0, 0.9, and 0.8 pages are included.');
+  PropertiesService.getUserProperties().setProperty(EP01_OPENAI_KEY_PROPERTY, key);
+  ui.alert('AI API key saved for this Google account.');
+}
+
+function ep01AnalyzeSiteStructureWithAi() {
+  var sheets = ep01EnsureEp01Sheets_();
+  ep01PrepareAiLogSheet_(sheets.log);
+
+  var apiKey = PropertiesService.getUserProperties().getProperty(EP01_OPENAI_KEY_PROPERTY);
+  if (!apiKey) {
+    SpreadsheetApp.getUi().alert('Add your AI API key first using SEO/GEO Series > EP01: Set AI API Key.');
+    return;
+  }
+
+  var inventoryRows = ep01ReadInventoryRows_(sheets.inventory);
+  if (!inventoryRows.length) {
+    SpreadsheetApp.getUi().alert('Run EP01: Extract Sitemap URLs before AI analysis.');
+    return;
+  }
+
+  var competitorContexts = ep01ReadCompetitorContexts_(sheets.competitors);
+  var payload = ep01BuildAiPayload_(competitorContexts, inventoryRows);
+  var urlsSent = ep01CountPayloadUrls_(payload);
+
+  try {
+    var aiResponse = ep01CallOpenAi_(apiKey, payload);
+    var aiJson = ep01ParseAiResponse_(aiResponse);
+    ep01WriteAiStructure_(sheets.structure, aiJson, payload);
+    ep01WriteAiLog_(sheets.log, 'Success', urlsSent, aiResponse.responseId || '', aiResponse.rawText || '', '');
+    SpreadsheetApp.getUi().alert('AI site-structure analysis complete. URLs sent to AI: ' + urlsSent + '. Review EP01 SITE STRUCTURE.');
+  } catch (error) {
+    ep01WriteAiLog_(sheets.log, 'Error', urlsSent, '', '', String(error));
+    SpreadsheetApp.getUi().alert('AI analysis failed: ' + String(error));
+  }
 }
 
 function ep01PrepareCompetitorSheet_(sheet) {
@@ -507,15 +573,38 @@ function ep01PrepareCompetitorSheet_(sheet) {
   ep01StyleSheet_(sheet, 10);
 }
 
+function ep01PrepareInventorySheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:M1').breakApart().merge().setValue('EP01 URL INVENTORY');
+  sheet.getRange('A2:M2').breakApart().merge().setValue('Raw sitemap URL inventory. Original paths are preserved. Language prefixes are metadata; they are not location signals by themselves.');
+  sheet.getRange('A4:M4').setValues([[
+    'Competitor Code',
+    'Competitor Name',
+    'Domain',
+    'Ranking Page URL',
+    'Ranking Page Type',
+    'Full URL',
+    'Original Path',
+    'Language Prefix',
+    'Functional Path',
+    'Top-Level Functional Path',
+    'Sitemap Priority',
+    'Last Modified',
+    'Source Sitemap / Notes'
+  ]]);
+  ep01StyleInventorySheet_(sheet);
+}
+
 function ep01PrepareStructureSheet_(sheet) {
   if (sheet.getFilter()) sheet.getFilter().remove();
   sheet.clearContents();
-  sheet.getRange('A1:O1').breakApart().merge().setValue('EP01 SITE STRUCTURE');
-  sheet.getRange('A2:O2').breakApart().merge().setValue('Only exact priority 1.0, 0.9, and 0.8 sitemap URLs are used. Deep URLs are reduced to top-level paths and matched to common page types.');
-  sheet.getRange('A4:O4').breakApart().merge().setValue('A. Common page types across competitors');
-  sheet.getRange('A5:O5').setValues([[
+  sheet.getRange('A1:P1').breakApart().merge().setValue('EP01 SITE STRUCTURE');
+  sheet.getRange('A2:P2').breakApart().merge().setValue('AI-generated page-type matrix from sitemap URL inventory. Original evidence paths stay visible. Language prefixes are treated as language metadata, not geography.');
+  sheet.getRange('A4:P4').breakApart().merge().setValue('A. Common page types across competitors');
+  sheet.getRange('A5:P5').setValues([[
     'Page Type',
-    'URL Pattern',
+    'Evidence / URL Patterns',
     'C1',
     'C2',
     'C3',
@@ -527,15 +616,31 @@ function ep01PrepareStructureSheet_(sheet) {
     'C9',
     'C10',
     'Count',
-    'Decision',
+    'Recommendation',
+    'AI Reasoning',
     'Notes'
   ]]);
-
   ep01StyleStructureSheet_(sheet);
+}
 
-  var blankRows = ep01BuildPageTypeMatrixRows_(ep01PageTypeDefinitions_(), []);
-  sheet.getRange(6, 1, blankRows.length, 15).setValues(blankRows);
-  ep01ApplyDecisionValidation_(sheet, 6, blankRows.length);
+function ep01PrepareAiLogSheet_(sheet) {
+  if (sheet.getLastRow() < 4 || sheet.getRange('A1').getValue() !== 'EP01 AI LOG') {
+    sheet.clearContents();
+    sheet.getRange('A1:H1').breakApart().merge().setValue('EP01 AI LOG');
+    sheet.getRange('A2:H2').breakApart().merge().setValue('Audit trail for AI site-structure analysis. Raw responses may be trimmed to fit Google Sheets cell limits.');
+    sheet.getRange('A4:H4').setValues([[
+      'Timestamp',
+      'Model',
+      'Status',
+      'URLs Sent',
+      'Prompt Version',
+      'Response ID',
+      'Notes',
+      'Raw Response'
+    ]]);
+  }
+  ep01StyleSheet_(sheet, 8);
+  sheet.setColumnWidth(8, 520);
 }
 
 function ep01StyleSheet_(sheet, columns) {
@@ -545,26 +650,404 @@ function ep01StyleSheet_(sheet, columns) {
   sheet.getRange(4, 1, 1, columns).setBackground('#102018').setFontColor('#FFFFFF').setFontWeight('bold').setWrap(true);
   sheet.getDataRange().setVerticalAlignment('top');
   sheet.setColumnWidths(1, columns, 160);
-  sheet.setColumnWidth(3, 320);
-  sheet.setColumnWidth(4, 180);
-  sheet.setColumnWidth(5, 220);
+  sheet.setColumnWidth(3, 260);
+  sheet.setColumnWidth(4, 260);
+  sheet.setColumnWidth(5, 180);
   if (columns >= 8) sheet.setColumnWidth(8, 260);
   if (columns >= 10) sheet.setColumnWidth(10, 260);
 }
 
+function ep01StyleInventorySheet_(sheet) {
+  ep01StyleSheet_(sheet, 13);
+  sheet.setColumnWidth(4, 320);
+  sheet.setColumnWidth(6, 360);
+  sheet.setColumnWidth(7, 260);
+  sheet.setColumnWidth(8, 130);
+  sheet.setColumnWidth(9, 260);
+  sheet.setColumnWidth(10, 190);
+  sheet.setColumnWidth(13, 320);
+}
+
 function ep01StyleStructureSheet_(sheet) {
   sheet.setFrozenRows(5);
-  sheet.getRange('A1:O1').setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
-  sheet.getRange('A2:O2').setBackground('#D8ECD1').setFontColor('#102018').setWrap(true);
-  sheet.getRange('A4:O4').setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
-  sheet.getRange('A5:O5').setBackground('#102018').setFontColor('#FFFFFF').setFontWeight('bold').setWrap(true);
+  sheet.getRange('A1:P1').setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
+  sheet.getRange('A2:P2').setBackground('#D8ECD1').setFontColor('#102018').setWrap(true);
+  sheet.getRange('A4:P4').setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
+  sheet.getRange('A5:P5').setBackground('#102018').setFontColor('#FFFFFF').setFontWeight('bold').setWrap(true);
   sheet.getDataRange().setVerticalAlignment('top');
   sheet.setColumnWidth(1, 210);
   sheet.setColumnWidth(2, 280);
-  sheet.setColumnWidths(3, 10, 90);
+  sheet.setColumnWidths(3, 10, 105);
   sheet.setColumnWidth(13, 90);
   sheet.setColumnWidth(14, 140);
-  sheet.setColumnWidth(15, 260);
+  sheet.setColumnWidth(15, 300);
+  sheet.setColumnWidth(16, 260);
+}
+
+function ep01ReadCompetitorContexts_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 5) return [];
+  var rows = sheet.getRange(5, 1, Math.min(lastRow - 4, 10), 10).getValues();
+  return rows.map(function(row, index) {
+    return {
+      competitor_code: 'C' + (index + 1),
+      competitor_name: row[1] || '',
+      ranking_page_url: row[2] || '',
+      ranking_page_type: row[3] || '',
+      domain: ep01NormalizeOrigin_(row[4] || row[2] || ''),
+      sitemap_url: row[7] || ''
+    };
+  }).filter(function(item) {
+    return item.competitor_name || item.ranking_page_url || item.domain || item.sitemap_url;
+  });
+}
+
+function ep01ReadInventoryRows_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 5) return [];
+  return sheet.getRange(5, 1, lastRow - 4, 13).getValues().filter(function(row) {
+    return row[0] && row[5];
+  });
+}
+
+function ep01BuildAiPayload_(competitorContexts, inventoryRows) {
+  var byCompetitor = {};
+  competitorContexts.forEach(function(context) {
+    byCompetitor[context.competitor_code] = [];
+  });
+
+  inventoryRows.forEach(function(row) {
+    var code = row[0];
+    if (!byCompetitor[code]) byCompetitor[code] = [];
+    byCompetitor[code].push({
+      url: row[5],
+      original_path: row[6],
+      language_prefix: row[7],
+      functional_path: row[8],
+      top_level_functional_path: row[9],
+      sitemap_priority: row[10],
+      last_modified: row[11]
+    });
+  });
+
+  return {
+    prompt_version: EP01_PROMPT_VERSION,
+    instructions: {
+      purpose: 'Infer a proposed website structure from competitor sitemap URL inventory.',
+      evidence_rule: 'Preserve original paths exactly in competitor matches.',
+      language_rule: 'Language prefixes are metadata, not location context by themselves.'
+    },
+    competitors: competitorContexts,
+    url_inventory: Object.keys(byCompetitor).sort().map(function(code) {
+      var context = competitorContexts.filter(function(item) {
+        return item.competitor_code === code;
+      })[0] || { competitor_code: code, competitor_name: '', domain: '' };
+      return {
+        competitor_code: code,
+        competitor_name: context.competitor_name,
+        domain: context.domain,
+        total_urls_found: byCompetitor[code].length,
+        urls: byCompetitor[code]
+      };
+    })
+  };
+}
+
+function ep01CountPayloadUrls_(payload) {
+  return payload.url_inventory.reduce(function(total, competitor) {
+    return total + competitor.urls.length;
+  }, 0);
+}
+
+function ep01CallOpenAi_(apiKey, payload) {
+  var requestBody = {
+    model: EP01_OPENAI_MODEL,
+    input: [
+      {
+        role: 'system',
+        content: [
+          {
+            type: 'input_text',
+            text: ep01AiSystemPrompt_()
+          }
+        ]
+      },
+      {
+        role: 'user',
+        content: [
+          {
+            type: 'input_text',
+            text: 'Input data JSON:\n' + JSON.stringify(payload)
+          }
+        ]
+      }
+    ],
+    text: {
+      format: {
+        type: 'json_object'
+      }
+    }
+  };
+
+  var response = UrlFetchApp.fetch(EP01_OPENAI_ENDPOINT, {
+    method: 'post',
+    muteHttpExceptions: true,
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Bearer ' + apiKey
+    },
+    payload: JSON.stringify(requestBody)
+  });
+
+  var status = response.getResponseCode();
+  var body = response.getContentText();
+  if (status < 200 || status > 299) {
+    throw new Error('OpenAI API returned ' + status + ': ' + body.slice(0, 500));
+  }
+
+  var parsed = JSON.parse(body);
+  return {
+    responseId: parsed.id || '',
+    raw: parsed,
+    rawText: body,
+    outputText: ep01ExtractOpenAiOutputText_(parsed)
+  };
+}
+
+function ep01AiSystemPrompt_() {
+  return [
+    'You are analyzing competitor sitemap URLs to infer a proposed website structure.',
+    '',
+    'Use only the data provided. Do not assume the industry, business model, target country, or page intent unless it is visible in the URLs or competitor context.',
+    '',
+    'Important URL rules:',
+    '- Preserve original URL paths exactly as evidence.',
+    '- Treat language prefixes such as /en/, /ar/, /fr/, /es/, /pt-br/ as language metadata.',
+    '- Do not classify a page as location-based only because it has a language prefix.',
+    '- Infer location pages only when the path contains explicit city, country, region, or local-market terms.',
+    '- Group translated versions of the same functional page type together when appropriate.',
+    '- Do not discard language-prefixed URLs.',
+    '',
+    'Your task:',
+    'Analyze the supplied sitemap URL inventory and group URLs into meaningful top-level page types that would help a user decide what pages their website may need.',
+    '',
+    'For each page type:',
+    '- Give a clear page type name.',
+    '- Show the URL patterns or paths that support the grouping.',
+    '- Show which competitors have that page type.',
+    '- Preserve the exact paths found for each competitor.',
+    '- Count how many competitors have that page type.',
+    '- Recommend one of: Include, Review, Optional.',
+    '- Give short reasoning based only on the data.',
+    '',
+    'Recommendation rules:',
+    '- Include: found across multiple competitors or clearly important from homepage/service structure.',
+    '- Review: found in some competitors but needs human judgment.',
+    '- Optional: low-frequency, legal, utility, blog-only, or weak strategic evidence.',
+    '',
+    'Return only valid JSON. Do not include markdown.',
+    '',
+    'Output JSON schema:',
+    '{',
+    '  "page_types": [',
+    '    {',
+    '      "page_type": "string",',
+    '      "summary": "string",',
+    '      "evidence_patterns": ["string"],',
+    '      "competitor_matches": {',
+    '        "C1": ["exact original path"],',
+    '        "C2": ["exact original path"]',
+    '      },',
+    '      "competitor_count": 0,',
+    '      "recommendation": "Include | Review | Optional",',
+    '      "reasoning": "string",',
+    '      "notes": "string"',
+    '    }',
+    '  ],',
+    '  "competitor_totals": [',
+    '    {',
+    '      "competitor_code": "string",',
+    '      "competitor_name": "string",',
+    '      "domain": "string",',
+    '      "total_urls_found": 0,',
+    '      "urls_sent_to_ai": 0,',
+    '      "main_url_patterns": ["string"],',
+    '      "notes": "string"',
+    '    }',
+    '  ],',
+    '  "notes": ["string"]',
+    '}'
+  ].join('\n');
+}
+
+function ep01ExtractOpenAiOutputText_(responseJson) {
+  if (responseJson.output_text) return responseJson.output_text;
+  var texts = [];
+  (responseJson.output || []).forEach(function(item) {
+    (item.content || []).forEach(function(content) {
+      if (content.text) texts.push(content.text);
+    });
+  });
+  return texts.join('');
+}
+
+function ep01ParseAiResponse_(aiResponse) {
+  var text = String(aiResponse.outputText || '').trim();
+  if (!text) throw new Error('AI returned an empty response.');
+  var parsed = JSON.parse(text);
+  if (!parsed.page_types || !Array.isArray(parsed.page_types)) {
+    throw new Error('AI response did not include page_types array.');
+  }
+  return parsed;
+}
+
+function ep01WriteAiStructure_(sheet, aiJson, payload) {
+  ep01PrepareStructureSheet_(sheet);
+  var pageTypes = aiJson.page_types || [];
+  var rows = pageTypes.map(function(pageType) {
+    var matches = ep01NormalizeCompetitorMatches_(pageType.competitor_matches);
+    var row = [
+      pageType.page_type || '',
+      ep01AsArray_(pageType.evidence_patterns).join('\n')
+    ];
+
+    for (var i = 1; i <= 10; i++) {
+      var code = 'C' + i;
+      row.push(ep01AsArray_(matches[code]).join('\n'));
+    }
+
+    var count = Number(pageType.competitor_count || ep01CountCompetitorMatches_(matches));
+    row.push(count);
+    row.push(ep01NormalizeRecommendation_(pageType.recommendation, count));
+    row.push(pageType.reasoning || pageType.summary || '');
+    row.push(pageType.notes || '');
+    return row;
+  });
+
+  if (rows.length) {
+    sheet.getRange(6, 1, rows.length, 16).setValues(rows);
+    sheet.getRange(6, 1, rows.length, 16).setWrap(true);
+    ep01ApplyRecommendationValidation_(sheet, 6, rows.length);
+  }
+
+  var totalsRows = ep01BuildPayloadTotalsRows_(payload, aiJson);
+  if (totalsRows.length) {
+    ep01WriteCompetitorTotals_(sheet, 6 + rows.length + 2, totalsRows);
+  }
+}
+
+function ep01NormalizeCompetitorMatches_(matches) {
+  var normalized = {};
+  if (!matches) return normalized;
+
+  if (Array.isArray(matches)) {
+    matches.forEach(function(item) {
+      if (!item) return;
+      var code = item.competitor_code || item.code;
+      if (code) normalized[code] = ep01AsArray_(item.paths || item.urls || item.matches);
+    });
+    return normalized;
+  }
+
+  Object.keys(matches).forEach(function(code) {
+    normalized[code] = ep01AsArray_(matches[code]);
+  });
+  return normalized;
+}
+
+function ep01AsArray_(value) {
+  if (!value) return [];
+  if (Array.isArray(value)) return value.map(function(item) {
+    return String(item || '').trim();
+  }).filter(Boolean);
+  return [String(value).trim()].filter(Boolean);
+}
+
+function ep01CountCompetitorMatches_(matches) {
+  var count = 0;
+  Object.keys(matches || {}).forEach(function(code) {
+    if (ep01AsArray_(matches[code]).length) count++;
+  });
+  return count;
+}
+
+function ep01NormalizeRecommendation_(value, count) {
+  var text = String(value || '').trim();
+  if (['Include', 'Review', 'Optional'].indexOf(text) !== -1) return text;
+  if (count >= 3) return 'Include';
+  if (count >= 2) return 'Review';
+  return 'Optional';
+}
+
+function ep01ApplyRecommendationValidation_(sheet, startRow, rowCount) {
+  var rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['Include', 'Review', 'Optional'], true)
+    .setAllowInvalid(true)
+    .build();
+  sheet.getRange(startRow, 14, rowCount, 1).setDataValidation(rule);
+}
+
+function ep01BuildPayloadTotalsRows_(payload, aiJson) {
+  var aiTotals = {};
+  (aiJson.competitor_totals || []).forEach(function(item) {
+    if (item && item.competitor_code) aiTotals[item.competitor_code] = item;
+  });
+
+  return (payload.url_inventory || []).map(function(item) {
+    var patterns = ep01Unique_((item.urls || []).map(function(url) {
+      return url.top_level_functional_path || '/';
+    })).slice(0, 40);
+
+    var languages = ep01Unique_((item.urls || []).map(function(url) {
+      return url.language_prefix || '';
+    }).filter(Boolean));
+
+    var aiItem = aiTotals[item.competitor_code] || {};
+    var aiPatterns = ep01AsArray_(aiItem.main_url_patterns);
+
+    return [
+      item.competitor_code,
+      item.competitor_name,
+      item.domain,
+      item.total_urls_found,
+      (item.urls || []).length,
+      languages.join(', '),
+      (aiPatterns.length ? aiPatterns : patterns).join('\n'),
+      aiItem.notes || ''
+    ];
+  });
+}
+
+function ep01WriteCompetitorTotals_(sheet, startRow, totalsRows) {
+  sheet.getRange(startRow, 1, 1, 8).breakApart().merge().setValue('B. Total sitemap URLs by competitor');
+  sheet.getRange(startRow + 1, 1, 1, 8).setValues([[
+    'Competitor Code',
+    'Competitor',
+    'Domain',
+    'Total Sitemap URLs Found',
+    'URLs Sent to AI',
+    'Language Prefixes Found',
+    'Main URL Patterns Found',
+    'Notes'
+  ]]);
+  sheet.getRange(startRow + 2, 1, totalsRows.length, 8).setValues(totalsRows);
+  sheet.getRange(startRow, 1, 1, 8).setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
+  sheet.getRange(startRow + 1, 1, 1, 8).setBackground('#102018').setFontColor('#FFFFFF').setFontWeight('bold').setWrap(true);
+  sheet.getRange(startRow + 2, 1, totalsRows.length, 8).setWrap(true);
+}
+
+function ep01WriteAiLog_(sheet, status, urlsSent, responseId, rawResponse, notes) {
+  ep01PrepareAiLogSheet_(sheet);
+  sheet.appendRow([
+    new Date(),
+    EP01_OPENAI_MODEL,
+    status,
+    urlsSent,
+    EP01_PROMPT_VERSION,
+    responseId,
+    notes,
+    String(rawResponse || '').slice(0, 45000)
+  ]);
 }
 
 function ep01FindWorkingSitemap_(urls) {
@@ -589,13 +1072,14 @@ function ep01FindWorkingSitemap_(urls) {
 function ep01CollectPagesFromSitemap_(sitemapUrl, limit) {
   var pages = [];
   var queue = [sitemapUrl];
-  var seen = {};
+  var seenSitemaps = {};
+  var seenPages = {};
   var childSitemapCount = 0;
 
   while (queue.length && pages.length < limit) {
     var current = queue.shift();
-    if (!current || seen[current]) continue;
-    seen[current] = true;
+    if (!current || seenSitemaps[current]) continue;
+    seenSitemaps[current] = true;
 
     var result = ep01FetchText_(current);
     if (!result.ok) continue;
@@ -605,7 +1089,7 @@ function ep01CollectPagesFromSitemap_(sitemapUrl, limit) {
       sitemapBlocks.forEach(function(block) {
         if (childSitemapCount >= EP01_MAX_CHILD_SITEMAPS) return;
         var loc = ep01ExtractTag_(block, 'loc');
-        if (loc && !seen[loc]) {
+        if (loc && !seenSitemaps[loc]) {
           queue.push(loc);
           childSitemapCount++;
         }
@@ -617,13 +1101,12 @@ function ep01CollectPagesFromSitemap_(sitemapUrl, limit) {
     urlBlocks.forEach(function(block) {
       if (pages.length >= limit) return;
       var loc = ep01ExtractTag_(block, 'loc');
-      if (!loc) return;
-      var priority = ep01NormalizeSitemapPriority_(ep01ExtractTag_(block, 'priority'));
-      if (!priority) return;
+      if (!loc || seenPages[loc]) return;
+      seenPages[loc] = true;
       pages.push({
         loc: loc,
         lastmod: ep01ExtractTag_(block, 'lastmod'),
-        priority: priority,
+        priority: ep01ExtractTag_(block, 'priority'),
         source: current
       });
     });
@@ -663,142 +1146,6 @@ function ep01ExtractSitemapLines_(robotsText) {
 function ep01LooksLikeSitemap_(text) {
   var body = String(text || '').toLowerCase();
   return body.indexOf('<urlset') !== -1 || body.indexOf('<sitemapindex') !== -1 || body.indexOf('<loc>') !== -1;
-}
-
-function ep01ApplyDecisionValidation_(sheet, startRow, rowCount) {
-  var rule = SpreadsheetApp.newDataValidation()
-    .requireValueInList(['Include', 'Review', 'Optional'], true)
-    .setAllowInvalid(true)
-    .build();
-  sheet.getRange(startRow, 14, rowCount, 1).setDataValidation(rule);
-}
-
-function ep01WriteCompetitorTotals_(sheet, startRow, totalsRows) {
-  sheet.getRange(startRow, 1, 1, 7).breakApart().merge().setValue('B. Total qualifying sitemap pages by competitor');
-  sheet.getRange(startRow + 1, 1, 1, 7).setValues([[
-    'Competitor Code',
-    'Competitor',
-    'Domain',
-    'Qualifying Sitemap URLs Found',
-    'Top-Level Path Count',
-    'Top-Level Paths Found',
-    'Notes'
-  ]]);
-  sheet.getRange(startRow + 2, 1, totalsRows.length, 7).setValues(totalsRows);
-  sheet.getRange(startRow, 1, 1, 7).setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
-  sheet.getRange(startRow + 1, 1, 1, 7).setBackground('#102018').setFontColor('#FFFFFF').setFontWeight('bold').setWrap(true);
-  sheet.getRange(startRow + 2, 1, totalsRows.length, 7).setWrap(true);
-}
-
-function ep01BuildPageTypeMatrixRows_(pageTypes, competitors) {
-  return pageTypes.map(function(pageType, pageTypeIndex) {
-    var row = [pageType.label, pageType.displayPattern];
-    var count = 0;
-
-    for (var i = 0; i < 10; i++) {
-      var competitor = competitors[i];
-      var matchedPaths = competitor && competitor.matches[pageTypeIndex]
-        ? Object.keys(competitor.matches[pageTypeIndex]).sort()
-        : [];
-      if (matchedPaths.length) count++;
-      row.push(matchedPaths.join('\n'));
-    }
-
-    row.push(count);
-    row.push(ep01DefaultDecision_(count));
-    row.push('');
-    return row;
-  });
-}
-
-function ep01BuildCompetitorTotalsRows_(competitors) {
-  var rows = [];
-
-  competitors.forEach(function(competitor) {
-    if (!competitor || (!competitor.name && !competitor.domain)) return;
-    var topLevelPaths = Object.keys(competitor.topLevelPaths).sort();
-    rows.push([
-      competitor.code,
-      competitor.name,
-      competitor.domain,
-      competitor.totalPages,
-      topLevelPaths.length,
-      topLevelPaths.join('\n'),
-      competitor.note
-    ]);
-  });
-
-  return rows;
-}
-
-function ep01DefaultDecision_(count) {
-  if (count >= 3) return 'Include';
-  if (count >= 2) return 'Review';
-  return 'Optional';
-}
-
-function ep01PageTypeDefinitions_() {
-  return [
-    { label: 'Home', displayPattern: 'homepage', tokens: [''] },
-    { label: 'Services / Solutions', displayPattern: '/service/|/services/|/solution/|/solutions/', tokens: ['service', 'services', 'solution', 'solutions'] },
-    { label: 'Product / Features', displayPattern: '/product/|/products/|/feature/|/features/|/platform/', tokens: ['product', 'products', 'feature', 'features', 'platform'] },
-    { label: 'Pricing', displayPattern: '/pricing/|/price/|/plans/|/packages/', tokens: ['pricing', 'price', 'plans', 'packages'] },
-    { label: 'Blog / Resources', displayPattern: '/blog/|/blogs/|/resources/|/guide/|/article/|/articles/', tokens: ['blog', 'blogs', 'resources', 'resource', 'guide', 'guides', 'article', 'articles', 'news', 'insights'] },
-    { label: 'Case Studies / Work', displayPattern: '/case-study/|/case-studies/|/cases/|/customers/|/portfolio/|/work/', tokens: ['case-study', 'case-studies', 'cases', 'customers', 'portfolio', 'our-portfolio', 'work', 'projects'] },
-    { label: 'FAQ', displayPattern: '/faq/|/faqs/', tokens: ['faq', 'faqs'] },
-    { label: 'About', displayPattern: '/about/|/about-us/|/company/', tokens: ['about', 'about-us', 'company', 'who-we-are'] },
-    { label: 'Contact', displayPattern: '/contact/|/contact-us/', tokens: ['contact', 'contact-us'] },
-    { label: 'Locations', displayPattern: '/location/|/locations/|city/country landing pages', tokens: ['location', 'locations', 'dubai', 'uae', 'ksa', 'saudi', 'saudi-arabia', 'riyadh', 'jeddah', 'qatar', 'doha'] },
-    { label: 'Comparisons', displayPattern: '/compare/|/comparison/|/vs/', tokens: ['compare', 'comparison', 'vs', 'versus'] },
-    { label: 'Alternatives', displayPattern: '/alternative/|/alternatives/', tokens: ['alternative', 'alternatives'] },
-    { label: 'Integrations', displayPattern: '/integration/|/integrations/|/apps/|/marketplace/', tokens: ['integration', 'integrations', 'apps', 'marketplace'] },
-    { label: 'Demo / Book', displayPattern: '/demo/|/book/|/booking/|/consultation/', tokens: ['demo', 'book', 'booking', 'consultation', 'schedule', 'meeting'] },
-    { label: 'Legal / Policy', displayPattern: '/privacy/|/privacy-policy/|/terms/|/cookie/|/accessibility/', tokens: ['privacy', 'privacy-policy', 'terms', 'terms-of-service', 'cookie', 'cookie-consent', 'accessibility'] },
-    { label: 'Other / Manual Review', displayPattern: 'unmatched top-level paths', tokens: ['*'] }
-  ];
-}
-
-function ep01FindPageTypeIndex_(topLevelPath, pageTypes) {
-  for (var i = 0; i < pageTypes.length; i++) {
-    if (pageTypes[i].tokens.indexOf('*') !== -1) continue;
-    if (ep01PathMatchesPageType_(topLevelPath, pageTypes[i])) return i;
-  }
-
-  for (var j = 0; j < pageTypes.length; j++) {
-    if (pageTypes[j].tokens.indexOf('*') !== -1) return j;
-  }
-
-  return -1;
-}
-
-function ep01PathMatchesPageType_(topLevelPath, pageType) {
-  var token = String(topLevelPath || '/').toLowerCase().replace(/^\/|\/$/g, '');
-  if (!token && pageType.tokens.indexOf('') !== -1) return true;
-
-  return pageType.tokens.some(function(patternToken) {
-    if (!patternToken) return false;
-    return token === patternToken || token.indexOf(patternToken) !== -1;
-  });
-}
-
-function ep01IsAllowedSitemapPriority_(priority) {
-  return !!ep01NormalizeSitemapPriority_(priority);
-}
-
-function ep01NormalizeSitemapPriority_(priority) {
-  var normalized = String(priority || '').trim();
-  if (!normalized) return '';
-  if (normalized.charAt(0) === '.') normalized = '0' + normalized;
-
-  var numberValue = Number(normalized);
-  if (isNaN(numberValue)) return '';
-
-  for (var i = 0; i < EP01_ALLOWED_SITEMAP_PRIORITIES.length; i++) {
-    var allowed = EP01_ALLOWED_SITEMAP_PRIORITIES[i];
-    if (Math.abs(numberValue - Number(allowed)) < 0.000001) return allowed;
-  }
-
-  return '';
 }
 
 function ep01ExtractBlocks_(xml, tag) {
@@ -843,26 +1190,62 @@ function ep01NormalizeOrigin_(value) {
 function ep01PagePath_(pageUrl) {
   var path = String(pageUrl || '').replace(/^https?:\/\/[^\/]+/i, '');
   path = path.split('#')[0].split('?')[0];
+  if (!path || path.charAt(0) !== '/') path = '/' + path;
+  path = path.replace(/\/+/g, '/');
   return path || '/';
 }
 
-function ep01TopLevelPagePath_(pageUrl) {
-  var path = ep01PagePath_(pageUrl).replace(/\/+/g, '/');
-  var segments = path.split('/').filter(Boolean);
+function ep01AnalyzeUrlPath_(pageUrl) {
+  var originalPath = ep01EnsureTrailingSlash_(ep01PagePath_(pageUrl));
+  var segments = originalPath.split('/').filter(Boolean);
+  var languageSegments = [];
+
   while (segments.length && ep01IsLocaleSegment_(segments[0])) {
-    segments.shift();
+    languageSegments.push(segments.shift());
   }
-  if (!segments.length) return '/';
-  return '/' + segments[0] + '/';
+
+  var functionalPath = segments.length ? '/' + segments.join('/') + '/' : '/';
+  functionalPath = functionalPath.replace(/\/+/g, '/');
+  var topLevelFunctionalPath = segments.length ? '/' + segments[0] + '/' : '/';
+
+  return {
+    originalPath: originalPath,
+    languagePrefix: languageSegments.join('/'),
+    functionalPath: functionalPath,
+    topLevelFunctionalPath: topLevelFunctionalPath
+  };
 }
 
-function ep01TopLevelPageUrl_(pageUrl, topLevelPath) {
-  var origin = ep01NormalizeOrigin_(pageUrl);
-  return origin ? origin + topLevelPath : topLevelPath;
+function ep01EnsureTrailingSlash_(path) {
+  var clean = String(path || '/').replace(/\/+/g, '/');
+  if (clean !== '/' && clean.charAt(clean.length - 1) !== '/') clean += '/';
+  return clean;
 }
 
 function ep01IsLocaleSegment_(segment) {
-  return /^(en|ar|es|pt|fr|de|it|tr|id|zh|zh-hans|zh-hant|en-us|en-gb|pt-br)$/.test(String(segment || '').toLowerCase());
+  var value = String(segment || '').toLowerCase();
+  if (/^zh-(hans|hant)$/.test(value)) return true;
+  var match = value.match(/^([a-z]{2})(?:-[a-z]{2})?$/);
+  if (!match) return false;
+  var language = match[1];
+  var knownLanguages = [
+    'ar', 'en', 'fr', 'es', 'de', 'it', 'pt', 'id', 'tr', 'ru', 'zh', 'ja', 'ko',
+    'hi', 'ur', 'nl', 'pl', 'sv', 'da', 'no', 'fi', 'th', 'vi', 'ms', 'bn', 'ta',
+    'te', 'ml', 'mr', 'gu', 'kn', 'fa', 'he'
+  ];
+  return knownLanguages.indexOf(language) !== -1;
+}
+
+function ep01Unique_(values) {
+  var seen = {};
+  var output = [];
+  values.forEach(function(value) {
+    var text = String(value || '').trim();
+    if (!text || seen[text]) return;
+    seen[text] = true;
+    output.push(text);
+  });
+  return output.sort();
 }
 `;
 
