@@ -1,0 +1,40 @@
+name: Staging validation
+
+on:
+  push:
+    branches: [ staging ]
+  pull_request:
+    branches: [ master, staging ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: staging-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate staging site
+    environment:
+      name: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate static site
+        run: node scripts/validate-static-site.js
+
+      - name: Upload staging site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-site-${{ github.sha }}
+          path: site
+          retention-days: 14
