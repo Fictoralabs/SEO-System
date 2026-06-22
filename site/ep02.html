@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EP02 · Page Structure · SEO + GEO Series</title>
-  <meta name="description" content="Use the same 10 competitors to understand the common homepage structure in the category." />
+  <meta name="description" content="Use the selected pages from EP01, scrape competitor page headings, and generate a title, meta description, and heading-only content outline." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -31,77 +31,247 @@
       <nav class="nav-links">
         <a class="pill" href="ep01.html">EP01</a>
         <a class="pill active" href="ep02.html">EP02</a>
-        <a class="pill" href="ep03.html">EP03</a>
-        <a class="pill" href="ep04.html">EP04</a>
+        <a class="pill coming" href="coming-soon.html">EP03</a>
+        <a class="pill coming" href="coming-soon.html">EP04</a>
         <a class="pill primary" href="https://instagram.com/baisilboban" target="_blank" rel="noopener">Follow @baisilboban</a>
       </nav>
     </header>
 
     <section class="hero">
       <div>
-        <div class="badge">Episode 02 · Page structure</div>
-        <h1>Create the homepage structure</h1>
-        <p class="lead">After the site structure is ready, use the same 10 competitors to understand how the homepage is structured. The goal is to find the common section pattern followed by the category.</p>
+        <div class="badge">Episode 02 · Page Structure</div>
+        <h1>Create the Page Structure From Competitors</h1>
+        <p class="lead">EP02 uses the selected pages from EP01, scrapes each competitor page title, meta description, and heading structure, then uses AI to create a heading-only content outline for the page you need to build.</p>
         <div class="cta-row">
-          <a class="btn" href="#episode-document">Read EP02 document</a>
-          <a class="btn ghost" href="#sheet-task">Sheet instructions</a>
+          <a class="btn" href="#apps-script">Copy EP02 Script</a>
+          <a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1RcsHgU3wlQZ2DhEgZDP2uSCR5bPCiEUZb99kvWNaaaw/copy" target="_blank" rel="noopener">Make a Copy of the Sheet</a>
+          <a class="btn ghost" href="#concept">Read Concept</a>
         </div>
       </div>
       <div style="display:grid;gap:12px;">
         <div class="stat-card">
           <div class="stat-title">Input from EP01</div>
-          <div class="stat-value">Same 10 competitors</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Do not choose a new competitor list for this task.</p>
+          <div class="stat-value">Selected competitor pages</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The EP01 structure matrix tells which competitor pages are useful evidence for each page type.</p>
         </div>
         <div class="stat-card">
-          <div class="stat-title">Relevant sheet tab</div>
-          <div class="stat-value">Page Structure</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Fill the homepage section mapping for each competitor.</p>
+          <div class="stat-title">Script output</div>
+          <div class="stat-value">Page input · Content outline</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script creates EP02 tabs, scrapes headings, and generates title, meta description, H1, H2, and H3 rows.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="episode-document">
-      <div class="eyebrow">Inline document</div>
-      <h2 class="section-title">Find the common homepage structure</h2>
+    <section class="section">
+      <div class="eyebrow">Quick workflow</div>
+      <h2 class="section-title">Build the outline from page evidence</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>1 · Finish EP01 first</h3>
+          <p>Run EP01 and review the site-structure matrix. The pages marked Include or Review become the starting evidence for EP02.</p>
+        </div>
+        <div class="card">
+          <h3>2 · Import selected pages</h3>
+          <p>Run the EP02 import action. The script pulls competitor page paths from EP01 and builds full URLs using the competitor domains.</p>
+        </div>
+        <div class="card">
+          <h3>3 · Scrape page outlines</h3>
+          <p>Run the scrape action. The sheet stores page title, meta description, H1, and H2/H3/H4 headings for every selected page that can be fetched.</p>
+        </div>
+        <div class="card">
+          <h3>4 · Generate the outline</h3>
+          <p>Run the AI action. The output is not body copy. It is only the title tag, meta description, and heading structure needed for the page.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="apps-script">
+      <div class="eyebrow">Apps Script</div>
+      <h2 class="section-title">EP02 setup script</h2>
       <div class="episode">
         <div>
-          <h3>Concept</h3>
-          <p>EP01 created the site structure. EP02 uses the same competitor list to create the page structure.</p>
-          <p>Open the exact 10 competitors collected in EP01 and check how each homepage is structured. A category homepage commonly includes sections like hero, about, service, FAQ, testimonial, why us, contact form, and footer.</p>
-          <p>The goal is not to copy one website. The goal is to find the common structure followed by competitors and use that pattern for the homepage.</p>
-          <h3>Task steps</h3>
+          <h3>Setup steps</h3>
           <ul>
-            <li><strong>Open the same 10 competitors.</strong> Use the competitor list created in EP01.</li>
-            <li><strong>Check each homepage.</strong> Study the exact homepage structure used by each competitor.</li>
-            <li><strong>Track common sections.</strong> Look for hero section, about, service, FAQ, testimonial, why us section, contact form, and footer.</li>
-            <li><strong>Find the repeated pattern.</strong> The common structure followed by most competitors becomes the structure to follow.</li>
+            <li>Complete the EP01 task in your copied Google Sheet first.</li>
+            <li>Copy the Apps Script code below.</li>
+            <li>Open your copied Google Sheet. Apps Script works only inside a native Google Sheet, not inside Excel <code>.xlsx</code> mode.</li>
+            <li>Go to <code>Extensions &gt; Apps Script</code>.</li>
+            <li>Paste this code below the EP01 code, or paste it into the same Apps Script project.</li>
+            <li>Click <code>Run</code> for the function named <code>setupEP02</code>.</li>
+            <li>Complete the authorization prompt if Google asks for permission.</li>
+            <li>Return to the Google Sheet and refresh the browser tab.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP02: Import Selected Pages from EP01</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP02: Scrape Page Outlines</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP02: Set AI API Key</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP02: Generate Content Outline with AI</code>.</li>
           </ul>
         </div>
-        <div id="sheet-task">
+        <div>
           <div class="kit">
-            <h4>Use this sheet tab</h4>
-            <p><strong>Page Structure</strong></p>
-            <p>Open the latest master sheet and use this tab for EP02. Use the same 10 competitors from EP01. Do not create a new competitor list for this task.</p>
+            <h4>What the script creates</h4>
+            <p><strong>EP02 PAGE INPUT</strong></p>
+            <p><strong>EP02 CONTENT OUTLINE</strong></p>
+            <p><strong>EP02 AI LOG</strong></p>
           </div>
           <div class="kit">
-            <h4>Sheet task</h4>
+            <h4>What the output contains</h4>
             <ul>
-              <li>Enter the competitor URL.</li>
-              <li>List the homepage sections in the exact order they appear.</li>
-              <li>Mark sections that repeat across competitors.</li>
-              <li>Use the repeated pattern as the homepage structure.</li>
+              <li>Title tag</li>
+              <li>Meta description</li>
+              <li>H1 heading</li>
+              <li>H2 and H3 outline</li>
+              <li>Optional H4 support headings</li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div class="script-panel">
+        <div class="script-panel-head">
+          <h3>Copy this Apps Script</h3>
+          <button class="resource-link" type="button" data-copy-code>Copy code</button>
+        </div>
+        <pre class="script-code"><code id="ep02-apps-script">Loading EP02 Apps Script...</code></pre>
+      </div>
+    </section>
+
+    <section class="section" id="page-input-tab">
+      <div class="eyebrow">Tab 1</div>
+      <h2 class="section-title">EP02 PAGE INPUT: collect competitor evidence</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Selected pages from EP01</h3>
+          <p>The import action reads the EP01 site-structure matrix and imports pages marked Include or Review. You can uncheck any page that should not be used.</p>
+          <div class="meta">
+            <span class="tag warning">Script output</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Heading scrape</h3>
+          <p>The scrape action fetches the page HTML and extracts the title tag, meta description, H1, H2, H3, and H4 headings. The outline remains visible for review.</p>
+          <div class="meta">
+            <span class="tag warning">Review before AI</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Manual cleanup</h3>
+          <p>If a site blocks the request or returns empty headings, paste the important headings manually into the row before running the AI outline step.</p>
+          <div class="meta">
+            <span class="tag warning">Human review</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>One page type at a time</h3>
+          <p>Filter the input tab by page type when needed. The AI step groups evidence by page type and creates a separate outline block for each selected page type.</p>
+          <div class="meta">
+            <span class="tag warning">Planning step</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="content-outline-tab">
+      <div class="eyebrow">Tab 2</div>
+      <h2 class="section-title">EP02 CONTENT OUTLINE: title, meta, and headings only</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Heading-only output</h3>
+          <p>The AI output is intentionally limited to structure: title tag, meta description, H1, H2, H3, and optional H4 rows. It does not write page body copy.</p>
+          <div class="meta">
+            <span class="tag warning">No body copy</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Competitor patterns</h3>
+          <p>The AI uses repeated heading patterns across competitors, but the final outline should be edited for the actual business, offer, service, and location.</p>
+          <div class="meta">
+            <span class="tag warning">Manual decision</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Title and meta</h3>
+          <p>The title tag and meta description are generated from competitor evidence and must still be checked for brand voice, keyword relevance, and search intent.</p>
+          <div class="meta">
+            <span class="tag warning">SEO review</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Clean handoff</h3>
+          <p>The final tab becomes the brief for writing or designing the page. Writers get the required structure before they start drafting paragraphs.</p>
+          <div class="meta">
+            <span class="tag warning">Content brief</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="concept">
+      <div class="eyebrow">Concept document</div>
+      <h2 class="section-title">Why page structure comes before writing</h2>
+      <div class="episode">
+        <div>
+          <h3>What is this process?</h3>
+          <p>EP01 answered which pages the website may need. EP02 answers how a selected page should be structured before anyone writes the page.</p>
+          <p>The process starts with competitor pages selected from the EP01 matrix. Instead of guessing the outline, the sheet collects the headings already used by ranking or relevant competitors.</p>
+          <p>The heading scrape gives a clear content map: title tag, meta description, H1, H2, H3, and supporting sections. AI then compresses those patterns into a clean outline for the new page.</p>
+          <p>The goal is not to copy competitor wording. The goal is to understand the expected page structure and create a better, clearer outline for the website being built.</p>
+        </div>
+        <div>
           <div class="kit">
-            <h4>Helper note</h4>
-            <p>Sitemap and page-list helpers can make it easier to find competitor pages, but the EP02 task is homepage section mapping.</p>
+            <h4>Reel</h4>
+            <p>Instagram embed will be added here once the reel URL is shared.</p>
+          </div>
+          <div class="kit">
+            <h4>Input needed</h4>
+            <p>EP01 competitor list and EP01 site-structure matrix should already exist in the same copied Google Sheet.</p>
           </div>
           <div class="kit">
             <h4>Next step</h4>
-            <a class="no-icon" href="ep03.html">EP03 · SERP Analysis</a>
-            <a class="no-icon" href="https://instagram.com/baisilboban" target="_blank" rel="noopener">Follow for the next drop</a>
+            <a class="no-icon" href="coming-soon.html">Next episode tasks coming soon</a>
           </div>
+        </div>
+      </div>
+
+      <div class="eyebrow section-subhead">At a glance</div>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Step 1 · Use the selected page type</h3>
+          <p>Choose the page type from EP01, such as homepage, service page, location page, or comparison page. EP02 works best when one page type is reviewed at a time.</p>
+        </div>
+        <div class="card">
+          <h3>Step 2 · Collect competitor headings</h3>
+          <p>Scrape the headings from selected competitor pages. Headings reveal what topics the page covers and in what order the information appears.</p>
+        </div>
+        <div class="card">
+          <h3>Step 3 · Generate the outline</h3>
+          <p>Create a title tag, meta description, H1, and heading hierarchy. Keep it as a structure, not a finished article or landing-page copy.</p>
+        </div>
+        <div class="card">
+          <h3>Step 4 · Review before writing</h3>
+          <p>Edit the generated outline for the actual brand, service, location, and offer. Then hand the structure to the writer or designer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Limitations</div>
+      <h2 class="section-title">What automation can and cannot do</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Some websites block scraping</h3>
+          <p>If a competitor blocks Apps Script requests, open the page manually and paste the visible headings into the EP02 PAGE INPUT row.</p>
+        </div>
+        <div class="card">
+          <h3>Headings may be messy</h3>
+          <p>Some pages skip H1, use decorative headings, or repeat navigation text. Clean obvious noise before using AI output for a real page brief.</p>
+        </div>
+        <div class="card">
+          <h3>AI needs review</h3>
+          <p>AI can find structure patterns, but it does not know the exact business, offer, compliance needs, or conversion goal unless you review and edit the final outline.</p>
+        </div>
+        <div class="card">
+          <h3>No copying</h3>
+          <p>Use competitor headings as evidence, not as text to copy. The final structure should be original and better matched to the page being built.</p>
         </div>
       </div>
     </section>
@@ -113,5 +283,737 @@
   </div>
 </div>
 <script src="assets/js/email-capture.js"></script>
+<script>
+  const ep02AppsScript = String.raw`
+const EP02_EP01_COMPETITORS_SHEET = 'EP01 COMPETITORS';
+const EP02_EP01_SITE_STRUCTURE_SHEET = 'EP01 SITE STRUCTURE';
+const EP02_PAGE_INPUT_SHEET = 'EP02 PAGE INPUT';
+const EP02_CONTENT_OUTLINE_SHEET = 'EP02 CONTENT OUTLINE';
+const EP02_AI_LOG_SHEET = 'EP02 AI LOG';
+const EP02_OPENAI_KEY_PROPERTY = 'EP02_OPENAI_API_KEY';
+const EP02_LEGACY_OPENAI_KEY_PROPERTY = 'EP01_OPENAI_API_KEY';
+const EP02_OPENAI_MODEL = 'gpt-4.1-mini';
+const EP02_OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
+const EP02_PROMPT_VERSION = 'ep02-page-structure-v1';
+const EP02_MAX_IMPORTED_PATHS_PER_COMPETITOR = 2;
+const EP02_MAX_PAGES_TO_SCRAPE = 60;
+const EP02_MAX_HTML_CHARS = 300000;
+
+function onOpen() {
+  ep02CreateMenu_();
+}
+
+function ep02CreateMenu_() {
+  var menu = SpreadsheetApp.getUi().createMenu('SEO/GEO Series');
+
+  if (typeof setupEP01 === 'function') {
+    menu
+      .addItem('EP01: Setup Tabs', 'setupEP01')
+      .addItem('EP01: Find Sitemaps', 'ep01FindSitemaps')
+      .addItem('EP01: Extract Sitemap URLs', 'ep01ExtractSitemapUrls')
+      .addItem('EP01: Set AI API Key', 'ep01SetAiApiKey')
+      .addItem('EP01: Analyze Site Structure with AI', 'ep01AnalyzeSiteStructureWithAi')
+      .addSeparator();
+  }
+
+  menu
+    .addItem('EP02: Setup Tabs', 'setupEP02')
+    .addItem('EP02: Import Selected Pages from EP01', 'ep02ImportSelectedPagesFromEp01')
+    .addItem('EP02: Scrape Page Outlines', 'ep02ScrapePageOutlines')
+    .addItem('EP02: Set AI API Key', 'ep02SetAiApiKey')
+    .addItem('EP02: Generate Content Outline with AI', 'ep02GenerateContentOutlineWithAi')
+    .addToUi();
+}
+
+function setupEP02() {
+  var sheets = ep02EnsureEp02Sheets_();
+  ep02PreparePageInputSheet_(sheets.input);
+  ep02PrepareContentOutlineSheet_(sheets.outline);
+  ep02PrepareAiLogSheet_(sheets.log);
+  ep02CreateMenu_();
+  SpreadsheetApp.getUi().alert('EP02 tabs are ready. Run EP02: Import Selected Pages from EP01 next.');
+}
+
+function ep02EnsureEp02Sheets_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  return {
+    input: ss.getSheetByName(EP02_PAGE_INPUT_SHEET) || ss.insertSheet(EP02_PAGE_INPUT_SHEET),
+    outline: ss.getSheetByName(EP02_CONTENT_OUTLINE_SHEET) || ss.insertSheet(EP02_CONTENT_OUTLINE_SHEET),
+    log: ss.getSheetByName(EP02_AI_LOG_SHEET) || ss.insertSheet(EP02_AI_LOG_SHEET)
+  };
+}
+
+function ep02ImportSelectedPagesFromEp01() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheets = ep02EnsureEp02Sheets_();
+  var competitorsSheet = ss.getSheetByName(EP02_EP01_COMPETITORS_SHEET);
+  var structureSheet = ss.getSheetByName(EP02_EP01_SITE_STRUCTURE_SHEET);
+
+  if (!competitorsSheet) {
+    SpreadsheetApp.getUi().alert('EP01 COMPETITORS was not found. Complete EP01 setup first.');
+    return;
+  }
+
+  ep02PreparePageInputSheet_(sheets.input);
+
+  var competitors = ep02ReadEp01Competitors_(competitorsSheet);
+  var rows = [];
+
+  if (structureSheet && structureSheet.getLastRow() >= 6) {
+    rows = ep02BuildRowsFromEp01Structure_(structureSheet, competitors);
+  }
+
+  if (!rows.length) {
+    rows = ep02BuildRowsFromEp01RankingPages_(competitors);
+  }
+
+  if (!rows.length) {
+    SpreadsheetApp.getUi().alert('No EP01 pages were found. Add competitors in EP01 first.');
+    return;
+  }
+
+  sheets.input.getRange(5, 1, rows.length, 12).setValues(rows);
+  sheets.input.getRange(5, 1, rows.length, 1).insertCheckboxes();
+  sheets.input.getRange(5, 1, rows.length, 1).setValues(rows.map(function() { return [true]; }));
+  sheets.input.getRange(5, 1, rows.length, 12).setWrap(true);
+  SpreadsheetApp.getUi().alert('EP02 imported ' + rows.length + ' selected page rows from EP01. Review the checkboxes before scraping.');
+}
+
+function ep02ScrapePageOutlines() {
+  var sheets = ep02EnsureEp02Sheets_();
+  var sheet = sheets.input;
+  var rows = ep02ReadPageInputRows_(sheet).filter(function(row) {
+    return row.include && row.page_url;
+  }).slice(0, EP02_MAX_PAGES_TO_SCRAPE);
+
+  if (!rows.length) {
+    SpreadsheetApp.getUi().alert('No selected EP02 page URLs found. Import pages or add URLs manually first.');
+    return;
+  }
+
+  var updates = [];
+  rows.forEach(function(row) {
+    var scraped = ep02ScrapePage_(row.page_url);
+    updates.push({
+      rowNumber: row.rowNumber,
+      values: [
+        scraped.title,
+        scraped.metaDescription,
+        scraped.h1,
+        scraped.headingOutline,
+        scraped.status,
+        scraped.notes
+      ]
+    });
+  });
+
+  updates.forEach(function(update) {
+    sheet.getRange(update.rowNumber, 7, 1, 6).setValues([update.values]);
+    sheet.getRange(update.rowNumber, 7, 1, 6).setWrap(true);
+  });
+
+  SpreadsheetApp.getUi().alert('EP02 scrape complete. Review EP02 PAGE INPUT before generating the content outline.');
+}
+
+function ep02SetAiApiKey() {
+  var ui = SpreadsheetApp.getUi();
+  var response = ui.prompt(
+    'EP02 AI API Key',
+    'Paste your OpenAI API key. It is stored in your Google user properties, not in visible sheet cells.',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  if (response.getSelectedButton() !== ui.Button.OK) return;
+  var key = String(response.getResponseText() || '').trim();
+  if (!key) {
+    ui.alert('No API key was saved.');
+    return;
+  }
+
+  PropertiesService.getUserProperties().setProperty(EP02_OPENAI_KEY_PROPERTY, key);
+  ui.alert('AI API key saved for this Google account.');
+}
+
+function ep02GenerateContentOutlineWithAi() {
+  var sheets = ep02EnsureEp02Sheets_();
+  ep02PrepareAiLogSheet_(sheets.log);
+
+  var apiKey = PropertiesService.getUserProperties().getProperty(EP02_OPENAI_KEY_PROPERTY) ||
+    PropertiesService.getUserProperties().getProperty(EP02_LEGACY_OPENAI_KEY_PROPERTY);
+
+  if (!apiKey) {
+    SpreadsheetApp.getUi().alert('Add your AI API key first using SEO/GEO Series > EP02: Set AI API Key.');
+    return;
+  }
+
+  var selectedRows = ep02ReadPageInputRows_(sheets.input).filter(function(row) {
+    return row.include && row.page_url;
+  });
+
+  if (!selectedRows.length) {
+    SpreadsheetApp.getUi().alert('No selected EP02 rows found. Import selected pages and scrape outlines first.');
+    return;
+  }
+
+  var payload = ep02BuildAiPayload_(selectedRows);
+  var pagesSent = selectedRows.length;
+
+  try {
+    var aiResponse = ep02CallOpenAi_(apiKey, payload);
+    var aiJson = ep02ParseAiResponse_(aiResponse);
+    ep02WriteContentOutline_(sheets.outline, aiJson);
+    ep02WriteAiLog_(sheets.log, 'Success', pagesSent, aiResponse.responseId || '', aiResponse.rawText || '', '');
+    SpreadsheetApp.getUi().alert('EP02 content outline complete. Review EP02 CONTENT OUTLINE.');
+  } catch (error) {
+    ep02WriteAiLog_(sheets.log, 'Error', pagesSent, '', '', String(error));
+    SpreadsheetApp.getUi().alert('AI outline failed: ' + String(error));
+  }
+}
+
+function ep02PreparePageInputSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:L1').breakApart().merge().setValue('EP02 PAGE INPUT');
+  sheet.getRange('A2:L2').breakApart().merge().setValue('Selected competitor pages from EP01. Scrape title, meta description, and headings, then review before AI outline generation.');
+  sheet.getRange('A4:L4').setValues([[
+    'Include?',
+    'Competitor Code',
+    'Competitor Name',
+    'Page Type',
+    'Page URL',
+    'EP01 Source',
+    'Scraped Title',
+    'Scraped Meta Description',
+    'Scraped H1',
+    'Scraped H2/H3/H4 Outline',
+    'Fetch Status',
+    'Notes'
+  ]]);
+  ep02StyleSheet_(sheet, 12);
+  sheet.setColumnWidth(1, 90);
+  sheet.setColumnWidth(4, 210);
+  sheet.setColumnWidth(5, 360);
+  sheet.setColumnWidth(7, 300);
+  sheet.setColumnWidth(8, 360);
+  sheet.setColumnWidth(9, 280);
+  sheet.setColumnWidth(10, 430);
+  sheet.setColumnWidth(12, 320);
+}
+
+function ep02PrepareContentOutlineSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:F1').breakApart().merge().setValue('EP02 CONTENT OUTLINE');
+  sheet.getRange('A2:F2').breakApart().merge().setValue('AI-generated title, meta description, and heading-only content outline. Review before writing page copy.');
+  sheet.getRange('A4:F4').setValues([[
+    'Page Type',
+    'Item Type',
+    'Level',
+    'Text',
+    'Source Pattern',
+    'Notes'
+  ]]);
+  ep02StyleSheet_(sheet, 6);
+  sheet.setColumnWidth(1, 220);
+  sheet.setColumnWidth(2, 160);
+  sheet.setColumnWidth(3, 90);
+  sheet.setColumnWidth(4, 440);
+  sheet.setColumnWidth(5, 320);
+  sheet.setColumnWidth(6, 320);
+}
+
+function ep02PrepareAiLogSheet_(sheet) {
+  if (sheet.getLastRow() < 4 || sheet.getRange('A1').getValue() !== 'EP02 AI LOG') {
+    sheet.clearContents();
+    sheet.getRange('A1:H1').breakApart().merge().setValue('EP02 AI LOG');
+    sheet.getRange('A2:H2').breakApart().merge().setValue('Audit trail for EP02 AI content-outline generation. Raw responses may be trimmed to fit Google Sheets cell limits.');
+    sheet.getRange('A4:H4').setValues([[
+      'Timestamp',
+      'Model',
+      'Status',
+      'Pages Sent',
+      'Prompt Version',
+      'Response ID',
+      'Notes',
+      'Raw Response'
+    ]]);
+  }
+  ep02StyleSheet_(sheet, 8);
+  sheet.setColumnWidth(8, 520);
+}
+
+function ep02StyleSheet_(sheet, columns) {
+  sheet.setFrozenRows(4);
+  sheet.getRange(1, 1, 1, columns).setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
+  sheet.getRange(2, 1, 1, columns).setBackground('#D8ECD1').setFontColor('#102018').setWrap(true);
+  sheet.getRange(4, 1, 1, columns).setBackground('#102018').setFontColor('#FFFFFF').setFontWeight('bold').setWrap(true);
+  sheet.getDataRange().setVerticalAlignment('top');
+  sheet.setColumnWidths(1, columns, 160);
+}
+
+function ep02ReadEp01Competitors_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 5) return {};
+  var rows = sheet.getRange(5, 1, Math.min(lastRow - 4, 10), 10).getValues();
+  var output = {};
+  rows.forEach(function(row, index) {
+    var code = 'C' + (index + 1);
+    var domain = ep02NormalizeOrigin_(row[4] || row[2] || '');
+    output[code] = {
+      code: code,
+      name: row[1] || '',
+      ranking_page_url: row[2] || '',
+      ranking_page_type: row[3] || '',
+      domain: domain
+    };
+  });
+  return output;
+}
+
+function ep02BuildRowsFromEp01Structure_(sheet, competitors) {
+  var lastRow = sheet.getLastRow();
+  var data = sheet.getRange(6, 1, lastRow - 5, 16).getValues();
+  var rows = [];
+  var seen = {};
+
+  data.forEach(function(row) {
+    var pageType = row[0] || '';
+    var recommendation = String(row[13] || '').trim();
+    if (!pageType || ['Include', 'Review'].indexOf(recommendation) === -1) return;
+
+    for (var i = 1; i <= 10; i++) {
+      var code = 'C' + i;
+      var competitor = competitors[code] || {};
+      var paths = ep02SplitPathCell_(row[i + 1]).slice(0, EP02_MAX_IMPORTED_PATHS_PER_COMPETITOR);
+
+      paths.forEach(function(path) {
+        var url = ep02ResolveUrl_(competitor.domain, path);
+        if (!url) return;
+        var key = code + '|' + pageType + '|' + url;
+        if (seen[key]) return;
+        seen[key] = true;
+        rows.push([
+          true,
+          code,
+          competitor.name || '',
+          pageType,
+          url,
+          recommendation + ' from EP01 SITE STRUCTURE',
+          '',
+          '',
+          '',
+          '',
+          '',
+          ''
+        ]);
+      });
+    }
+  });
+
+  return rows;
+}
+
+function ep02BuildRowsFromEp01RankingPages_(competitors) {
+  var rows = [];
+  Object.keys(competitors).sort().forEach(function(code) {
+    var competitor = competitors[code];
+    if (!competitor || !competitor.ranking_page_url) return;
+    rows.push([
+      true,
+      code,
+      competitor.name || '',
+      competitor.ranking_page_type || 'Ranking page',
+      competitor.ranking_page_url,
+      'Fallback from EP01 COMPETITORS',
+      '',
+      '',
+      '',
+      '',
+      '',
+      ''
+    ]);
+  });
+  return rows;
+}
+
+function ep02ReadPageInputRows_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 5) return [];
+  return sheet.getRange(5, 1, lastRow - 4, 12).getValues().map(function(row, index) {
+    return {
+      rowNumber: index + 5,
+      include: row[0] === true || String(row[0]).toLowerCase() === 'true',
+      competitor_code: row[1] || '',
+      competitor_name: row[2] || '',
+      page_type: row[3] || '',
+      page_url: row[4] || '',
+      source: row[5] || '',
+      scraped_title: row[6] || '',
+      scraped_meta_description: row[7] || '',
+      scraped_h1: row[8] || '',
+      scraped_heading_outline: row[9] || '',
+      fetch_status: row[10] || '',
+      notes: row[11] || ''
+    };
+  }).filter(function(row) {
+    return row.page_url || row.scraped_heading_outline;
+  });
+}
+
+function ep02SplitPathCell_(value) {
+  return String(value || '')
+    .split(/\n+/)
+    .map(function(item) { return item.trim(); })
+    .filter(Boolean);
+}
+
+function ep02ResolveUrl_(domain, pathOrUrl) {
+  var value = String(pathOrUrl || '').trim();
+  if (!value) return '';
+  if (/^https?:\/\//i.test(value)) return value;
+  var origin = ep02NormalizeOrigin_(domain);
+  if (!origin) return '';
+  if (value.charAt(0) !== '/') value = '/' + value;
+  return origin + value.replace(/\/+/g, '/');
+}
+
+function ep02NormalizeOrigin_(value) {
+  var text = String(value || '').trim();
+  if (!text) return '';
+  if (text.indexOf('http://') !== 0 && text.indexOf('https://') !== 0) {
+    text = 'https://' + text;
+  }
+  var match = text.match(/^(https?:\/\/[^\/?#]+)/i);
+  return match ? match[1].replace(/\/$/, '') : '';
+}
+
+function ep02ScrapePage_(url) {
+  try {
+    var response = UrlFetchApp.fetch(url, {
+      method: 'get',
+      muteHttpExceptions: true,
+      followRedirects: true,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; EP02PageStructureBot/1.0)'
+      }
+    });
+    var status = response.getResponseCode();
+    var html = response.getContentText().slice(0, EP02_MAX_HTML_CHARS);
+    if (status < 200 || status > 399) {
+      return ep02EmptyScrape_('HTTP ' + status, 'Page could not be fetched.');
+    }
+
+    var cleanHtml = ep02StripNoise_(html);
+    var headings = ep02ExtractHeadings_(cleanHtml);
+    var title = ep02ExtractTitle_(cleanHtml);
+    var metaDescription = ep02ExtractMetaDescription_(cleanHtml);
+    var h1 = headings.filter(function(item) { return item.level === 'H1'; }).map(function(item) { return item.text; }).join('\n');
+    var outline = headings.filter(function(item) {
+      return ['H2', 'H3', 'H4'].indexOf(item.level) !== -1;
+    }).map(function(item) {
+      return item.level + ': ' + item.text;
+    }).join('\n');
+
+    return {
+      title: title,
+      metaDescription: metaDescription,
+      h1: h1,
+      headingOutline: outline,
+      status: 'Fetched',
+      notes: headings.length ? 'Headings found: ' + headings.length : 'No headings found. Review manually.'
+    };
+  } catch (error) {
+    return ep02EmptyScrape_('Error', String(error));
+  }
+}
+
+function ep02EmptyScrape_(status, notes) {
+  return {
+    title: '',
+    metaDescription: '',
+    h1: '',
+    headingOutline: '',
+    status: status,
+    notes: notes
+  };
+}
+
+function ep02StripNoise_(html) {
+  return String(html || '')
+    .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<noscript\b[\s\S]*?<\/noscript>/gi, ' ')
+    .replace(/<!--[\s\S]*?-->/g, ' ');
+}
+
+function ep02ExtractTitle_(html) {
+  var match = String(html || '').match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
+  return match ? ep02CleanHtmlText_(match[1]) : '';
+}
+
+function ep02ExtractMetaDescription_(html) {
+  var text = String(html || '');
+  var match = text.match(/<meta\b[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i) ||
+    text.match(/<meta\b[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
+  return match ? ep02CleanHtmlText_(match[1]) : '';
+}
+
+function ep02ExtractHeadings_(html) {
+  var headings = [];
+  var regex = /<h([1-4])\b[^>]*>([\s\S]*?)<\/h\1>/gi;
+  var match;
+  while ((match = regex.exec(String(html || ''))) !== null) {
+    var text = ep02CleanHtmlText_(match[2]);
+    if (!text || text.length < 2) continue;
+    headings.push({
+      level: 'H' + match[1],
+      text: text
+    });
+  }
+  return headings.slice(0, 120);
+}
+
+function ep02CleanHtmlText_(value) {
+  return String(value || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#x27;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function ep02BuildAiPayload_(rows) {
+  var grouped = {};
+  rows.forEach(function(row) {
+    var pageType = row.page_type || 'Selected page';
+    if (!grouped[pageType]) grouped[pageType] = [];
+    grouped[pageType].push({
+      competitor_code: row.competitor_code,
+      competitor_name: row.competitor_name,
+      page_url: row.page_url,
+      title: row.scraped_title,
+      meta_description: row.scraped_meta_description,
+      h1: row.scraped_h1,
+      heading_outline: row.scraped_heading_outline,
+      fetch_status: row.fetch_status,
+      notes: row.notes
+    });
+  });
+
+  return {
+    prompt_version: EP02_PROMPT_VERSION,
+    instructions: {
+      purpose: 'Create heading-only page structure from competitor page outlines.',
+      output_rule: 'Return title tag, meta description, and headings only. Do not write body copy.',
+      evidence_rule: 'Use repeated competitor heading patterns as evidence, but do not copy competitor wording directly.'
+    },
+    page_types: Object.keys(grouped).sort().map(function(pageType) {
+      return {
+        page_type: pageType,
+        competitor_pages: grouped[pageType]
+      };
+    })
+  };
+}
+
+function ep02CallOpenAi_(apiKey, payload) {
+  var requestBody = {
+    model: EP02_OPENAI_MODEL,
+    input: [
+      {
+        role: 'system',
+        content: [
+          {
+            type: 'input_text',
+            text: ep02AiSystemPrompt_()
+          }
+        ]
+      },
+      {
+        role: 'user',
+        content: [
+          {
+            type: 'input_text',
+            text: 'Input data JSON:\n' + JSON.stringify(payload)
+          }
+        ]
+      }
+    ],
+    text: {
+      format: {
+        type: 'json_object'
+      }
+    }
+  };
+
+  var response = UrlFetchApp.fetch(EP02_OPENAI_ENDPOINT, {
+    method: 'post',
+    muteHttpExceptions: true,
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Bearer ' + apiKey
+    },
+    payload: JSON.stringify(requestBody)
+  });
+
+  var status = response.getResponseCode();
+  var body = response.getContentText();
+  if (status < 200 || status > 299) {
+    throw new Error('OpenAI API returned ' + status + ': ' + body.slice(0, 500));
+  }
+
+  var parsed = JSON.parse(body);
+  return {
+    responseId: parsed.id || '',
+    raw: parsed,
+    rawText: body,
+    outputText: ep02ExtractOpenAiOutputText_(parsed)
+  };
+}
+
+function ep02AiSystemPrompt_() {
+  return [
+    'You create page structures from competitor heading outlines.',
+    '',
+    'Use only the data provided. Do not assume the business name, country, city, offer, or claim unless it is visible in the supplied page evidence.',
+    '',
+    'Important rules:',
+    '- Return title tag, meta description, and headings only.',
+    '- Do not write paragraph body copy.',
+    '- Do not copy competitor headings directly unless the phrase is generic and unavoidable.',
+    '- Use repeated competitor patterns to decide which sections are required.',
+    '- Keep heading text clear, specific, and useful for a writer or designer.',
+    '- Avoid generic filler headings such as Welcome, Overview, or Our Solutions unless the evidence strongly supports them.',
+    '- Prefer a practical page hierarchy: one H1, several H2s, and H3s only where they clarify a section.',
+    '',
+    'For each page type, return one outline.',
+    '',
+    'Return only valid JSON. Do not include markdown.',
+    '',
+    'Output JSON schema:',
+    '{',
+    '  "outlines": [',
+    '    {',
+    '      "page_type": "string",',
+    '      "title_tag": "string",',
+    '      "meta_description": "string",',
+    '      "source_patterns": ["string"],',
+    '      "headings": [',
+    '        {',
+    '          "level": "H1 | H2 | H3 | H4",',
+    '          "text": "string",',
+    '          "source_pattern": "string",',
+    '          "notes": "string"',
+    '        }',
+    '      ],',
+    '      "notes": "string"',
+    '    }',
+    '  ]',
+    '}'
+  ].join('\n');
+}
+
+function ep02ExtractOpenAiOutputText_(responseJson) {
+  if (responseJson.output_text) return responseJson.output_text;
+  var texts = [];
+  (responseJson.output || []).forEach(function(item) {
+    (item.content || []).forEach(function(content) {
+      if (content.text) texts.push(content.text);
+    });
+  });
+  return texts.join('');
+}
+
+function ep02ParseAiResponse_(aiResponse) {
+  var text = String(aiResponse.outputText || '').trim();
+  if (!text) throw new Error('AI returned an empty response.');
+  var parsed = JSON.parse(text);
+  if (!parsed.outlines || !Array.isArray(parsed.outlines)) {
+    throw new Error('AI response did not include outlines array.');
+  }
+  return parsed;
+}
+
+function ep02WriteContentOutline_(sheet, aiJson) {
+  ep02PrepareContentOutlineSheet_(sheet);
+  var rows = [];
+
+  (aiJson.outlines || []).forEach(function(outline) {
+    var pageType = outline.page_type || 'Selected page';
+    rows.push([
+      pageType,
+      'Title Tag',
+      '',
+      outline.title_tag || '',
+      ep02AsArray_(outline.source_patterns).join('\n'),
+      outline.notes || ''
+    ]);
+    rows.push([
+      pageType,
+      'Meta Description',
+      '',
+      outline.meta_description || '',
+      ep02AsArray_(outline.source_patterns).join('\n'),
+      outline.notes || ''
+    ]);
+
+    ep02AsArray_(outline.headings).forEach(function(heading) {
+      rows.push([
+        pageType,
+        'Heading',
+        heading.level || '',
+        heading.text || '',
+        heading.source_pattern || '',
+        heading.notes || ''
+      ]);
+    });
+
+    rows.push(['', '', '', '', '', '']);
+  });
+
+  if (rows.length) {
+    sheet.getRange(5, 1, rows.length, 6).setValues(rows);
+    sheet.getRange(5, 1, rows.length, 6).setWrap(true);
+  }
+}
+
+function ep02AsArray_(value) {
+  if (!value) return [];
+  if (Array.isArray(value)) return value;
+  return [value];
+}
+
+function ep02WriteAiLog_(sheet, status, pagesSent, responseId, rawResponse, notes) {
+  ep02PrepareAiLogSheet_(sheet);
+  sheet.appendRow([
+    new Date(),
+    EP02_OPENAI_MODEL,
+    status,
+    pagesSent,
+    EP02_PROMPT_VERSION,
+    responseId,
+    notes,
+    String(rawResponse || '').slice(0, 45000)
+  ]);
+}
+`;
+
+  const ep02Code = document.getElementById('ep02-apps-script');
+  if (ep02Code) ep02Code.textContent = ep02AppsScript.trim();
+
+  const copyButton = document.querySelector('[data-copy-code]');
+  if (copyButton && ep02Code) {
+    copyButton.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(ep02AppsScript.trim());
+      copyButton.textContent = 'Copied';
+      setTimeout(() => { copyButton.textContent = 'Copy code'; }, 1800);
+    });
+  }
+</script>
 </body>
 </html>
