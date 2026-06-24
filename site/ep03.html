@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EP03 & 04 · Keyword Research · SEO + GEO Series</title>
-  <meta name="description" content="Plan the single EP03 & 04 keyword research workflow: intent mapping, DataForSEO keyword collection, keyword buckets, and page mapping." />
+  <meta name="description" content="Run the single EP03 & 04 keyword research workflow: DataForSEO keyword collection, intent mapping, keyword buckets, page mapping, and early-win prioritization." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -41,23 +41,23 @@
       <div>
         <div class="badge">Episodes 03 & 04 · Keyword Research</div>
         <h1>Keyword Research Starts With Intent</h1>
-        <p class="lead">EP03 & 04 is one keyword research workflow. First we define intent and page fit, then DataForSEO collects the keyword universe, and finally the SOP logic groups keywords into buckets, mapped pages, priorities, and outliers.</p>
+        <p class="lead">EP03 & 04 is one keyword research workflow. It starts from the site tree and page structures, collects DataForSEO keyword evidence, maps intent, groups keyword buckets, and highlights early wins.</p>
         <div class="cta-row">
-          <a class="btn" href="#workflow">Plan the Workflow</a>
-          <a class="btn ghost" href="#outputs">Review Outputs</a>
-          <a class="btn ghost" href="#sop">SOP Logic</a>
+          <a class="btn" href="#apps-script">Copy EP03 & 04 Script</a>
+          <a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1RcsHgU3wlQZ2DhEgZDP2uSCR5bPCiEUZb99kvWNaaaw/copy" target="_blank" rel="noopener">Make a Copy of the Sheet</a>
+          <a class="btn ghost" href="#workflow">Review Workflow</a>
         </div>
       </div>
       <div style="display:grid;gap:12px;">
         <div class="stat-card">
-          <div class="stat-title">Intent layer</div>
-          <div class="stat-value">Page fit first</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Every keyword must map to a real searcher need and the correct page type before it becomes part of the strategy.</p>
+          <div class="stat-title">Input</div>
+          <div class="stat-value">Site tree + page briefs</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The workflow uses EP01 and EP02 as planning context instead of dumping unrelated keyword rows.</p>
         </div>
         <div class="stat-card">
-          <div class="stat-title">Data source</div>
-          <div class="stat-value">DataForSEO</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">Use DataForSEO to collect ideas, suggestions, related keywords, metrics, and intent signals.</p>
+          <div class="stat-title">Output</div>
+          <div class="stat-value">Intent map + buckets</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The final tabs show which keyword groups matter, which page should target them, and what to build first.</p>
         </div>
       </div>
     </section>
@@ -67,90 +67,113 @@
       <h2 class="section-title">One keyword research page for EP03 & 04</h2>
       <div class="grid cols-2">
         <div class="card">
-          <h3>1 · Define intent rules</h3>
-          <p>Start from the site structure and page structures created in EP01 and EP02. Decide which intent types each planned page can target.</p>
-          <div class="meta"><span class="tag warning">Intent mapping</span></div>
+          <h3>1 · Create the setup tabs</h3>
+          <p>Run the setup function. The script creates a setup tab, seed keyword tab, raw inventory tab, intent map, keyword buckets, and API log.</p>
+          <div class="meta"><span class="tag warning">Sheet setup</span></div>
         </div>
         <div class="card">
-          <h3>2 · Add seed keywords</h3>
-          <p>Enter service terms, location terms, page topics, competitor category terms, and business-specific phrases that should start the research.</p>
-          <div class="meta"><span class="tag warning">Human input</span></div>
+          <h3>2 · Add DataForSEO credentials</h3>
+          <p>Add the DataForSEO login and API password inside the setup tab of your own copied Google Sheet. Leave the public template blank.</p>
+          <div class="meta"><span class="tag warning">Private credentials</span></div>
         </div>
         <div class="card">
-          <h3>3 · Collect with DataForSEO</h3>
-          <p>Use DataForSEO to pull keyword ideas, suggestions, related keywords, search volume, competition, difficulty, and intent data.</p>
+          <h3>3 · Import seeds from EP01 and EP02</h3>
+          <p>The seed tab pulls planned pages from the site tree and page structure work, then lets you add manual service, location, and topic seeds.</p>
+          <div class="meta"><span class="tag warning">Targeted inputs</span></div>
+        </div>
+        <div class="card">
+          <h3>4 · Collect keyword evidence</h3>
+          <p>Use DataForSEO keyword ideas, suggestions, and related keywords. The inventory tab keeps raw evidence, but deduplicates repeated rows.</p>
           <div class="meta"><span class="tag warning">API collection</span></div>
         </div>
         <div class="card">
-          <h3>4 · Clean and deduplicate</h3>
-          <p>Normalize casing, remove duplicates, merge repeated keyword rows, and keep the strongest metric row for each keyword.</p>
-          <div class="meta"><span class="tag warning">Cleanup step</span></div>
+          <h3>5 · Detect and review intent</h3>
+          <p>The script enriches keyword intent with DataForSEO, then uses rule-based fallbacks so every keyword can be reviewed with a final intent.</p>
+          <div class="meta"><span class="tag warning">Intent mapping</span></div>
         </div>
         <div class="card">
-          <h3>5 · Group into buckets</h3>
-          <p>Group keywords that share the same intent and page fit. One bucket should usually become one page or one content asset.</p>
-          <div class="meta"><span class="tag warning">SOP logic</span></div>
+          <h3>6 · Build keyword buckets</h3>
+          <p>Keywords are grouped by mapped page, page type, and intent. The final bucket view shows priority, primary keyword, support keywords, and early-win score.</p>
+          <div class="meta"><span class="tag warning">Strategy output</span></div>
         </div>
-        <div class="card">
-          <h3>6 · Prioritize the plan</h3>
-          <p>Use volume, difficulty, intent value, business fit, conversion potential, and page relevance. Volume alone does not decide the strategy.</p>
-          <div class="meta"><span class="tag warning">Decision output</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="apps-script">
+      <div class="eyebrow">Apps Script</div>
+      <h2 class="section-title">EP03 & 04 setup script</h2>
+      <div class="episode">
+        <div>
+          <h3>Setup steps</h3>
+          <ul>
+            <li>Complete EP01 and EP02 in your copied Google Sheet first.</li>
+            <li>Copy the Apps Script code below.</li>
+            <li>Open your copied Google Sheet. Apps Script works only inside a native Google Sheet, not inside Excel <code>.xlsx</code> mode.</li>
+            <li>Go to <code>Extensions &gt; Apps Script</code>.</li>
+            <li>Paste this code below the EP01 and EP02 code, or paste it into the same Apps Script project.</li>
+            <li>Click <code>Run</code> for the function named <code>setupEP0304</code>.</li>
+            <li>Return to the Google Sheet and refresh the browser tab.</li>
+            <li>Open <code>EP03 &amp; 04 SETUP</code> and add the DataForSEO login and API password.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP03 &amp; 04: Import Seeds from EP01/EP02</code>.</li>
+            <li>Review and edit <code>EP03 &amp; 04 SEED KEYWORDS</code>.</li>
+            <li>Use <code>EP03 &amp; 04: Collect DataForSEO Keywords</code>.</li>
+            <li>Use <code>EP03 &amp; 04: Detect Intent with DataForSEO</code>.</li>
+            <li>Use <code>EP03 &amp; 04: Build Intent Map</code>.</li>
+            <li>Use <code>EP03 &amp; 04: Build Keyword Buckets</code>.</li>
+          </ul>
         </div>
+        <div>
+          <div class="kit">
+            <h4>What the script creates</h4>
+            <p><strong>EP03 &amp; 04 SETUP</strong></p>
+            <p><strong>EP03 &amp; 04 SEED KEYWORDS</strong></p>
+            <p><strong>EP03 &amp; 04 KEYWORD INVENTORY</strong></p>
+            <p><strong>EP03 &amp; 04 INTENT MAP</strong></p>
+            <p><strong>EP03 &amp; 04 KEYWORD BUCKETS</strong></p>
+            <p><strong>EP03 &amp; 04 API LOG</strong></p>
+          </div>
+          <div class="kit">
+            <h4>Credential rule</h4>
+            <p>Credentials are read from the setup tab in the user's own copied sheet. Do not add API login details to the public template.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="script-panel">
+        <div class="script-panel-head">
+          <h3>Copy this Apps Script</h3>
+          <button class="resource-link" type="button" data-copy-code>Copy code</button>
+        </div>
+        <pre class="script-code"><code id="ep0304-apps-script">Loading EP03 & 04 Apps Script...</code></pre>
       </div>
     </section>
 
     <section class="section" id="outputs">
-      <div class="eyebrow">Planned sheet views</div>
-      <h2 class="section-title">The sheet should separate evidence from strategy</h2>
-      <div class="episode">
-        <div>
-          <h3>What EP03 & 04 will produce</h3>
-          <p>The sheet should not dump thousands of raw keyword rows and call it strategy. Raw DataForSEO output is evidence. The useful output is the cleaned map: which keyword groups matter, what intent they represent, and which page should target them.</p>
-          <p>The final workflow should preserve the raw collection, but make the decision views simple enough for a business owner, SEO specialist, writer, or web designer to understand.</p>
-        </div>
-        <div>
-          <div class="kit">
-            <h4>EP03 & 04 SEED KEYWORDS</h4>
-            <p>Human-entered seed terms, location, language, market, page context, and business notes.</p>
-          </div>
-          <div class="kit">
-            <h4>EP03 & 04 KEYWORD INVENTORY</h4>
-            <p>Raw keyword collection from DataForSEO. This is the evidence archive, not the final strategy view.</p>
-          </div>
-          <div class="kit">
-            <h4>EP03 & 04 INTENT MAP</h4>
-            <p>Clean keyword rows with intent, confidence, volume, difficulty, business fit, and page-type recommendation.</p>
-          </div>
-          <div class="kit">
-            <h4>EP03 & 04 KEYWORD BUCKETS</h4>
-            <p>The final planning view: bucket name, mapped page, total volume, priority, primary keyword, supporting keywords, and outliers.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="sop">
-      <div class="eyebrow">SOP logic</div>
-      <h2 class="section-title">Use the old decision method with modern data collection</h2>
-      <div class="grid cols-3">
+      <div class="eyebrow">Sheet views</div>
+      <h2 class="section-title">Separate evidence from strategy</h2>
+      <div class="grid cols-2">
         <div class="card">
-          <h3>What stays</h3>
-          <p>Collect broadly, group by same intent, name buckets by the page they should become, and keep outliers separate.</p>
+          <h3>Seed keywords</h3>
+          <p>Targeted inputs from EP01/EP02 plus manual seeds. This keeps the run focused on planned pages instead of every sitemap URL.</p>
         </div>
         <div class="card">
-          <h3>What changes</h3>
-          <p>The old manual tool workflow becomes a DataForSEO workflow. The sheet should collect and enrich keywords automatically.</p>
+          <h3>Keyword inventory</h3>
+          <p>Raw DataForSEO keyword evidence with volume, CPC, competition, difficulty, source seed, endpoint, and mapped page context.</p>
         </div>
         <div class="card">
-          <h3>What gets better</h3>
-          <p>The map can combine DataForSEO intent data, AI reasoning, and the actual page structure already planned in EP01 and EP02.</p>
+          <h3>Intent map</h3>
+          <p>Clean keyword rows with final intent, funnel stage, recommended page type, business fit, early-win score, and recommendation.</p>
+        </div>
+        <div class="card">
+          <h3>Keyword buckets</h3>
+          <p>The final planning view: bucket name, mapped page, primary keyword, supporting keywords, total volume, difficulty, priority, and notes.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="eyebrow">Intent classes</div>
-      <h2 class="section-title">How keywords should be classified</h2>
+      <h2 class="section-title">How keywords are classified</h2>
       <div class="grid cols-2">
         <div class="card">
           <h3>Informational</h3>
@@ -158,32 +181,15 @@
         </div>
         <div class="card">
           <h3>Commercial</h3>
-          <p>The user is comparing options, agencies, services, prices, or solutions. Usually maps to service pages, comparison pages, list pages, or buying guides.</p>
+          <p>The user is comparing options, agencies, services, prices, or solutions. Usually maps to service pages, comparison pages, or buying guides.</p>
         </div>
         <div class="card">
           <h3>Transactional</h3>
-          <p>The user is close to taking action. Usually maps to landing pages, quote pages, booking pages, service pages, or conversion-focused location pages.</p>
+          <p>The user is close to taking action. Usually maps to quote pages, booking pages, service pages, or conversion-focused location pages.</p>
         </div>
         <div class="card">
           <h3>Navigational</h3>
-          <p>The user is looking for a known brand, company, tool, person, or website. Usually becomes a brand note, competitor research input, or exclusion.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="eyebrow">Next build step</div>
-      <h2 class="section-title">After this page, we design the sheet and script</h2>
-      <div class="episode">
-        <div>
-          <h3>What we build next</h3>
-          <p>Next we design the EP03 & 04 tabs and Apps Script around this page logic: DataForSEO credentials, keyword collection actions, intent enrichment, cleanup, AI-assisted bucket creation, and a final strategy view.</p>
-        </div>
-        <div>
-          <div class="kit">
-            <h4>Not included yet</h4>
-            <p>No EP03 & 04 Apps Script is published on this page yet. This pass defines the single keyword research page and workflow first.</p>
-          </div>
+          <p>The user is looking for a known brand, company, tool, person, or website. Usually becomes a brand note, competitor input, or exclusion.</p>
         </div>
       </div>
     </section>
@@ -195,5 +201,1448 @@
   </div>
 </div>
 <script src="assets/js/email-capture.js"></script>
+<script>
+  const ep0304AppsScript = String.raw`
+const EP0304_SETUP_SHEET = 'EP03 & 04 SETUP';
+const EP0304_SEED_SHEET = 'EP03 & 04 SEED KEYWORDS';
+const EP0304_INVENTORY_SHEET = 'EP03 & 04 KEYWORD INVENTORY';
+const EP0304_INTENT_MAP_SHEET = 'EP03 & 04 INTENT MAP';
+const EP0304_BUCKETS_SHEET = 'EP03 & 04 KEYWORD BUCKETS';
+const EP0304_LOG_SHEET = 'EP03 & 04 API LOG';
+const EP0304_EP01_SITE_TREE_SHEET = 'EP01 SITE TREE';
+const EP0304_EP02_TARGET_PAGES_SHEET = 'EP02 TARGET PAGES';
+const EP0304_EP02_PAGE_STRUCTURE_SHEET = 'EP02 PAGE STRUCTURE';
+const EP0304_DATAFORSEO_BASE = 'https://api.dataforseo.com/v3/';
+const EP0304_KEYWORD_IDEAS_PATH = 'dataforseo_labs/google/keyword_ideas/live';
+const EP0304_KEYWORD_SUGGESTIONS_PATH = 'dataforseo_labs/google/keyword_suggestions/live';
+const EP0304_RELATED_KEYWORDS_PATH = 'dataforseo_labs/google/related_keywords/live';
+const EP0304_SEARCH_INTENT_PATH = 'dataforseo_labs/google/search_intent/live';
+const EP0304_MAX_SEEDS_PER_RUN = 10;
+const EP0304_MAX_KEYWORDS_FOR_INTENT = 1000;
+const EP0304_PROMPT_VERSION = 'ep0304-keyword-research-v1';
+
+function onOpen() {
+  ep0304CreateMenu_();
+}
+
+function ep0304CreateMenu_() {
+  var menu = SpreadsheetApp.getUi().createMenu('SEO/GEO Series');
+  var hasItems = false;
+
+  if (typeof setupEP01 === 'function') {
+    menu
+      .addItem('EP01: Setup Tabs', 'setupEP01')
+      .addItem('EP01: Find Sitemaps', 'ep01FindSitemaps')
+      .addItem('EP01: Extract Sitemap URLs', 'ep01ExtractSitemapUrls')
+      .addItem('EP01: Set AI API Key', 'ep01SetAiApiKey')
+      .addItem('EP01: Analyze Site Structure with AI', 'ep01AnalyzeSiteStructureWithAi');
+    hasItems = true;
+  }
+
+  if (typeof ep01RefreshAiSampleView === 'function') {
+    menu.addItem('EP01: Refresh AI Sample View', 'ep01RefreshAiSampleView');
+    hasItems = true;
+  }
+
+  if (typeof ep01BuildSiteTreeFromMatrix === 'function') {
+    menu.addItem('EP01: Build Site Tree from Matrix', 'ep01BuildSiteTreeFromMatrix');
+    hasItems = true;
+  }
+
+  if (typeof setupEP02 === 'function') {
+    if (hasItems) menu.addSeparator();
+    menu
+      .addItem('EP02: Setup Tabs', 'setupEP02')
+      .addItem('EP02: Import Target Pages from EP01 Tree', 'ep02ImportTargetPagesFromEp01Tree')
+      .addItem('EP02: Build Competitor Content List', 'ep02BuildCompetitorContentList')
+      .addItem('EP02: Scrape Competitor Content', 'ep02ScrapeCompetitorContent')
+      .addItem('EP02: Set AI API Key', 'ep02SetAiApiKey')
+      .addItem('EP02: Generate Page Structure with AI', 'ep02GeneratePageStructureWithAi');
+    hasItems = true;
+  }
+
+  if (hasItems) menu.addSeparator();
+
+  menu
+    .addItem('EP03 & 04: Setup Tabs', 'setupEP0304')
+    .addItem('EP03 & 04: Import Seeds from EP01/EP02', 'ep0304ImportSeedsFromEp01Ep02')
+    .addItem('EP03 & 04: Collect DataForSEO Keywords', 'ep0304CollectKeywordData')
+    .addItem('EP03 & 04: Detect Intent with DataForSEO', 'ep0304DetectIntentWithDataForSeo')
+    .addItem('EP03 & 04: Build Intent Map', 'ep0304BuildIntentMap')
+    .addItem('EP03 & 04: Build Keyword Buckets', 'ep0304BuildKeywordBuckets')
+    .addToUi();
+}
+
+function setupEP0304() {
+  var sheets = ep0304EnsureSheets_();
+  ep0304PrepareSetupSheet_(sheets.setup);
+  ep0304PrepareSeedSheet_(sheets.seed);
+  ep0304PrepareInventorySheet_(sheets.inventory);
+  ep0304PrepareIntentMapSheet_(sheets.intent);
+  ep0304PrepareBucketsSheet_(sheets.buckets);
+  ep0304PrepareLogSheet_(sheets.log);
+  ep0304CreateMenu_();
+  SpreadsheetApp.getUi().alert('EP03 & 04 tabs are ready. Add DataForSEO Login and API Password in EP03 & 04 SETUP, then import seeds from EP01/EP02.');
+}
+
+function ep0304EnsureSheets_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  return {
+    setup: ss.getSheetByName(EP0304_SETUP_SHEET) || ss.insertSheet(EP0304_SETUP_SHEET),
+    seed: ss.getSheetByName(EP0304_SEED_SHEET) || ss.insertSheet(EP0304_SEED_SHEET),
+    inventory: ss.getSheetByName(EP0304_INVENTORY_SHEET) || ss.insertSheet(EP0304_INVENTORY_SHEET),
+    intent: ss.getSheetByName(EP0304_INTENT_MAP_SHEET) || ss.insertSheet(EP0304_INTENT_MAP_SHEET),
+    buckets: ss.getSheetByName(EP0304_BUCKETS_SHEET) || ss.insertSheet(EP0304_BUCKETS_SHEET),
+    log: ss.getSheetByName(EP0304_LOG_SHEET) || ss.insertSheet(EP0304_LOG_SHEET)
+  };
+}
+
+function ep0304PrepareSetupSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents().clearDataValidations();
+  sheet.getRange('A1:C1').breakApart().merge().setValue('EP03 & 04 SETUP');
+  sheet.getRange('A2:C2').breakApart().merge().setValue('Add DataForSEO credentials only inside your own copied sheet. Leave the public template credentials blank.');
+  sheet.getRange('A4:C4').setValues([['Setting', 'Value', 'Notes']]);
+  sheet.getRange('A5:C23').setValues([
+    ['DataForSEO Login', '', 'Private API login from DataForSEO. Required before API calls.'],
+    ['DataForSEO API Password', '', 'Private API password from DataForSEO. Required before API calls.'],
+    ['Location Name', 'United States', 'Used when Location Code is blank. Example: United States, United Arab Emirates, Saudi Arabia.'],
+    ['Location Code', 2840, 'Optional numeric DataForSEO location code. 2840 is United States.'],
+    ['Language Name', 'English', 'Used when Language Code is blank.'],
+    ['Language Code', 'en', 'DataForSEO language code.'],
+    ['Max Seeds Per Run', EP0304_MAX_SEEDS_PER_RUN, 'Keeps each API run controlled and cheaper.'],
+    ['Max Results Per Seed', 100, 'Keyword ideas, suggestions, and related keyword result limit per seed.'],
+    ['Related Keyword Depth', 1, 'Use 1 for a focused run. Higher depth can create much more data.'],
+    ['Include Keyword Ideas', true, 'Collect relevant keyword ideas from DataForSEO Labs.'],
+    ['Include Keyword Suggestions', true, 'Collect suggestion keywords containing the seed term.'],
+    ['Include Related Keywords', true, 'Collect SERP-related keywords.'],
+    ['Minimum Search Volume', 10, 'Used for default Include? flags and early-win filtering.'],
+    ['Expected CTR', 0.35, 'Optional planning assumption for traffic estimates.'],
+    ['Expected Conversion Rate', 0.02, 'Optional planning assumption for lead estimates.'],
+    ['Brand / Company Name', '', 'Used to identify navigational or brand terms.'],
+    ['Business Notes', '', 'Services, locations, exclusions, ICP, or positioning notes.'],
+    ['Target Market Notes', '', 'Any country, city, language, or audience notes.'],
+    ['Prompt Version', EP0304_PROMPT_VERSION, 'Internal script version marker.']
+  ]);
+  sheet.getRange('B14:B16').insertCheckboxes();
+  ep0304StyleSheet_(sheet, 3);
+  sheet.setColumnWidth(1, 230);
+  sheet.setColumnWidth(2, 260);
+  sheet.setColumnWidth(3, 520);
+  sheet.getRange('A2:C2').setBackground('#F6F0D4').setFontWeight('bold');
+}
+
+function ep0304PrepareSeedSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents().clearDataValidations();
+  sheet.getRange('A1:N1').breakApart().merge().setValue('EP03 & 04 SEED KEYWORDS');
+  sheet.getRange('A2:N2').breakApart().merge().setValue('Targeted seeds from EP01/EP02 plus manual seed keywords. This tab controls what DataForSEO collects.');
+  sheet.getRange('A4:N4').setValues([[
+    'Collect?',
+    'Seed Keyword',
+    'Seed Type',
+    'Source Episode',
+    'Mapped Page',
+    'Mapped Path',
+    'Intent Hint',
+    'Page Type Hint',
+    'Business Fit (1-5)',
+    'Notes',
+    'Ideas?',
+    'Suggestions?',
+    'Related?',
+    'Status'
+  ]]);
+  ep0304StyleSheet_(sheet, 14);
+  sheet.setColumnWidth(1, 90);
+  sheet.setColumnWidth(2, 230);
+  sheet.setColumnWidth(3, 160);
+  sheet.setColumnWidth(5, 230);
+  sheet.setColumnWidth(6, 220);
+  sheet.setColumnWidth(7, 180);
+  sheet.setColumnWidth(8, 220);
+  sheet.setColumnWidth(10, 320);
+  sheet.setColumnWidth(14, 220);
+  sheet.getRange(5, 1, Math.max(sheet.getMaxRows() - 4, 1), 1).insertCheckboxes();
+  sheet.getRange(5, 11, Math.max(sheet.getMaxRows() - 4, 1), 3).insertCheckboxes();
+}
+
+function ep0304PrepareInventorySheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents().clearDataValidations();
+  sheet.getRange('A1:T1').breakApart().merge().setValue('EP03 & 04 KEYWORD INVENTORY');
+  sheet.getRange('A2:T2').breakApart().merge().setValue('Raw DataForSEO keyword evidence. This is the evidence archive, not the final strategy view.');
+  sheet.getRange('A4:T4').setValues([[
+    'Keyword',
+    'Normalized Keyword',
+    'Source Seed',
+    'Source Endpoint',
+    'Location',
+    'Language',
+    'Search Volume',
+    'CPC',
+    'Competition',
+    'Competition Level',
+    'Keyword Difficulty',
+    'DataForSEO Intent',
+    'Intent Confidence',
+    'Monthly Searches',
+    'Categories',
+    'Mapped Page',
+    'Mapped Path',
+    'Include?',
+    'Collected At',
+    'Notes'
+  ]]);
+  ep0304StyleSheet_(sheet, 20);
+  sheet.setColumnWidth(1, 260);
+  sheet.setColumnWidth(3, 220);
+  sheet.setColumnWidth(4, 180);
+  sheet.setColumnWidth(14, 300);
+  sheet.setColumnWidth(15, 260);
+  sheet.setColumnWidth(16, 220);
+  sheet.setColumnWidth(17, 220);
+  sheet.setColumnWidth(20, 320);
+  sheet.getRange(5, 18, Math.max(sheet.getMaxRows() - 4, 1), 1).insertCheckboxes();
+}
+
+function ep0304PrepareIntentMapSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents().clearDataValidations();
+  sheet.getRange('A1:S1').breakApart().merge().setValue('EP03 & 04 INTENT MAP');
+  sheet.getRange('A2:S2').breakApart().merge().setValue('Clean keyword rows with final intent, funnel stage, recommended page type, mapped page, business fit, and early-win score.');
+  sheet.getRange('A4:S4').setValues([[
+    'Include?',
+    'Keyword',
+    'Search Volume',
+    'Keyword Difficulty',
+    'CPC',
+    'Competition',
+    'DataForSEO Intent',
+    'Final Intent',
+    'Intent Confidence',
+    'Funnel Stage',
+    'Recommended Page Type',
+    'Mapped Page',
+    'Mapped Path',
+    'Business Fit',
+    'Early Win Score',
+    'Recommendation',
+    'Reasoning',
+    'Source Seeds',
+    'Notes'
+  ]]);
+  ep0304StyleSheet_(sheet, 19);
+  sheet.setColumnWidth(1, 90);
+  sheet.setColumnWidth(2, 280);
+  sheet.setColumnWidth(11, 220);
+  sheet.setColumnWidth(12, 220);
+  sheet.setColumnWidth(13, 220);
+  sheet.setColumnWidth(17, 420);
+  sheet.setColumnWidth(18, 280);
+  sheet.getRange(5, 1, Math.max(sheet.getMaxRows() - 4, 1), 1).insertCheckboxes();
+}
+
+function ep0304PrepareBucketsSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:O1').breakApart().merge().setValue('EP03 & 04 KEYWORD BUCKETS');
+  sheet.getRange('A2:O2').breakApart().merge().setValue('Final planning view. One bucket should usually become one page, one page section, or one content asset.');
+  sheet.getRange('A4:O4').setValues([[
+    'Priority',
+    'Bucket Name',
+    'Mapped Page',
+    'Mapped Path',
+    'Content Type',
+    'Dominant Intent',
+    'Primary Keyword',
+    'Supporting Keywords',
+    'Total Volume',
+    'Avg Difficulty',
+    'Keyword Count',
+    'Business Fit',
+    'Early Win Score',
+    'Recommendation',
+    'Notes'
+  ]]);
+  ep0304StyleSheet_(sheet, 15);
+  sheet.setColumnWidth(2, 260);
+  sheet.setColumnWidth(3, 230);
+  sheet.setColumnWidth(4, 220);
+  sheet.setColumnWidth(7, 260);
+  sheet.setColumnWidth(8, 520);
+  sheet.setColumnWidth(15, 360);
+}
+
+function ep0304PrepareLogSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:H1').breakApart().merge().setValue('EP03 & 04 API LOG');
+  sheet.getRange('A2:H2').breakApart().merge().setValue('API calls, collection status, and raw response snippets for debugging.');
+  sheet.getRange('A4:H4').setValues([[
+    'Timestamp',
+    'Action',
+    'Status',
+    'Endpoint',
+    'Seed / Batch',
+    'Keywords Returned',
+    'Notes',
+    'Raw Response'
+  ]]);
+  ep0304StyleSheet_(sheet, 8);
+  sheet.setColumnWidth(1, 180);
+  sheet.setColumnWidth(2, 220);
+  sheet.setColumnWidth(5, 260);
+  sheet.setColumnWidth(7, 360);
+  sheet.setColumnWidth(8, 520);
+}
+
+function ep0304ImportSeedsFromEp01Ep02() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheets = ep0304EnsureSheets_();
+  if (sheets.seed.getLastRow() < 4) ep0304PrepareSeedSheet_(sheets.seed);
+
+  var existing = ep0304ReadSeedRows_();
+  var existingByKey = {};
+  existing.forEach(function(seed) {
+    existingByKey[ep0304SeedKey_(seed.seedKeyword, seed.mappedPath)] = seed;
+  });
+
+  var candidates = [];
+  ep0304CollectSeedsFromEp02Targets_(ss, candidates);
+  ep0304CollectSeedsFromEp02Structure_(ss, candidates);
+  ep0304CollectSeedsFromEp01Tree_(ss, candidates);
+
+  var merged = {};
+  existing.forEach(function(seed) {
+    if (seed.seedKeyword) merged[ep0304SeedKey_(seed.seedKeyword, seed.mappedPath)] = seed;
+  });
+
+  candidates.forEach(function(candidate) {
+    var key = ep0304SeedKey_(candidate.seedKeyword, candidate.mappedPath);
+    if (!key || merged[key]) return;
+    var old = existingByKey[key] || {};
+    merged[key] = {
+      collect: old.collect !== false,
+      seedKeyword: candidate.seedKeyword,
+      seedType: candidate.seedType,
+      sourceEpisode: candidate.sourceEpisode,
+      mappedPage: candidate.mappedPage,
+      mappedPath: candidate.mappedPath,
+      intentHint: candidate.intentHint || old.intentHint || '',
+      pageTypeHint: candidate.pageTypeHint || old.pageTypeHint || '',
+      businessFit: old.businessFit || candidate.businessFit || 4,
+      notes: candidate.notes || old.notes || '',
+      ideas: old.ideas !== false,
+      suggestions: old.suggestions !== false,
+      related: old.related !== false,
+      status: 'Imported'
+    };
+  });
+
+  var rows = Object.keys(merged).map(function(key) { return merged[key]; });
+  rows.sort(function(a, b) {
+    return String(a.mappedPath || '').localeCompare(String(b.mappedPath || '')) ||
+      String(a.seedKeyword || '').localeCompare(String(b.seedKeyword || ''));
+  });
+
+  ep0304WriteSeedRows_(sheets.seed, rows);
+  SpreadsheetApp.getUi().alert('Imported ' + candidates.length + ' seed candidates and wrote ' + rows.length + ' unique seed rows. Review EP03 & 04 SEED KEYWORDS before collecting data.');
+}
+
+function ep0304CollectKeywordData() {
+  var sheets = ep0304EnsureSheets_();
+  var settings = ep0304ReadSettings_();
+  ep0304RequireDataForSeoCredentials_(settings);
+
+  var seeds = ep0304ReadSeedRows_().filter(function(seed) {
+    return seed.collect !== false && seed.seedKeyword;
+  }).slice(0, settings.maxSeedsPerRun || EP0304_MAX_SEEDS_PER_RUN);
+
+  if (!seeds.length) {
+    SpreadsheetApp.getUi().alert('No checked seed keywords found. Review EP03 & 04 SEED KEYWORDS and make sure Collect? is checked.');
+    return;
+  }
+
+  var inventoryByKey = ep0304ReadInventoryMap_();
+  var collectedAt = new Date();
+  var totalItems = 0;
+
+  seeds.forEach(function(seed) {
+    var endpoints = ep0304EndpointsForSeed_(settings, seed);
+    if (!endpoints.length) {
+      ep0304UpdateSeedStatus_(sheets.seed, seed.rowIndex, 'Skipped: no endpoints checked');
+      return;
+    }
+
+    endpoints.forEach(function(endpoint) {
+      try {
+        var task = ep0304BuildKeywordTask_(settings, seed, endpoint);
+        var response = ep0304CallDataForSeo_(settings, endpoint.path, [task]);
+        var items = ep0304ExtractItemsFromResponse_(response.json);
+        var added = 0;
+
+        items.forEach(function(item) {
+          var keyword = ep0304ItemKeyword_(item);
+          if (!keyword) return;
+          var metrics = ep0304ExtractMetrics_(item);
+          var normalized = ep0304NormalizeKeyword_(keyword);
+          var key = ep0304InventoryKey_(normalized, seed.mappedPath);
+          var row = {
+            keyword: keyword,
+            normalized: normalized,
+            sourceSeed: seed.seedKeyword,
+            sourceEndpoint: endpoint.label,
+            location: settings.locationLabel,
+            language: settings.languageLabel,
+            searchVolume: ep0304Number_(metrics.searchVolume),
+            cpc: ep0304Number_(metrics.cpc),
+            competition: ep0304Number_(metrics.competition),
+            competitionLevel: metrics.competitionLevel || '',
+            difficulty: ep0304Number_(metrics.difficulty),
+            dataIntent: metrics.intent || '',
+            intentConfidence: ep0304Number_(metrics.intentConfidence),
+            monthlySearches: metrics.monthlySearches || '',
+            categories: metrics.categories || '',
+            mappedPage: seed.mappedPage || '',
+            mappedPath: seed.mappedPath || '',
+            include: ep0304Number_(metrics.searchVolume) >= settings.minimumSearchVolume,
+            collectedAt: collectedAt,
+            notes: metrics.notes || ''
+          };
+          ep0304MergeInventoryRow_(inventoryByKey, key, row);
+          added++;
+        });
+
+        totalItems += added;
+        ep0304WriteLog_(sheets.log, 'Collect keywords', 'OK', endpoint.path, seed.seedKeyword, added, 'HTTP ' + response.status, response.text);
+      } catch (error) {
+        ep0304WriteLog_(sheets.log, 'Collect keywords', 'ERROR', endpoint.path, seed.seedKeyword, 0, String(error), '');
+      }
+    });
+
+    ep0304UpdateSeedStatus_(sheets.seed, seed.rowIndex, 'Collected ' + ep0304FormatDate_(collectedAt));
+  });
+
+  ep0304WriteInventoryRows_(sheets.inventory, ep0304InventoryMapToRows_(inventoryByKey));
+  SpreadsheetApp.getUi().alert('DataForSEO collection finished. Added or updated ' + totalItems + ' keyword evidence rows. Next: Detect Intent with DataForSEO.');
+}
+
+function ep0304DetectIntentWithDataForSeo() {
+  var sheets = ep0304EnsureSheets_();
+  var settings = ep0304ReadSettings_();
+  ep0304RequireDataForSeoCredentials_(settings);
+
+  var rows = ep0304ReadInventoryRows_();
+  var keywords = ep0304Unique_(rows.filter(function(row) {
+    return row.include !== false && row.keyword;
+  }).map(function(row) {
+    return row.keyword;
+  })).slice(0, EP0304_MAX_KEYWORDS_FOR_INTENT);
+
+  if (!keywords.length) {
+    SpreadsheetApp.getUi().alert('No included keywords found in EP03 & 04 KEYWORD INVENTORY.');
+    return;
+  }
+
+  var task = ep0304BuildIntentTask_(settings, keywords);
+  var response = ep0304CallDataForSeo_(settings, EP0304_SEARCH_INTENT_PATH, [task]);
+  var items = ep0304ExtractItemsFromResponse_(response.json);
+  var intentByKeyword = {};
+
+  items.forEach(function(item) {
+    var keyword = ep0304ItemKeyword_(item);
+    if (!keyword) return;
+    var info = ep0304ParseIntentInfo_(item);
+    intentByKeyword[ep0304NormalizeKeyword_(keyword)] = info;
+  });
+
+  var updated = 0;
+  rows.forEach(function(row) {
+    var info = intentByKeyword[ep0304NormalizeKeyword_(row.keyword)];
+    if (!info || !info.intent) return;
+    row.dataIntent = info.intent;
+    row.intentConfidence = info.confidence;
+    updated++;
+  });
+
+  ep0304WriteInventoryRows_(sheets.inventory, rows);
+  ep0304WriteLog_(sheets.log, 'Detect intent', 'OK', EP0304_SEARCH_INTENT_PATH, keywords.length + ' keywords', updated, 'HTTP ' + response.status, response.text);
+  SpreadsheetApp.getUi().alert('Intent detection finished. Updated ' + updated + ' inventory rows. Next: Build Intent Map.');
+}
+
+function ep0304BuildIntentMap() {
+  var sheets = ep0304EnsureSheets_();
+  var settings = ep0304ReadSettings_();
+  var seedFit = ep0304BuildSeedFitMap_();
+  var inventoryRows = ep0304ReadInventoryRows_().filter(function(row) {
+    return row.include !== false && row.keyword;
+  });
+
+  var mappedRows = inventoryRows.map(function(row) {
+    var dataIntent = ep0304NormalizeIntent_(row.dataIntent);
+    var inferredIntent = ep0304InferIntent_(row.keyword, row.mappedPage, row.mappedPath, settings);
+    var finalIntent = dataIntent || inferredIntent.intent;
+    var confidence = row.intentConfidence || (dataIntent ? 0.75 : inferredIntent.confidence);
+    var funnelStage = ep0304FunnelStage_(finalIntent);
+    var recommendedPageType = ep0304RecommendedPageType_(finalIntent, row.mappedPage, row.mappedPath);
+    var businessFit = ep0304BusinessFit_(row, finalIntent, seedFit);
+    var earlyWinScore = ep0304EarlyWinScore_(row, finalIntent, businessFit);
+    var recommendation = ep0304Recommendation_(row, finalIntent, businessFit, earlyWinScore, settings.minimumSearchVolume);
+    var reasoning = ep0304IntentReasoning_(row, dataIntent, inferredIntent, recommendedPageType, businessFit, earlyWinScore);
+
+    return {
+      include: recommendation !== 'Exclude',
+      keyword: row.keyword,
+      searchVolume: row.searchVolume,
+      difficulty: row.difficulty,
+      cpc: row.cpc,
+      competition: row.competition,
+      dataIntent: dataIntent || row.dataIntent || '',
+      finalIntent: finalIntent,
+      confidence: confidence,
+      funnelStage: funnelStage,
+      recommendedPageType: recommendedPageType,
+      mappedPage: row.mappedPage,
+      mappedPath: row.mappedPath,
+      businessFit: businessFit,
+      earlyWinScore: earlyWinScore,
+      recommendation: recommendation,
+      reasoning: reasoning,
+      sourceSeeds: row.sourceSeed,
+      notes: row.notes || ''
+    };
+  });
+
+  mappedRows.sort(function(a, b) {
+    return ep0304Number_(b.earlyWinScore) - ep0304Number_(a.earlyWinScore) ||
+      ep0304Number_(b.searchVolume) - ep0304Number_(a.searchVolume);
+  });
+
+  ep0304WriteIntentRows_(sheets.intent, mappedRows);
+  SpreadsheetApp.getUi().alert('Intent map built with ' + mappedRows.length + ' keyword rows. Next: Build Keyword Buckets.');
+}
+
+function ep0304BuildKeywordBuckets() {
+  var sheets = ep0304EnsureSheets_();
+  var rows = ep0304ReadIntentRows_().filter(function(row) {
+    return row.include !== false && row.keyword && row.recommendation !== 'Exclude';
+  });
+
+  if (!rows.length) {
+    SpreadsheetApp.getUi().alert('No included rows found in EP03 & 04 INTENT MAP.');
+    return;
+  }
+
+  var buckets = {};
+  rows.forEach(function(row) {
+    var key = ep0304BucketKey_(row);
+    if (!buckets[key]) {
+      buckets[key] = {
+        rows: [],
+        mappedPage: row.mappedPage || '',
+        mappedPath: row.mappedPath || '',
+        contentType: row.recommendedPageType || 'Review',
+        intent: row.finalIntent || 'Review'
+      };
+    }
+    buckets[key].rows.push(row);
+  });
+
+  var bucketRows = Object.keys(buckets).map(function(key) {
+    return ep0304BuildBucketRow_(buckets[key]);
+  });
+
+  bucketRows.sort(function(a, b) {
+    return ep0304Number_(b.earlyWinScore) - ep0304Number_(a.earlyWinScore) ||
+      ep0304Number_(b.totalVolume) - ep0304Number_(a.totalVolume);
+  });
+
+  ep0304WriteBucketRows_(sheets.buckets, bucketRows);
+  SpreadsheetApp.getUi().alert('Keyword buckets built with ' + bucketRows.length + ' strategy rows.');
+}
+
+function ep0304CollectSeedsFromEp02Targets_(ss, candidates) {
+  var sheet = ss.getSheetByName(EP0304_EP02_TARGET_PAGES_SHEET);
+  if (!sheet || sheet.getLastRow() < 5) return;
+  var rows = sheet.getRange(5, 1, sheet.getLastRow() - 4, 15).getValues();
+  rows.forEach(function(row) {
+    var build = ep0304Bool_(row[0]);
+    var page = String(row[1] || '').trim();
+    if (!build || !page) return;
+    var primaryKeyword = String(row[7] || '').trim();
+    var seed = primaryKeyword || page;
+    candidates.push({
+      seedKeyword: seed,
+      seedType: primaryKeyword ? 'Primary Keyword' : 'Page Topic',
+      sourceEpisode: 'EP02 TARGET PAGES',
+      mappedPage: page,
+      mappedPath: String(row[2] || '').trim(),
+      intentHint: '',
+      pageTypeHint: String(row[4] || '').trim(),
+      businessFit: ep0304RecommendationFit_(row[5]),
+      notes: ep0304CompactText_([row[9], row[10], row[11], row[12], row[14]].join(' | '), 500)
+    });
+  });
+}
+
+function ep0304CollectSeedsFromEp02Structure_(ss, candidates) {
+  var sheet = ss.getSheetByName(EP0304_EP02_PAGE_STRUCTURE_SHEET);
+  if (!sheet || sheet.getLastRow() < 5) return;
+  var rows = sheet.getRange(5, 1, sheet.getLastRow() - 4, 7).getValues();
+  var seen = {};
+  rows.forEach(function(row) {
+    var page = String(row[0] || '').trim();
+    var path = String(row[1] || '').trim();
+    if (!page || seen[page + '|' + path]) return;
+    seen[page + '|' + path] = true;
+    candidates.push({
+      seedKeyword: page,
+      seedType: 'Structured Page Topic',
+      sourceEpisode: 'EP02 PAGE STRUCTURE',
+      mappedPage: page,
+      mappedPath: path,
+      intentHint: '',
+      pageTypeHint: String(row[2] || '').trim(),
+      businessFit: 4,
+      notes: 'Imported from EP02 page structure.'
+    });
+  });
+}
+
+function ep0304CollectSeedsFromEp01Tree_(ss, candidates) {
+  var sheet = ss.getSheetByName(EP0304_EP01_SITE_TREE_SHEET);
+  if (!sheet || sheet.getLastRow() < 5) return;
+  var rows = sheet.getRange(5, 1, sheet.getLastRow() - 4, 10).getValues();
+  rows.forEach(function(row) {
+    var page = String(row[2] || '').trim();
+    var recommendation = String(row[6] || '').trim();
+    if (!page || ['Include', 'Review'].indexOf(recommendation) === -1) return;
+    candidates.push({
+      seedKeyword: page,
+      seedType: 'Site Tree Page',
+      sourceEpisode: 'EP01 SITE TREE',
+      mappedPage: page,
+      mappedPath: String(row[3] || '').trim(),
+      intentHint: '',
+      pageTypeHint: String(row[5] || '').trim(),
+      businessFit: ep0304RecommendationFit_(recommendation),
+      notes: String(row[8] || row[9] || '').trim()
+    });
+  });
+}
+
+function ep0304EndpointsForSeed_(settings, seed) {
+  var endpoints = [];
+  if (settings.includeIdeas && seed.ideas !== false) {
+    endpoints.push({ label: 'Keyword Ideas', path: EP0304_KEYWORD_IDEAS_PATH });
+  }
+  if (settings.includeSuggestions && seed.suggestions !== false) {
+    endpoints.push({ label: 'Keyword Suggestions', path: EP0304_KEYWORD_SUGGESTIONS_PATH });
+  }
+  if (settings.includeRelated && seed.related !== false) {
+    endpoints.push({ label: 'Related Keywords', path: EP0304_RELATED_KEYWORDS_PATH });
+  }
+  return endpoints;
+}
+
+function ep0304BuildKeywordTask_(settings, seed, endpoint) {
+  var task = ep0304MarketTask_(settings);
+  task.limit = settings.maxResultsPerSeed || 100;
+
+  if (endpoint.path === EP0304_KEYWORD_IDEAS_PATH) {
+    task.keywords = [seed.seedKeyword];
+    task.include_seed_keyword = true;
+  } else {
+    task.keyword = seed.seedKeyword;
+  }
+
+  if (endpoint.path === EP0304_RELATED_KEYWORDS_PATH) {
+    task.depth = settings.relatedKeywordDepth || 1;
+  }
+
+  return task;
+}
+
+function ep0304BuildIntentTask_(settings, keywords) {
+  var task = ep0304MarketTask_(settings);
+  task.keywords = keywords;
+  return task;
+}
+
+function ep0304MarketTask_(settings) {
+  var task = {};
+  if (settings.locationCode) {
+    task.location_code = settings.locationCode;
+  } else if (settings.locationName) {
+    task.location_name = settings.locationName;
+  }
+
+  if (settings.languageCode) {
+    task.language_code = settings.languageCode;
+  } else if (settings.languageName) {
+    task.language_name = settings.languageName;
+  }
+
+  return task;
+}
+
+function ep0304CallDataForSeo_(settings, path, tasks) {
+  var url = EP0304_DATAFORSEO_BASE + path;
+  var response = UrlFetchApp.fetch(url, {
+    method: 'post',
+    contentType: 'application/json',
+    muteHttpExceptions: true,
+    headers: {
+      Authorization: 'Basic ' + Utilities.base64Encode(settings.login + ':' + settings.password)
+    },
+    payload: JSON.stringify(tasks)
+  });
+
+  var status = response.getResponseCode();
+  var text = response.getContentText();
+  var json = {};
+  try {
+    json = JSON.parse(text);
+  } catch (error) {
+    throw new Error('DataForSEO returned non-JSON response. HTTP ' + status + ': ' + text.slice(0, 500));
+  }
+
+  if (status < 200 || status > 299) {
+    throw new Error('DataForSEO HTTP ' + status + ': ' + text.slice(0, 800));
+  }
+
+  if (json.status_code && Number(json.status_code) >= 30000) {
+    throw new Error('DataForSEO status ' + json.status_code + ': ' + (json.status_message || text.slice(0, 800)));
+  }
+
+  return { status: status, text: text, json: json };
+}
+
+function ep0304ExtractItemsFromResponse_(json) {
+  var items = [];
+  var tasks = Array.isArray(json.tasks) ? json.tasks : [];
+  tasks.forEach(function(task) {
+    var results = Array.isArray(task.result) ? task.result : [];
+    results.forEach(function(result) {
+      if (Array.isArray(result.items)) {
+        items = items.concat(result.items);
+      } else if (Array.isArray(result.keyword_data)) {
+        items = items.concat(result.keyword_data);
+      } else if (result.keyword || result.keyword_data) {
+        items.push(result);
+      }
+    });
+  });
+  return items;
+}
+
+function ep0304ItemKeyword_(item) {
+  if (!item) return '';
+  if (item.keyword) return String(item.keyword).trim();
+  if (item.keyword_data && item.keyword_data.keyword) return String(item.keyword_data.keyword).trim();
+  if (item.related_keyword) return String(item.related_keyword).trim();
+  if (item.seed_keyword) return String(item.seed_keyword).trim();
+  return '';
+}
+
+function ep0304ExtractMetrics_(item) {
+  var keywordData = item.keyword_data || {};
+  var info = item.keyword_info || keywordData.keyword_info || {};
+  var props = item.keyword_properties || keywordData.keyword_properties || {};
+  var intentInfo = ep0304ParseIntentInfo_(item);
+  var monthlySearches = info.monthly_searches || keywordData.monthly_searches || item.monthly_searches || [];
+  var categories = item.categories || keywordData.categories || props.categories || [];
+  return {
+    searchVolume: info.search_volume || item.search_volume || keywordData.search_volume || 0,
+    cpc: info.cpc || item.cpc || 0,
+    competition: info.competition || item.competition || 0,
+    competitionLevel: info.competition_level || item.competition_level || '',
+    difficulty: item.keyword_difficulty || keywordData.keyword_difficulty || props.keyword_difficulty || props.difficulty || 0,
+    intent: intentInfo.intent,
+    intentConfidence: intentInfo.confidence,
+    monthlySearches: ep0304JsonOrText_(monthlySearches),
+    categories: ep0304JsonOrText_(categories),
+    notes: ''
+  };
+}
+
+function ep0304ParseIntentInfo_(item) {
+  var keywordData = item.keyword_data || {};
+  var info = item.search_intent_info || keywordData.search_intent_info || item.intent_info || keywordData.intent_info || {};
+  var intent = info.main_intent || info.intent || item.intent || keywordData.intent || '';
+  var confidence = info.intent_probability || info.probability || info.confidence || item.intent_probability || 0;
+
+  if (!intent && info.foreign_intent) intent = info.foreign_intent;
+  if (!confidence && info.main_intent_probability) confidence = info.main_intent_probability;
+
+  return {
+    intent: ep0304NormalizeIntent_(intent),
+    confidence: ep0304Number_(confidence)
+  };
+}
+
+function ep0304ReadSettings_() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(EP0304_SETUP_SHEET);
+  if (!sheet) throw new Error('Missing EP03 & 04 SETUP. Run setupEP0304 first.');
+  var lastRow = Math.max(sheet.getLastRow(), 5);
+  var rows = sheet.getRange(5, 1, lastRow - 4, 2).getValues();
+  var values = {};
+  rows.forEach(function(row) {
+    var key = String(row[0] || '').trim();
+    if (key) values[key] = row[1];
+  });
+
+  var locationCode = ep0304Number_(values['Location Code']);
+  var languageCode = String(values['Language Code'] || '').trim();
+  var locationName = String(values['Location Name'] || '').trim();
+  var languageName = String(values['Language Name'] || '').trim();
+
+  return {
+    login: String(values['DataForSEO Login'] || '').trim(),
+    password: String(values['DataForSEO API Password'] || '').trim(),
+    locationName: locationName,
+    locationCode: locationCode,
+    languageName: languageName,
+    languageCode: languageCode,
+    locationLabel: locationName || String(locationCode || ''),
+    languageLabel: languageName || languageCode,
+    maxSeedsPerRun: ep0304Clamp_(ep0304Number_(values['Max Seeds Per Run']) || EP0304_MAX_SEEDS_PER_RUN, 1, 50),
+    maxResultsPerSeed: ep0304Clamp_(ep0304Number_(values['Max Results Per Seed']) || 100, 10, 700),
+    relatedKeywordDepth: ep0304Clamp_(ep0304Number_(values['Related Keyword Depth']) || 1, 1, 4),
+    includeIdeas: ep0304Bool_(values['Include Keyword Ideas']),
+    includeSuggestions: ep0304Bool_(values['Include Keyword Suggestions']),
+    includeRelated: ep0304Bool_(values['Include Related Keywords']),
+    minimumSearchVolume: ep0304Number_(values['Minimum Search Volume']) || 0,
+    expectedCtr: ep0304Number_(values['Expected CTR']) || 0,
+    expectedConversionRate: ep0304Number_(values['Expected Conversion Rate']) || 0,
+    brandName: String(values['Brand / Company Name'] || '').trim(),
+    businessNotes: String(values['Business Notes'] || '').trim(),
+    targetMarketNotes: String(values['Target Market Notes'] || '').trim()
+  };
+}
+
+function ep0304RequireDataForSeoCredentials_(settings) {
+  if (!settings.login || !settings.password) {
+    throw new Error('Add DataForSEO Login and DataForSEO API Password in EP03 & 04 SETUP before running API actions.');
+  }
+}
+
+function ep0304ReadSeedRows_() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(EP0304_SEED_SHEET);
+  if (!sheet || sheet.getLastRow() < 5) return [];
+  var values = sheet.getRange(5, 1, sheet.getLastRow() - 4, 14).getValues();
+  return values.map(function(row, index) {
+    return {
+      rowIndex: index + 5,
+      collect: ep0304Bool_(row[0]),
+      seedKeyword: String(row[1] || '').trim(),
+      seedType: String(row[2] || '').trim(),
+      sourceEpisode: String(row[3] || '').trim(),
+      mappedPage: String(row[4] || '').trim(),
+      mappedPath: String(row[5] || '').trim(),
+      intentHint: String(row[6] || '').trim(),
+      pageTypeHint: String(row[7] || '').trim(),
+      businessFit: ep0304Number_(row[8]),
+      notes: String(row[9] || '').trim(),
+      ideas: ep0304Bool_(row[10]),
+      suggestions: ep0304Bool_(row[11]),
+      related: ep0304Bool_(row[12]),
+      status: String(row[13] || '').trim()
+    };
+  }).filter(function(row) {
+    return row.seedKeyword;
+  });
+}
+
+function ep0304WriteSeedRows_(sheet, rows) {
+  ep0304ClearRows_(sheet, 14);
+  if (!rows.length) return;
+  sheet.getRange(5, 1, rows.length, 14).setValues(rows.map(function(row) {
+    return [
+      row.collect !== false,
+      row.seedKeyword || '',
+      row.seedType || '',
+      row.sourceEpisode || '',
+      row.mappedPage || '',
+      row.mappedPath || '',
+      row.intentHint || '',
+      row.pageTypeHint || '',
+      row.businessFit || '',
+      row.notes || '',
+      row.ideas !== false,
+      row.suggestions !== false,
+      row.related !== false,
+      row.status || ''
+    ];
+  }));
+  sheet.getRange(5, 1, rows.length, 1).insertCheckboxes();
+  sheet.getRange(5, 11, rows.length, 3).insertCheckboxes();
+}
+
+function ep0304ReadInventoryRows_() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(EP0304_INVENTORY_SHEET);
+  if (!sheet || sheet.getLastRow() < 5) return [];
+  var values = sheet.getRange(5, 1, sheet.getLastRow() - 4, 20).getValues();
+  return values.map(function(row) {
+    return {
+      keyword: String(row[0] || '').trim(),
+      normalized: String(row[1] || '').trim(),
+      sourceSeed: String(row[2] || '').trim(),
+      sourceEndpoint: String(row[3] || '').trim(),
+      location: String(row[4] || '').trim(),
+      language: String(row[5] || '').trim(),
+      searchVolume: ep0304Number_(row[6]),
+      cpc: ep0304Number_(row[7]),
+      competition: ep0304Number_(row[8]),
+      competitionLevel: String(row[9] || '').trim(),
+      difficulty: ep0304Number_(row[10]),
+      dataIntent: String(row[11] || '').trim(),
+      intentConfidence: ep0304Number_(row[12]),
+      monthlySearches: String(row[13] || '').trim(),
+      categories: String(row[14] || '').trim(),
+      mappedPage: String(row[15] || '').trim(),
+      mappedPath: String(row[16] || '').trim(),
+      include: ep0304Bool_(row[17]),
+      collectedAt: row[18] || '',
+      notes: String(row[19] || '').trim()
+    };
+  }).filter(function(row) {
+    return row.keyword;
+  });
+}
+
+function ep0304ReadInventoryMap_() {
+  var map = {};
+  ep0304ReadInventoryRows_().forEach(function(row) {
+    var key = ep0304InventoryKey_(row.normalized || ep0304NormalizeKeyword_(row.keyword), row.mappedPath);
+    map[key] = row;
+  });
+  return map;
+}
+
+function ep0304WriteInventoryRows_(sheet, rows) {
+  ep0304ClearRows_(sheet, 20);
+  rows.sort(function(a, b) {
+    return String(a.mappedPath || '').localeCompare(String(b.mappedPath || '')) ||
+      ep0304Number_(b.searchVolume) - ep0304Number_(a.searchVolume) ||
+      String(a.keyword || '').localeCompare(String(b.keyword || ''));
+  });
+  if (!rows.length) return;
+  sheet.getRange(5, 1, rows.length, 20).setValues(rows.map(function(row) {
+    return [
+      row.keyword || '',
+      row.normalized || ep0304NormalizeKeyword_(row.keyword),
+      row.sourceSeed || '',
+      row.sourceEndpoint || '',
+      row.location || '',
+      row.language || '',
+      row.searchVolume || 0,
+      row.cpc || 0,
+      row.competition || 0,
+      row.competitionLevel || '',
+      row.difficulty || 0,
+      row.dataIntent || '',
+      row.intentConfidence || 0,
+      row.monthlySearches || '',
+      row.categories || '',
+      row.mappedPage || '',
+      row.mappedPath || '',
+      row.include !== false,
+      row.collectedAt || '',
+      row.notes || ''
+    ];
+  }));
+  sheet.getRange(5, 18, rows.length, 1).insertCheckboxes();
+}
+
+function ep0304InventoryMapToRows_(map) {
+  return Object.keys(map).map(function(key) {
+    return map[key];
+  });
+}
+
+function ep0304MergeInventoryRow_(map, key, incoming) {
+  var existing = map[key];
+  if (!existing) {
+    map[key] = incoming;
+    return;
+  }
+  var existingVolume = ep0304Number_(existing.searchVolume);
+  var incomingVolume = ep0304Number_(incoming.searchVolume);
+  if (incomingVolume >= existingVolume) {
+    incoming.sourceSeed = ep0304JoinUnique_(existing.sourceSeed, incoming.sourceSeed);
+    incoming.sourceEndpoint = ep0304JoinUnique_(existing.sourceEndpoint, incoming.sourceEndpoint);
+    incoming.include = existing.include !== false || incoming.include !== false;
+    incoming.notes = ep0304JoinUnique_(existing.notes, incoming.notes);
+    map[key] = incoming;
+  } else {
+    existing.sourceSeed = ep0304JoinUnique_(existing.sourceSeed, incoming.sourceSeed);
+    existing.sourceEndpoint = ep0304JoinUnique_(existing.sourceEndpoint, incoming.sourceEndpoint);
+    existing.include = existing.include !== false || incoming.include !== false;
+    if (!existing.dataIntent && incoming.dataIntent) existing.dataIntent = incoming.dataIntent;
+    if (!existing.intentConfidence && incoming.intentConfidence) existing.intentConfidence = incoming.intentConfidence;
+    map[key] = existing;
+  }
+}
+
+function ep0304ReadIntentRows_() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(EP0304_INTENT_MAP_SHEET);
+  if (!sheet || sheet.getLastRow() < 5) return [];
+  var values = sheet.getRange(5, 1, sheet.getLastRow() - 4, 19).getValues();
+  return values.map(function(row) {
+    return {
+      include: ep0304Bool_(row[0]),
+      keyword: String(row[1] || '').trim(),
+      searchVolume: ep0304Number_(row[2]),
+      difficulty: ep0304Number_(row[3]),
+      cpc: ep0304Number_(row[4]),
+      competition: ep0304Number_(row[5]),
+      dataIntent: String(row[6] || '').trim(),
+      finalIntent: String(row[7] || '').trim(),
+      confidence: ep0304Number_(row[8]),
+      funnelStage: String(row[9] || '').trim(),
+      recommendedPageType: String(row[10] || '').trim(),
+      mappedPage: String(row[11] || '').trim(),
+      mappedPath: String(row[12] || '').trim(),
+      businessFit: ep0304Number_(row[13]),
+      earlyWinScore: ep0304Number_(row[14]),
+      recommendation: String(row[15] || '').trim(),
+      reasoning: String(row[16] || '').trim(),
+      sourceSeeds: String(row[17] || '').trim(),
+      notes: String(row[18] || '').trim()
+    };
+  }).filter(function(row) {
+    return row.keyword;
+  });
+}
+
+function ep0304WriteIntentRows_(sheet, rows) {
+  ep0304ClearRows_(sheet, 19);
+  if (!rows.length) return;
+  sheet.getRange(5, 1, rows.length, 19).setValues(rows.map(function(row) {
+    return [
+      row.include !== false,
+      row.keyword || '',
+      row.searchVolume || 0,
+      row.difficulty || 0,
+      row.cpc || 0,
+      row.competition || 0,
+      row.dataIntent || '',
+      row.finalIntent || '',
+      row.confidence || 0,
+      row.funnelStage || '',
+      row.recommendedPageType || '',
+      row.mappedPage || '',
+      row.mappedPath || '',
+      row.businessFit || 0,
+      row.earlyWinScore || 0,
+      row.recommendation || '',
+      row.reasoning || '',
+      row.sourceSeeds || '',
+      row.notes || ''
+    ];
+  }));
+  sheet.getRange(5, 1, rows.length, 1).insertCheckboxes();
+  ep0304ColorIntentRecommendations_(sheet, rows);
+}
+
+function ep0304WriteBucketRows_(sheet, rows) {
+  ep0304ClearRows_(sheet, 15);
+  if (!rows.length) return;
+  sheet.getRange(5, 1, rows.length, 15).setValues(rows.map(function(row) {
+    return [
+      row.priority || '',
+      row.bucketName || '',
+      row.mappedPage || '',
+      row.mappedPath || '',
+      row.contentType || '',
+      row.dominantIntent || '',
+      row.primaryKeyword || '',
+      row.supportingKeywords || '',
+      row.totalVolume || 0,
+      row.avgDifficulty || 0,
+      row.keywordCount || 0,
+      row.businessFit || 0,
+      row.earlyWinScore || 0,
+      row.recommendation || '',
+      row.notes || ''
+    ];
+  }));
+  ep0304ColorBucketPriorities_(sheet, rows);
+}
+
+function ep0304BuildSeedFitMap_() {
+  var map = {};
+  ep0304ReadSeedRows_().forEach(function(seed) {
+    var fit = ep0304Number_(seed.businessFit);
+    if (!fit) return;
+    ep0304SplitList_(seed.seedKeyword).forEach(function(value) {
+      map[ep0304NormalizeKeyword_(value)] = fit;
+    });
+    if (seed.mappedPath) map['path:' + seed.mappedPath] = fit;
+  });
+  return map;
+}
+
+function ep0304InferIntent_(keyword, mappedPage, mappedPath, settings) {
+  var text = ep0304Comparable_([keyword, mappedPage, mappedPath].join(' '));
+  var brand = ep0304Comparable_(settings.brandName || '');
+  if (brand && text.indexOf(brand) !== -1) return { intent: 'Navigational', confidence: 0.7, reason: 'Matches brand/company name.' };
+  if (/\b(hire|book|get|buy|quote|contact|near me|appointment|request|order|consultation|demo)\b/.test(text)) {
+    return { intent: 'Transactional', confidence: 0.72, reason: 'Action or conversion language.' };
+  }
+  if (/\b(best|top|agency|company|companies|service|services|pricing|price|cost|comparison|compare|alternatives|reviews|provider|consultant|expert)\b/.test(text)) {
+    return { intent: 'Commercial', confidence: 0.68, reason: 'Comparison, provider, or buying language.' };
+  }
+  if (/\b(how|what|why|guide|ideas|tips|examples|meaning|learn|checklist|template|strategy|benefits|process)\b/.test(text)) {
+    return { intent: 'Informational', confidence: 0.64, reason: 'Learning or education language.' };
+  }
+  if (/\b(blog|article|resource|guide|faq|insight)\b/.test(text)) {
+    return { intent: 'Informational', confidence: 0.58, reason: 'Resource page context.' };
+  }
+  if (/\b(service|services|location|locations|riyadh|jeddah|dubai|saudi|uae|company|agency)\b/.test(text)) {
+    return { intent: 'Commercial', confidence: 0.55, reason: 'Service or location page context.' };
+  }
+  return { intent: 'Commercial', confidence: 0.45, reason: 'Default review intent.' };
+}
+
+function ep0304NormalizeIntent_(value) {
+  var text = String(value || '').toLowerCase().trim();
+  if (!text) return '';
+  if (/informational|information|info/.test(text)) return 'Informational';
+  if (/commercial|commercial investigation|consideration/.test(text)) return 'Commercial';
+  if (/transactional|transaction|purchase|buy/.test(text)) return 'Transactional';
+  if (/navigational|navigation|brand/.test(text)) return 'Navigational';
+  return ep0304Humanize_(text);
+}
+
+function ep0304FunnelStage_(intent) {
+  if (intent === 'Informational') return 'Awareness';
+  if (intent === 'Commercial') return 'Consideration';
+  if (intent === 'Transactional') return 'Decision';
+  if (intent === 'Navigational') return 'Brand / Navigation';
+  return 'Review';
+}
+
+function ep0304RecommendedPageType_(intent, mappedPage, mappedPath) {
+  var text = ep0304Comparable_([mappedPage, mappedPath].join(' '));
+  if (/contact|quote|booking|consultation/.test(text)) return 'Conversion Page';
+  if (/location|riyadh|jeddah|dubai|saudi|uae|near me/.test(text)) return 'Location Page';
+  if (/service|services|agency|company|seo|ppc|marketing|branding|website|development/.test(text)) return 'Service Page';
+  if (/blog|article|guide|resource|faq/.test(text)) return 'Blog / Guide';
+  if (intent === 'Informational') return 'Blog / Guide / FAQ';
+  if (intent === 'Commercial') return 'Service / Comparison Page';
+  if (intent === 'Transactional') return 'Service / Landing Page';
+  if (intent === 'Navigational') return 'Brand / Competitor Note';
+  return 'Review';
+}
+
+function ep0304BusinessFit_(row, intent, seedFit) {
+  var pathFit = row.mappedPath ? seedFit['path:' + row.mappedPath] : 0;
+  if (pathFit) return pathFit;
+
+  var sourceSeeds = ep0304SplitList_(row.sourceSeed);
+  var fits = sourceSeeds.map(function(seed) {
+    return seedFit[ep0304NormalizeKeyword_(seed)] || 0;
+  }).filter(Boolean);
+  if (fits.length) return Math.max.apply(null, fits);
+
+  if (intent === 'Transactional') return 5;
+  if (intent === 'Commercial') return 4;
+  if (intent === 'Informational') return row.mappedPath ? 3 : 2;
+  if (intent === 'Navigational') return 1;
+  return row.mappedPath ? 3 : 2;
+}
+
+function ep0304EarlyWinScore_(row, intent, businessFit) {
+  var volume = ep0304Number_(row.searchVolume);
+  var difficulty = ep0304Number_(row.difficulty);
+  var volumeScore = volume > 0 ? Math.min(100, Math.log(volume + 1) / Math.log(10000) * 100) : 0;
+  var difficultyScore = difficulty > 0 ? Math.max(0, 100 - difficulty) : 55;
+  var intentScore = 45;
+  if (intent === 'Transactional') intentScore = 95;
+  if (intent === 'Commercial') intentScore = 85;
+  if (intent === 'Informational') intentScore = 62;
+  if (intent === 'Navigational') intentScore = 20;
+  var businessScore = ep0304Clamp_(businessFit, 1, 5) * 20;
+  var pageFitScore = row.mappedPath ? 95 : 45;
+  return Math.round((volumeScore * 0.24) + (difficultyScore * 0.24) + (intentScore * 0.22) + (businessScore * 0.2) + (pageFitScore * 0.1));
+}
+
+function ep0304Recommendation_(row, intent, businessFit, score, minimumVolume) {
+  var volume = ep0304Number_(row.searchVolume);
+  if (intent === 'Navigational' && businessFit <= 2) return 'Exclude';
+  if (volume < minimumVolume && score < 50) return 'Defer';
+  if (score >= 76 && row.mappedPath) return 'Build First';
+  if (score >= 66 && row.mappedPath) return 'Improve Existing';
+  if (score >= 48) return 'Review';
+  return 'Defer';
+}
+
+function ep0304IntentReasoning_(row, dataIntent, inferredIntent, pageType, businessFit, score) {
+  var parts = [];
+  if (dataIntent) parts.push('DataForSEO intent: ' + dataIntent + '.');
+  if (!dataIntent && inferredIntent.reason) parts.push('Rule fallback: ' + inferredIntent.reason);
+  parts.push('Recommended page type: ' + pageType + '.');
+  parts.push('Business fit: ' + businessFit + '/5.');
+  parts.push('Early-win score: ' + score + '/100.');
+  if (row.mappedPath) parts.push('Mapped to ' + row.mappedPath + '.');
+  return parts.join(' ');
+}
+
+function ep0304BucketKey_(row) {
+  var path = row.mappedPath || '';
+  var page = row.mappedPage || '';
+  var type = row.recommendedPageType || 'Review';
+  var intent = row.finalIntent || 'Review';
+  if (path) return path + '|' + intent;
+  if (page) return page + '|' + intent;
+  return type + '|' + intent + '|' + ep0304KeywordRoot_(row.keyword);
+}
+
+function ep0304BuildBucketRow_(bucket) {
+  var rows = bucket.rows.slice().sort(function(a, b) {
+    return ep0304Number_(b.searchVolume) - ep0304Number_(a.searchVolume) ||
+      ep0304Number_(b.earlyWinScore) - ep0304Number_(a.earlyWinScore);
+  });
+  var primary = rows[0];
+  var support = rows.slice(1, 13).map(function(row) {
+    return row.keyword;
+  });
+  var totalVolume = rows.reduce(function(total, row) {
+    return total + ep0304Number_(row.searchVolume);
+  }, 0);
+  var avgDifficulty = ep0304Average_(rows.map(function(row) { return ep0304Number_(row.difficulty); }).filter(Boolean));
+  var businessFit = Math.round(ep0304Average_(rows.map(function(row) { return ep0304Number_(row.businessFit); }).filter(Boolean)) * 10) / 10;
+  var score = Math.round(ep0304Average_(rows.map(function(row) { return ep0304Number_(row.earlyWinScore); }).filter(Boolean)));
+  var priority = score >= 76 ? 'High' : score >= 60 ? 'Medium' : score >= 45 ? 'Low' : 'Review';
+  var recommendation = priority === 'High' ? 'Build First' : priority === 'Medium' ? 'Improve Existing / Build Next' : priority === 'Low' ? 'Review Later' : 'Manual Review';
+  var bucketName = bucket.mappedPage || ep0304Humanize_(bucket.contentType + ' ' + bucket.intent);
+
+  return {
+    priority: priority,
+    bucketName: bucketName,
+    mappedPage: bucket.mappedPage || '',
+    mappedPath: bucket.mappedPath || '',
+    contentType: bucket.contentType || '',
+    dominantIntent: bucket.intent || '',
+    primaryKeyword: primary.keyword || '',
+    supportingKeywords: support.join('\n'),
+    totalVolume: totalVolume,
+    avgDifficulty: avgDifficulty,
+    keywordCount: rows.length,
+    businessFit: businessFit,
+    earlyWinScore: score,
+    recommendation: recommendation,
+    notes: 'Primary selected by highest search volume. Review SERP manually before final content decision.'
+  };
+}
+
+function ep0304UpdateSeedStatus_(sheet, rowIndex, status) {
+  if (!rowIndex) return;
+  sheet.getRange(rowIndex, 14).setValue(status);
+}
+
+function ep0304WriteLog_(sheet, action, status, endpoint, seedOrBatch, returned, notes, rawResponse) {
+  if (!sheet || sheet.getLastRow() < 4) return;
+  sheet.appendRow([
+    new Date(),
+    action,
+    status,
+    endpoint || '',
+    seedOrBatch || '',
+    returned || 0,
+    notes || '',
+    ep0304CompactText_(rawResponse || '', 45000)
+  ]);
+}
+
+function ep0304StyleSheet_(sheet, columns) {
+  sheet.setFrozenRows(4);
+  sheet.getRange(1, 1, 1, columns).setBackground('#07342F').setFontColor('#F8FFF5').setFontWeight('bold');
+  sheet.getRange(2, 1, 1, columns).setBackground('#D8ECD1').setFontColor('#102018').setFontWeight('bold');
+  sheet.getRange(4, 1, 1, columns).setBackground('#0F4A43').setFontColor('#F8FFF5').setFontWeight('bold');
+  sheet.getRange(1, 1, Math.max(sheet.getMaxRows(), 10), columns).setWrap(true).setVerticalAlignment('top');
+}
+
+function ep0304ClearRows_(sheet, columns) {
+  var lastRow = Math.max(sheet.getLastRow(), 5);
+  if (lastRow >= 5) {
+    sheet.getRange(5, 1, lastRow - 4, columns).clearContent().clearDataValidations().setBackground(null);
+  }
+}
+
+function ep0304ColorIntentRecommendations_(sheet, rows) {
+  rows.forEach(function(row, index) {
+    var rowNumber = index + 5;
+    if (row.recommendation === 'Build First') {
+      sheet.getRange(rowNumber, 1, 1, 19).setBackground('#EAF6EF');
+    } else if (row.recommendation === 'Improve Existing') {
+      sheet.getRange(rowNumber, 1, 1, 19).setBackground('#F3F8F0');
+    } else if (row.recommendation === 'Exclude') {
+      sheet.getRange(rowNumber, 1, 1, 19).setBackground('#F6F0D4');
+    }
+  });
+}
+
+function ep0304ColorBucketPriorities_(sheet, rows) {
+  rows.forEach(function(row, index) {
+    var rowNumber = index + 5;
+    if (row.priority === 'High') {
+      sheet.getRange(rowNumber, 1, 1, 15).setBackground('#EAF6EF');
+    } else if (row.priority === 'Medium') {
+      sheet.getRange(rowNumber, 1, 1, 15).setBackground('#F3F8F0');
+    } else if (row.priority === 'Review') {
+      sheet.getRange(rowNumber, 1, 1, 15).setBackground('#F6F0D4');
+    }
+  });
+}
+
+function ep0304SeedKey_(keyword, path) {
+  var normalized = ep0304NormalizeKeyword_(keyword);
+  if (!normalized) return '';
+  return normalized + '|' + String(path || '').trim();
+}
+
+function ep0304InventoryKey_(normalizedKeyword, mappedPath) {
+  return ep0304NormalizeKeyword_(normalizedKeyword) + '|' + String(mappedPath || '').trim();
+}
+
+function ep0304NormalizeKeyword_(keyword) {
+  return String(keyword || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9\s]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function ep0304Comparable_(value) {
+  return ep0304NormalizeKeyword_(value);
+}
+
+function ep0304KeywordRoot_(keyword) {
+  var stop = {
+    a: true,
+    an: true,
+    and: true,
+    best: true,
+    for: true,
+    in: true,
+    near: true,
+    of: true,
+    the: true,
+    to: true,
+    with: true
+  };
+  var tokens = ep0304NormalizeKeyword_(keyword).split(/\s+/).filter(function(token) {
+    return token && !stop[token];
+  });
+  return tokens.slice(0, 3).join(' ');
+}
+
+function ep0304RecommendationFit_(recommendation) {
+  var text = String(recommendation || '').toLowerCase();
+  if (text === 'include') return 5;
+  if (text === 'review') return 4;
+  if (text === 'optional') return 2;
+  return 3;
+}
+
+function ep0304Bool_(value) {
+  if (value === true) return true;
+  if (value === false) return false;
+  var text = String(value || '').toLowerCase().trim();
+  if (!text) return false;
+  return ['true', 'yes', 'y', '1', 'include', 'collect', 'checked'].indexOf(text) !== -1;
+}
+
+function ep0304Number_(value) {
+  if (value === null || value === undefined || value === '') return 0;
+  var number = Number(value);
+  return isNaN(number) ? 0 : number;
+}
+
+function ep0304Clamp_(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function ep0304Average_(values) {
+  if (!values.length) return 0;
+  var total = values.reduce(function(sum, value) {
+    return sum + ep0304Number_(value);
+  }, 0);
+  return Math.round((total / values.length) * 10) / 10;
+}
+
+function ep0304Unique_(values) {
+  var seen = {};
+  var output = [];
+  values.forEach(function(value) {
+    var text = String(value || '').trim();
+    var key = ep0304NormalizeKeyword_(text);
+    if (!text || seen[key]) return;
+    seen[key] = true;
+    output.push(text);
+  });
+  return output;
+}
+
+function ep0304JoinUnique_(left, right) {
+  return ep0304Unique_(ep0304SplitList_(left).concat(ep0304SplitList_(right))).join(', ');
+}
+
+function ep0304SplitList_(value) {
+  if (!value) return [];
+  if (Array.isArray(value)) return value.map(String).filter(Boolean);
+  return String(value).split(/[,;\n]+/).map(function(item) {
+    return item.trim();
+  }).filter(Boolean);
+}
+
+function ep0304JsonOrText_(value) {
+  if (!value) return '';
+  if (Array.isArray(value) || typeof value === 'object') {
+    try {
+      return JSON.stringify(value);
+    } catch (error) {
+      return String(value);
+    }
+  }
+  return String(value);
+}
+
+function ep0304Humanize_(value) {
+  var text = String(value || '').replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+  return text.replace(/\b\w/g, function(letter) {
+    return letter.toUpperCase();
+  });
+}
+
+function ep0304CompactText_(value, maxLength) {
+  var text = String(value || '').trim();
+  var limit = Number(maxLength || 45000);
+  if (text.length <= limit) return text;
+  return text.slice(0, limit - 80).trim() + '\n[Trimmed for Google Sheets cell limit]';
+}
+
+function ep0304FormatDate_(date) {
+  return Utilities.formatDate(date || new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm');
+}
+`;
+
+  const ep0304Code = document.getElementById('ep0304-apps-script');
+  if (ep0304Code) ep0304Code.textContent = ep0304AppsScript.trim();
+
+  const copyButton = document.querySelector('[data-copy-code]');
+  if (copyButton && ep0304Code) {
+    copyButton.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(ep0304AppsScript.trim());
+      copyButton.textContent = 'Copied';
+      setTimeout(() => { copyButton.textContent = 'Copy code'; }, 1800);
+    });
+  }
+</script>
 </body>
 </html>
