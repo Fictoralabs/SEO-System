@@ -3,3 +3,7 @@
 .venv/
 tmp/
 output/
+
+# Local research files — not for deployment
+Copy of SEO-GEO Research Kit.xlsx
+SOP 011_ How to Do Keyword Research for SEO.pdf

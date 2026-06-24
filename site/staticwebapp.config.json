@@ -1,0 +1,27 @@
+{
+  "auth": {
+    "identityProviders": {
+      "google": {
+        "registration": {
+          "clientIdSettingName": "GOOGLE_CLIENT_ID",
+          "clientSecretSettingName": "GOOGLE_CLIENT_SECRET"
+        }
+      }
+    }
+  },
+  "routes": [
+    {
+      "route": "/*",
+      "allowedRoles": ["member"]
+    }
+  ],
+  "responseOverrides": {
+    "401": {
+      "redirect": "/.auth/login/google",
+      "statusCode": 302
+    }
+  },
+  "globalHeaders": {
+    "X-Robots-Tag": "noindex, nofollow, noarchive"
+  }
+}

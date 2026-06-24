@@ -1,8 +1,8 @@
 name: Deploy site to GitHub Pages
 
 on:
-  push:
-    branches: [ master ]
+  # Push-to-master deploy is now handled by azure-static-web-apps.yml.
+  # Kept here for manual one-off GitHub Pages deploys only.
   workflow_dispatch:
 
 permissions:
