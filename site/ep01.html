@@ -57,7 +57,7 @@
         <div class="stat-card">
           <div class="stat-title">Script output</div>
           <div class="stat-value">Inventory · Matrix · Tree</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script collects sitemap URLs, preserves original paths, groups page types, and builds a recommended page tree.</p>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script preserves raw sitemap URLs, sends AI a strategic sample, groups page types, and builds a recommended page tree.</p>
         </div>
       </div>
     </section>
@@ -108,6 +108,7 @@
             <h4>What the script creates</h4>
             <p><strong>EP01 COMPETITORS</strong></p>
             <p><strong>EP01 URL INVENTORY</strong></p>
+            <p><strong>EP01 AI SAMPLE</strong></p>
             <p><strong>EP01 SITE STRUCTURE</strong></p>
             <p><strong>EP01 SITE TREE</strong></p>
             <p><strong>EP01 AI LOG</strong></p>
@@ -190,24 +191,31 @@
 
     <section class="section" id="site-structure-tab">
       <div class="eyebrow">Tabs 2, 3, and 4</div>
-      <h2 class="section-title">EP01 URL INVENTORY, SITE STRUCTURE, and SITE TREE</h2>
+      <h2 class="section-title">EP01 URL INVENTORY, AI SAMPLE, SITE STRUCTURE, and SITE TREE</h2>
       <div class="grid cols-2">
         <div class="card">
           <h3>URL inventory first</h3>
-          <p>The inventory tab stores the raw sitemap URLs, original paths, language prefix, functional path, priority, last modified date, and source sitemap. This is the audit trail before AI grouping.</p>
+          <p>The inventory tab stores the raw sitemap URLs, original paths, language prefix, functional path, priority, last modified date, and source sitemap. This remains the full evidence archive.</p>
           <div class="meta">
             <span class="tag warning">Script output</span>
           </div>
         </div>
         <div class="card">
-          <h3>AI grouping second</h3>
+          <h3>AI sample next</h3>
+          <p>The AI sample tab shows the smaller coverage-based set used for analysis. It keeps important families like services, locations, work, about, contact, and resources without flooding the prompt with every URL.</p>
+          <div class="meta">
+            <span class="tag warning">Cleaner AI input</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI grouping after sample</h3>
           <p>The site-structure tab shows an AI-generated page-type matrix. Competitors are listed across C1 to C10, and cells contain the exact paths found for each competitor.</p>
           <div class="meta">
             <span class="tag warning">Manual review</span>
           </div>
         </div>
         <div class="card">
-          <h3>Site tree third</h3>
+          <h3>Site tree final</h3>
           <p>The site-tree tab converts the matrix into a clean hierarchy: home, top-level pages, grouped service pages, location pages, resources, and utility pages to include or review.</p>
           <div class="meta">
             <span class="tag warning">Planning output</span>
@@ -281,7 +289,7 @@
         <div>
           <h3>How this connects to the sheet</h3>
           <p><strong>EP01 COMPETITORS</strong> is for the search result research. Add the exact ranking page URL and the competitor domain here. The ranking page explains the page type that is currently winning for the keyword.</p>
-          <p><strong>EP01 URL INVENTORY</strong> is for raw sitemap URLs. It preserves the original path and also calculates language prefix, functional path, and top-level functional path.</p>
+          <p><strong>EP01 URL INVENTORY</strong> is for raw sitemap evidence. It preserves the full audit trail, while AI analysis uses a smaller strategic sample plus an excluded URL summary.</p>
           <p><strong>EP01 SITE STRUCTURE</strong> is for the AI-generated page-type coverage matrix. It shows which competitors have each page type, exact supporting paths, recommendation, and reasoning.</p>
           <p><strong>EP01 SITE TREE</strong> is the final planning view. It turns the matrix into a page hierarchy showing what pages to include, where they sit, and why they are recommended.</p>
         </div>
@@ -329,17 +337,19 @@
 </div>
 <script src="assets/js/email-capture.js"></script>
 <script>
-  const ep01AppsScript = String.raw`
+const ep01AppsScript = String.raw`
 const EP01_COMPETITORS_SHEET = 'EP01 COMPETITORS';
 const EP01_URL_INVENTORY_SHEET = 'EP01 URL INVENTORY';
+const EP01_AI_SAMPLE_SHEET = 'EP01 AI SAMPLE';
 const EP01_SITE_STRUCTURE_SHEET = 'EP01 SITE STRUCTURE';
 const EP01_SITE_TREE_SHEET = 'EP01 SITE TREE';
 const EP01_AI_LOG_SHEET = 'EP01 AI LOG';
 const EP01_OPENAI_KEY_PROPERTY = 'EP01_OPENAI_API_KEY';
 const EP01_OPENAI_MODEL = 'gpt-4.1-mini';
 const EP01_OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
-const EP01_PROMPT_VERSION = 'ep01-site-structure-v3';
+const EP01_PROMPT_VERSION = 'ep01-site-structure-v4';
 const EP01_MAX_PAGES_PER_COMPETITOR = 1000;
+const EP01_MAX_STRATEGIC_URLS_PER_COMPETITOR = 80;
 const EP01_MAX_CHILD_SITEMAPS = 50;
 
 function onOpen() {
@@ -352,6 +362,7 @@ function ep01CreateMenu_() {
     .addItem('EP01: Setup Tabs', 'setupEP01')
     .addItem('EP01: Find Sitemaps', 'ep01FindSitemaps')
     .addItem('EP01: Extract Sitemap URLs', 'ep01ExtractSitemapUrls')
+    .addItem('EP01: Refresh AI Sample View', 'ep01RefreshAiSampleView')
     .addItem('EP01: Set AI API Key', 'ep01SetAiApiKey')
     .addItem('EP01: Analyze Site Structure with AI', 'ep01AnalyzeSiteStructureWithAi')
     .addItem('EP01: Build Site Tree from Matrix', 'ep01BuildSiteTreeFromMatrix')
@@ -362,6 +373,7 @@ function setupEP01() {
   var sheets = ep01EnsureEp01Sheets_();
   ep01PrepareCompetitorSheet_(sheets.competitors);
   ep01PrepareInventorySheet_(sheets.inventory);
+  ep01PrepareAiSampleSheet_(sheets.sample);
   ep01PrepareStructureSheet_(sheets.structure);
   ep01PrepareSiteTreeSheet_(sheets.tree);
   ep01PrepareAiLogSheet_(sheets.log);
@@ -374,6 +386,7 @@ function ep01EnsureEp01Sheets_() {
   return {
     competitors: ss.getSheetByName(EP01_COMPETITORS_SHEET) || ss.insertSheet(EP01_COMPETITORS_SHEET),
     inventory: ss.getSheetByName(EP01_URL_INVENTORY_SHEET) || ss.insertSheet(EP01_URL_INVENTORY_SHEET),
+    sample: ss.getSheetByName(EP01_AI_SAMPLE_SHEET) || ss.insertSheet(EP01_AI_SAMPLE_SHEET),
     structure: ss.getSheetByName(EP01_SITE_STRUCTURE_SHEET) || ss.insertSheet(EP01_SITE_STRUCTURE_SHEET),
     tree: ss.getSheetByName(EP01_SITE_TREE_SHEET) || ss.insertSheet(EP01_SITE_TREE_SHEET),
     log: ss.getSheetByName(EP01_AI_LOG_SHEET) || ss.insertSheet(EP01_AI_LOG_SHEET)
@@ -485,9 +498,9 @@ function ep01ExtractSitemapUrls() {
     var pages = ep01CollectPagesFromSitemap_(sitemapUrl, EP01_MAX_PAGES_PER_COMPETITOR);
     totalUrls += pages.length;
 
-    pages.forEach(function(page) {
+    var candidateRows = pages.map(function(page) {
       var pathInfo = ep01AnalyzeUrlPath_(page.loc);
-      outputRows.push([
+      return [
         code,
         competitorName,
         domain,
@@ -501,7 +514,11 @@ function ep01ExtractSitemapUrls() {
         page.priority,
         page.lastmod,
         page.source
-      ]);
+      ];
+    });
+
+    candidateRows.forEach(function(row) {
+      outputRows.push(row);
     });
   });
 
@@ -510,7 +527,30 @@ function ep01ExtractSitemapUrls() {
     inventory.getRange(5, 1, outputRows.length, 13).setWrap(true);
   }
 
-  SpreadsheetApp.getUi().alert('EP01 URL inventory complete. Total sitemap URLs collected: ' + totalUrls + '. No priority filter was applied.');
+  if (outputRows.length) {
+    var inventoryRows = ep01ReadInventoryRows_(inventory);
+    var competitorContexts = ep01ReadCompetitorContexts_(sheets.competitors);
+    ep01WriteAiSample_(sheets.sample, ep01BuildAiPayload_(competitorContexts, inventoryRows));
+  } else {
+    ep01PrepareAiSampleSheet_(sheets.sample);
+  }
+
+  SpreadsheetApp.getUi().alert('EP01 URL inventory complete. Total sitemap URLs collected: ' + totalUrls + '. Review EP01 AI SAMPLE to see the cleaner set AI will analyze.');
+}
+
+function ep01RefreshAiSampleView() {
+  var sheets = ep01EnsureEp01Sheets_();
+  var inventoryRows = ep01ReadInventoryRows_(sheets.inventory);
+  if (!inventoryRows.length) {
+    ep01PrepareAiSampleSheet_(sheets.sample);
+    SpreadsheetApp.getUi().alert('No URL inventory rows found yet. Run EP01: Extract Sitemap URLs first.');
+    return;
+  }
+
+  var competitorContexts = ep01ReadCompetitorContexts_(sheets.competitors);
+  var payload = ep01BuildAiPayload_(competitorContexts, inventoryRows);
+  ep01WriteAiSample_(sheets.sample, payload);
+  SpreadsheetApp.getUi().alert('EP01 AI SAMPLE refreshed. This tab shows the compact URL set used for AI analysis while EP01 URL INVENTORY keeps the full raw evidence.');
 }
 
 function ep01SetAiApiKey() {
@@ -551,6 +591,7 @@ function ep01AnalyzeSiteStructureWithAi() {
   var competitorContexts = ep01ReadCompetitorContexts_(sheets.competitors);
   var payload = ep01BuildAiPayload_(competitorContexts, inventoryRows);
   var urlsSent = ep01CountPayloadUrls_(payload);
+  ep01WriteAiSample_(sheets.sample, payload);
 
   try {
     var aiResponse = ep01CallOpenAi_(apiKey, payload);
@@ -716,6 +757,40 @@ function ep01StyleInventorySheet_(sheet) {
   sheet.setColumnWidth(13, 320);
 }
 
+function ep01PrepareAiSampleSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:L1').breakApart().merge().setValue('EP01 AI SAMPLE');
+  sheet.getRange('A2:L2').breakApart().merge().setValue('Compact, coverage-based URL sample sent to AI. The raw EP01 URL INVENTORY tab stays unchanged for evidence.');
+  sheet.getRange('A4:L4').setValues([[
+    'Competitor Code',
+    'Competitor Name',
+    'Domain',
+    'Total URLs Found',
+    'URLs Sent To AI',
+    'Page Family',
+    'Strategic Score',
+    'Original Path',
+    'Functional Path',
+    'Selection Reason',
+    'Full URL',
+    'Excluded Summary'
+  ]]);
+  ep01StyleSheet_(sheet, 12);
+  sheet.setColumnWidth(1, 110);
+  sheet.setColumnWidth(2, 220);
+  sheet.setColumnWidth(3, 240);
+  sheet.setColumnWidth(4, 120);
+  sheet.setColumnWidth(5, 120);
+  sheet.setColumnWidth(6, 150);
+  sheet.setColumnWidth(7, 110);
+  sheet.setColumnWidth(8, 260);
+  sheet.setColumnWidth(9, 260);
+  sheet.setColumnWidth(10, 340);
+  sheet.setColumnWidth(11, 360);
+  sheet.setColumnWidth(12, 420);
+}
+
 function ep01StyleStructureSheet_(sheet) {
   sheet.setFrozenRows(5);
   sheet.getRange('A1:P1').setBackground('#0F4A43').setFontColor('#FFFFFF').setFontWeight('bold');
@@ -773,15 +848,18 @@ function ep01ReadInventoryRows_(sheet) {
 }
 
 function ep01BuildAiPayload_(competitorContexts, inventoryRows) {
-  var byCompetitor = {};
+  var allByCompetitor = {};
+  var selectedByCompetitor = {};
+  var summariesByCompetitor = {};
   competitorContexts.forEach(function(context) {
-    byCompetitor[context.competitor_code] = [];
+    allByCompetitor[context.competitor_code] = [];
+    selectedByCompetitor[context.competitor_code] = [];
   });
 
   inventoryRows.forEach(function(row) {
     var code = row[0];
-    if (!byCompetitor[code]) byCompetitor[code] = [];
-    byCompetitor[code].push({
+    if (!allByCompetitor[code]) allByCompetitor[code] = [];
+    allByCompetitor[code].push({
       url: row[5],
       original_path: row[6],
       language_prefix: row[7],
@@ -792,15 +870,22 @@ function ep01BuildAiPayload_(competitorContexts, inventoryRows) {
     });
   });
 
+  Object.keys(allByCompetitor).forEach(function(code) {
+    var selection = ep01SelectStrategicUrlsForAi_(allByCompetitor[code]);
+    selectedByCompetitor[code] = selection.selected;
+    summariesByCompetitor[code] = selection.summary;
+  });
+
   return {
     prompt_version: EP01_PROMPT_VERSION,
     instructions: {
-      purpose: 'Infer a proposed website structure from competitor sitemap URL inventory.',
+      purpose: 'Infer a proposed website structure from a strategic sample of competitor sitemap URL inventory.',
       evidence_rule: 'Preserve original paths exactly in competitor matches.',
-      language_rule: 'Language prefixes are metadata, not location context by themselves.'
+      language_rule: 'Language prefixes are metadata, not location context by themselves.',
+      sampling_rule: 'Raw inventory was preserved in the sheet. AI receives a coverage-oriented strategic sample plus an excluded URL summary so important page families are less likely to be missed.'
     },
     competitors: competitorContexts,
-    url_inventory: Object.keys(byCompetitor).sort().map(function(code) {
+    url_inventory: Object.keys(selectedByCompetitor).sort().map(function(code) {
       var context = competitorContexts.filter(function(item) {
         return item.competitor_code === code;
       })[0] || { competitor_code: code, competitor_name: '', domain: '' };
@@ -808,11 +893,267 @@ function ep01BuildAiPayload_(competitorContexts, inventoryRows) {
         competitor_code: code,
         competitor_name: context.competitor_name,
         domain: context.domain,
-        total_urls_found: byCompetitor[code].length,
-        urls: byCompetitor[code]
+        total_urls_found: allByCompetitor[code] ? allByCompetitor[code].length : 0,
+        urls_sent_to_ai: selectedByCompetitor[code].length,
+        excluded_url_summary: summariesByCompetitor[code],
+        urls: selectedByCompetitor[code]
       };
     })
   };
+}
+
+function ep01WriteAiSample_(sheet, payload) {
+  ep01PrepareAiSampleSheet_(sheet);
+  var rows = [];
+
+  (payload.url_inventory || []).forEach(function(competitor) {
+    var summaryText = ep01FormatStrategicSummary_(competitor.excluded_url_summary);
+    var urls = competitor.urls || [];
+
+    if (!urls.length) {
+      rows.push([
+        competitor.competitor_code,
+        competitor.competitor_name,
+        competitor.domain,
+        competitor.total_urls_found || 0,
+        competitor.urls_sent_to_ai || 0,
+        '',
+        '',
+        '',
+        '',
+        'No strategic URLs selected. Review sitemap extraction.',
+        '',
+        summaryText
+      ]);
+      return;
+    }
+
+    urls.forEach(function(url, index) {
+      rows.push([
+        competitor.competitor_code,
+        competitor.competitor_name,
+        competitor.domain,
+        competitor.total_urls_found || 0,
+        competitor.urls_sent_to_ai || urls.length,
+        url.page_family || '',
+        url.strategic_score || '',
+        url.original_path || '',
+        url.functional_path || '',
+        url.selection_reason || '',
+        url.url || '',
+        index === 0 ? summaryText : ''
+      ]);
+    });
+  });
+
+  if (rows.length) {
+    sheet.getRange(5, 1, rows.length, 12).setValues(rows);
+    sheet.getRange(5, 1, rows.length, 12).setWrap(true);
+    sheet.getRange(4, 1, rows.length + 1, 12).createFilter();
+  }
+}
+
+function ep01FormatStrategicSummary_(summary) {
+  if (!summary) return '';
+
+  var familyParts = [];
+  var familyCounts = summary.family_counts || {};
+  Object.keys(familyCounts).sort().forEach(function(family) {
+    familyParts.push(family + ': ' + familyCounts[family]);
+  });
+
+  var exampleText = ep01AsArray_(summary.excluded_examples).slice(0, 8).join('\n');
+  return [
+    'Candidate URLs: ' + (summary.total_candidate_urls || 0),
+    'Sent to AI: ' + (summary.urls_sent_to_ai || 0),
+    'Excluded from prompt: ' + (summary.excluded_count || 0),
+    familyParts.length ? 'Families found: ' + familyParts.join(', ') : '',
+    exampleText ? 'Excluded examples:\n' + exampleText : ''
+  ].filter(Boolean).join('\n');
+}
+
+function ep01SelectStrategicUrlsForAi_(urls) {
+  var inputUrls = Array.isArray(urls) ? urls : [];
+  var candidates = inputUrls.map(function(url) {
+    var path = url.functional_path || url.original_path || ep01PagePath_(url.url);
+    var family = ep01InferStrategicUrlFamily_(path);
+    var score = ep01StrategicUrlScore_(url, family);
+    return {
+      item: {
+        url: url.url,
+        original_path: url.original_path,
+        language_prefix: url.language_prefix,
+        functional_path: url.functional_path,
+        top_level_functional_path: url.top_level_functional_path,
+        sitemap_priority: url.sitemap_priority,
+        last_modified: url.last_modified,
+        page_family: family,
+        strategic_score: score,
+        selection_reason: ep01StrategicSelectionReason_(path, family, score)
+      },
+      family: family,
+      score: score,
+      path: path
+    };
+  }).filter(function(candidate) {
+    return candidate.path && !ep01IsLowValueStrategicUrl_(candidate.path);
+  });
+
+  var selected = [];
+  var selectedKeys = {};
+  var byFamily = {};
+  candidates.forEach(function(candidate) {
+    if (!byFamily[candidate.family]) byFamily[candidate.family] = [];
+    byFamily[candidate.family].push(candidate);
+  });
+
+  function addCandidate(candidate) {
+    if (!candidate || !candidate.item || selectedKeys[candidate.item.functional_path]) return;
+    selectedKeys[candidate.item.functional_path] = true;
+    selected.push(candidate);
+  }
+
+  Object.keys(byFamily).forEach(function(family) {
+    byFamily[family].sort(function(a, b) {
+      return b.score - a.score || a.path.length - b.path.length;
+    });
+  });
+
+  var familyOrder = [
+    'Home',
+    'Services',
+    'Service Detail',
+    'Locations',
+    'About',
+    'Contact',
+    'Work',
+    'Resources',
+    'Careers',
+    'Packages',
+    'Legal',
+    'Industries',
+    'Products',
+    'Other'
+  ];
+
+  familyOrder.forEach(function(family) {
+    var limit = ep01StrategicFamilyLimit_(family);
+    (byFamily[family] || []).slice(0, limit).forEach(addCandidate);
+  });
+
+  candidates.sort(function(a, b) {
+    return b.score - a.score || a.path.length - b.path.length;
+  });
+  candidates.forEach(function(candidate) {
+    if (selected.length >= EP01_MAX_STRATEGIC_URLS_PER_COMPETITOR) return;
+    addCandidate(candidate);
+  });
+
+  var selectedItems = selected
+    .sort(function(a, b) {
+      return b.score - a.score || a.path.localeCompare(b.path);
+    })
+    .map(function(candidate) {
+      return candidate.item;
+    });
+
+  return {
+    selected: selectedItems,
+    summary: ep01BuildStrategicUrlSummary_(candidates, selectedKeys, selectedItems.length)
+  };
+}
+
+function ep01InferStrategicUrlFamily_(path) {
+  var text = String(path || '').toLowerCase();
+  if (!text || text === '/') return 'Home';
+  if (/privacy|terms|cookie|legal|policy/.test(text)) return 'Legal';
+  if (/contact|get-in-touch|inquiry/.test(text)) return 'Contact';
+  if (/about|company|team|mission|vision/.test(text)) return 'About';
+  if (/career|jobs|recruit/.test(text)) return 'Careers';
+  if (/case-study|case-studies|portfolio|project|work|clients/.test(text)) return 'Work';
+  if (/blog|article|resource|guide|news|insight|category|tag/.test(text)) return 'Resources';
+  if (/package|pricing|plans|cost|estimate/.test(text)) return 'Packages';
+  if (/industr(y|ies)|sector|vertical/.test(text)) return 'Industries';
+  if (/product|platform|software|tool/.test(text)) return 'Products';
+  if (/location|city|area|region|country|near-me|local|saudi|riyadh|jeddah|dammam|dubai|kuwait|oman|qatar|bahrain|libya/.test(text)) return 'Locations';
+  if (/service|solution|offering|marketing|seo|ppc|advertising|branding|brand|web|website|development|design|content|graphic|video|motion|performance|influencer|technology|identity|uiux|amazon|strategy|production/.test(text)) {
+    return ep01PathDepth_(text) <= 1 || /\/(services|service|our-services)\/?$/.test(text) ? 'Services' : 'Service Detail';
+  }
+  return 'Other';
+}
+
+function ep01StrategicUrlScore_(url, family) {
+  var path = String(url.functional_path || url.original_path || '').toLowerCase();
+  var depth = ep01PathDepth_(path);
+  var score = 10;
+
+  if (family === 'Home') score += 120;
+  if (['Services', 'About', 'Contact', 'Work', 'Careers', 'Packages'].indexOf(family) !== -1) score += 90;
+  if (['Service Detail', 'Locations', 'Industries', 'Products'].indexOf(family) !== -1) score += 75;
+  if (family === 'Resources') score += /blog|articles|resources|insights|news/.test(path) && depth <= 2 ? 45 : 20;
+  if (family === 'Legal') score += 25;
+  if (family === 'Other') score += 5;
+
+  if (depth <= 1) score += 30;
+  if (depth === 2) score += 20;
+  if (depth === 3) score += 8;
+  if (depth > 4) score -= 25;
+  if (/category|tag|author|page\/\d+|feed|attachment|wp-content|wp-json/.test(path)) score -= 35;
+
+  var priority = Number(url.sitemap_priority || 0);
+  if (priority) score += Math.round(priority * 20);
+
+  return score;
+}
+
+function ep01StrategicFamilyLimit_(family) {
+  if (family === 'Home') return 2;
+  if (family === 'Services') return 8;
+  if (family === 'Service Detail') return 16;
+  if (family === 'Locations') return 10;
+  if (family === 'Resources') return 8;
+  if (family === 'Work') return 10;
+  if (family === 'Legal') return 4;
+  if (family === 'Other') return 6;
+  return 8;
+}
+
+function ep01StrategicSelectionReason_(path, family, score) {
+  return family + ' candidate, score ' + score + ', path ' + path;
+}
+
+function ep01BuildStrategicUrlSummary_(candidates, selectedKeys, selectedCount) {
+  var familyCounts = {};
+  var topLevelCounts = {};
+  var excludedExamples = [];
+
+  candidates.forEach(function(candidate) {
+    familyCounts[candidate.family] = (familyCounts[candidate.family] || 0) + 1;
+    var top = String(candidate.item.top_level_functional_path || '/').toLowerCase();
+    topLevelCounts[top] = (topLevelCounts[top] || 0) + 1;
+
+    if (!selectedKeys[candidate.item.functional_path] && excludedExamples.length < 20) {
+      excludedExamples.push(candidate.item.functional_path);
+    }
+  });
+
+  return {
+    total_candidate_urls: candidates.length,
+    urls_sent_to_ai: selectedCount,
+    excluded_count: Math.max(candidates.length - selectedCount, 0),
+    family_counts: familyCounts,
+    top_level_path_counts: topLevelCounts,
+    excluded_examples: excludedExamples
+  };
+}
+
+function ep01IsLowValueStrategicUrl_(path) {
+  var text = String(path || '').toLowerCase();
+  return /\/(feed|rss|atom|wp-json|xmlrpc|attachment|author)\/|\.(jpg|jpeg|png|gif|webp|pdf|zip)\/?$|\/page\/\d+\/?$/.test(text);
+}
+
+function ep01PathDepth_(path) {
+  return String(path || '').split('/').filter(Boolean).length;
 }
 
 function ep01CountPayloadUrls_(payload) {
@@ -889,6 +1230,8 @@ function ep01AiSystemPrompt_() {
     '- Infer location pages only when the path contains explicit city, country, region, or local-market terms.',
     '- Group translated versions of the same functional page type together when appropriate.',
     '- Do not discard language-prefixed URLs.',
+    '- The sheet keeps the full raw URL inventory, but this prompt receives a strategic sample plus an excluded URL summary.',
+    '- Use the excluded URL summary to notice important page families that may need Review, but cite only supplied URL paths as evidence.',
     '',
     'Your task:',
     'Analyze the supplied sitemap URL inventory and group URLs into meaningful top-level page types that would help a user decide what pages their website may need.',

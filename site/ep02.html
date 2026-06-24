@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EP02 · Page Structure · SEO + GEO Series</title>
-  <meta name="description" content="Use the selected pages from EP01, scrape competitor page headings, and generate a title, meta description, and heading-only content outline." />
+  <meta name="description" content="Use the selected pages from EP01 SITE TREE, scrape competitor HTML content, add positioning context, and generate a section plan for each selected page." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -41,7 +41,7 @@
       <div>
         <div class="badge">Episode 02 · Page Structure</div>
         <h1>Create the Page Structure From Competitors</h1>
-        <p class="lead">EP02 uses the selected pages from EP01, scrapes each competitor page title, meta description, and heading structure, then uses AI to create a heading-only content outline for the page you need to build.</p>
+        <p class="lead">EP02 uses the selected pages from the EP01 site tree, scrapes competitor page HTML into title, meta, headings, and content snapshots, then combines that evidence with your positioning input to create a section plan for each page.</p>
         <div class="cta-row">
           <a class="btn" href="#apps-script">Copy EP02 Script</a>
           <a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1RcsHgU3wlQZ2DhEgZDP2uSCR5bPCiEUZb99kvWNaaaw/copy" target="_blank" rel="noopener">Make a Copy of the Sheet</a>
@@ -51,36 +51,36 @@
       <div style="display:grid;gap:12px;">
         <div class="stat-card">
           <div class="stat-title">Input from EP01</div>
-          <div class="stat-value">Selected competitor pages</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The EP01 structure matrix tells which competitor pages are useful evidence for each page type.</p>
+          <div class="stat-value">EP01 site tree</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The EP01 tree tells which website pages should be planned. EP02 turns selected tree rows into page-structure briefs.</p>
         </div>
         <div class="stat-card">
           <div class="stat-title">Script output</div>
-          <div class="stat-value">Page input · Content outline</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script creates EP02 tabs, scrapes headings, and generates title, meta description, H1, H2, and H3 rows.</p>
+          <div class="stat-value">Targets · Evidence · Structure</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script creates EP02 tabs, captures positioning, scrapes competitor content, and generates a page-by-page section plan.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="eyebrow">Quick workflow</div>
-      <h2 class="section-title">Build the outline from page evidence</h2>
+      <h2 class="section-title">Build the page structure from competitor evidence</h2>
       <div class="grid cols-3">
         <div class="card">
-          <h3>1 · Finish EP01 first</h3>
-          <p>Run EP01 and review the site-structure matrix. The pages marked Include or Review become the starting evidence for EP02.</p>
+          <h3>1 · Finish the EP01 tree</h3>
+          <p>Run EP01 and review the site tree. The pages marked Include or Review become the target pages EP02 can structure.</p>
         </div>
         <div class="card">
-          <h3>2 · Import selected pages</h3>
-          <p>Run the EP02 import action. The script pulls competitor page paths from EP01 and builds full URLs using the competitor domains.</p>
+          <h3>2 · Add positioning</h3>
+          <p>Import target pages from EP01, then add primary keyword, audience, offer, positioning angle, conversion goal, and must-have notes.</p>
         </div>
         <div class="card">
-          <h3>3 · Scrape page outlines</h3>
-          <p>Run the scrape action. The sheet stores page title, meta description, H1, and H2/H3/H4 headings for every selected page that can be fetched.</p>
+          <h3>3 · Scrape competitor content</h3>
+          <p>Build the competitor URL list and scrape each selected page into title, meta description, H1, H2/H3/H4 headings, and visible content snapshots.</p>
         </div>
         <div class="card">
-          <h3>4 · Generate the outline</h3>
-          <p>Run the AI action. The output is not body copy. It is only the title tag, meta description, and heading structure needed for the page.</p>
+          <h3>4 · Generate the structure</h3>
+          <p>Run the AI action. The output is not body copy. It is the section plan inside each selected page, with SEO fields and heading levels.</p>
         </div>
       </div>
     </section>
@@ -100,27 +100,31 @@
             <li>Click <code>Run</code> for the function named <code>setupEP02</code>.</li>
             <li>Complete the authorization prompt if Google asks for permission.</li>
             <li>Return to the Google Sheet and refresh the browser tab.</li>
-            <li>Use <code>SEO/GEO Series &gt; EP02: Import Selected Pages from EP01</code>.</li>
-            <li>Use <code>SEO/GEO Series &gt; EP02: Scrape Page Outlines</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP02: Import Target Pages from EP01 Tree</code>.</li>
+            <li>Add the positioning inputs in <code>EP02 TARGET PAGES</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP02: Build Competitor Content List</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP02: Scrape Competitor Content</code>.</li>
             <li>Use <code>SEO/GEO Series &gt; EP02: Set AI API Key</code>.</li>
-            <li>Use <code>SEO/GEO Series &gt; EP02: Generate Content Outline with AI</code>.</li>
+            <li>Use <code>SEO/GEO Series &gt; EP02: Generate Page Structure with AI</code>.</li>
           </ul>
         </div>
         <div>
           <div class="kit">
             <h4>What the script creates</h4>
-            <p><strong>EP02 PAGE INPUT</strong></p>
-            <p><strong>EP02 CONTENT OUTLINE</strong></p>
+            <p><strong>EP02 TARGET PAGES</strong></p>
+            <p><strong>EP02 COMPETITOR CONTENT</strong></p>
+            <p><strong>EP02 PAGE STRUCTURE</strong></p>
             <p><strong>EP02 AI LOG</strong></p>
           </div>
           <div class="kit">
             <h4>What the output contains</h4>
             <ul>
+              <li>Page goal</li>
               <li>Title tag</li>
               <li>Meta description</li>
-              <li>H1 heading</li>
-              <li>H2 and H3 outline</li>
-              <li>Optional H4 support headings</li>
+              <li>Ordered H1 and H2 sections</li>
+              <li>H3 and optional H4 subsection ideas</li>
+              <li>Section purpose, priority, and evidence notes</li>
             </ul>
           </div>
         </div>
@@ -135,34 +139,34 @@
       </div>
     </section>
 
-    <section class="section" id="page-input-tab">
+    <section class="section" id="target-pages-tab">
       <div class="eyebrow">Tab 1</div>
-      <h2 class="section-title">EP02 PAGE INPUT: collect competitor evidence</h2>
+      <h2 class="section-title">EP02 TARGET PAGES: choose pages and positioning</h2>
       <div class="grid cols-2">
         <div class="card">
           <h3>Selected pages from EP01</h3>
-          <p>The import action reads the EP01 site-structure matrix and imports pages marked Include or Review. You can uncheck any page that should not be used.</p>
+          <p>The import action reads the EP01 site tree and imports pages marked Include or Review. You can uncheck any page that should not be structured yet.</p>
           <div class="meta">
             <span class="tag warning">Script output</span>
           </div>
         </div>
         <div class="card">
-          <h3>Heading scrape</h3>
-          <p>The scrape action fetches the page HTML and extracts the title tag, meta description, H1, H2, H3, and H4 headings. The outline remains visible for review.</p>
+          <h3>Positioning inputs</h3>
+          <p>Add the page keyword, target audience, offer, positioning angle, conversion goal, required points, and exclusions before generating the final structure.</p>
           <div class="meta">
             <span class="tag warning">Review before AI</span>
           </div>
         </div>
         <div class="card">
-          <h3>Manual cleanup</h3>
-          <p>If a site blocks the request or returns empty headings, paste the important headings manually into the row before running the AI outline step.</p>
+          <h3>Competitor content list</h3>
+          <p>The build action matches each selected target page to competitor URLs from EP01, using the page type, recommended path, and URL evidence.</p>
           <div class="meta">
             <span class="tag warning">Human review</span>
           </div>
         </div>
         <div class="card">
-          <h3>One page type at a time</h3>
-          <p>Filter the input tab by page type when needed. The AI step groups evidence by page type and creates a separate outline block for each selected page type.</p>
+          <h3>One page set at a time</h3>
+          <p>Uncheck pages you are not ready to plan. EP02 works best when the selected targets have clear positioning and enough competitor evidence.</p>
           <div class="meta">
             <span class="tag warning">Planning step</span>
           </div>
@@ -170,34 +174,34 @@
       </div>
     </section>
 
-    <section class="section" id="content-outline-tab">
+    <section class="section" id="page-structure-tab">
       <div class="eyebrow">Tab 2</div>
-      <h2 class="section-title">EP02 CONTENT OUTLINE: title, meta, and headings only</h2>
+      <h2 class="section-title">EP02 PAGE STRUCTURE: sections inside each selected page</h2>
       <div class="grid cols-2">
         <div class="card">
-          <h3>Heading-only output</h3>
-          <p>The AI output is intentionally limited to structure: title tag, meta description, H1, H2, H3, and optional H4 rows. It does not write page body copy.</p>
+          <h3>Section plan output</h3>
+          <p>The AI output is intentionally limited to structure: page goal, SEO fields, section order, H1, H2, H3, optional H4 rows, and section-purpose notes. It does not write page body copy.</p>
           <div class="meta">
             <span class="tag warning">No body copy</span>
           </div>
         </div>
         <div class="card">
           <h3>Competitor patterns</h3>
-          <p>The AI uses repeated heading patterns across competitors, but the final outline should be edited for the actual business, offer, service, and location.</p>
+          <p>The AI uses repeated competitor patterns across headings and page content snapshots, but the final structure is shaped by the positioning inputs you add.</p>
           <div class="meta">
             <span class="tag warning">Manual decision</span>
           </div>
         </div>
         <div class="card">
           <h3>Title and meta</h3>
-          <p>The title tag and meta description are generated from competitor evidence and must still be checked for brand voice, keyword relevance, and search intent.</p>
+          <p>The title tag and meta description are generated from competitor evidence and positioning context, then reviewed for brand voice, keyword relevance, and search intent.</p>
           <div class="meta">
             <span class="tag warning">SEO review</span>
           </div>
         </div>
         <div class="card">
           <h3>Clean handoff</h3>
-          <p>The final tab becomes the brief for writing or designing the page. Writers get the required structure before they start drafting paragraphs.</p>
+          <p>The final tab becomes the brief for writing or designing each selected page. Writers get the required sections before they start drafting paragraphs.</p>
           <div class="meta">
             <span class="tag warning">Content brief</span>
           </div>
@@ -212,9 +216,9 @@
         <div>
           <h3>What is this process?</h3>
           <p>EP01 answered which pages the website may need. EP02 answers how a selected page should be structured before anyone writes the page.</p>
-          <p>The process starts with competitor pages selected from the EP01 matrix. Instead of guessing the outline, the sheet collects the headings already used by ranking or relevant competitors.</p>
-          <p>The heading scrape gives a clear content map: title tag, meta description, H1, H2, H3, and supporting sections. AI then compresses those patterns into a clean outline for the new page.</p>
-          <p>The goal is not to copy competitor wording. The goal is to understand the expected page structure and create a better, clearer outline for the website being built.</p>
+          <p>The process starts with target pages selected from the EP01 site tree. Instead of guessing the outline, the sheet collects competitor pages that match each target page.</p>
+          <p>The scrape fetches the raw HTML, then stores the useful evidence: title tag, meta description, H1, H2, H3, H4, and a visible body-content snapshot. AI compresses those patterns into a clean section plan for the new page.</p>
+          <p>The goal is not to copy competitor wording. The goal is to understand which sections each selected page needs, combine that with the business positioning, and create a better structure for the website being built.</p>
         </div>
         <div>
           <div class="kit">
@@ -223,7 +227,7 @@
           </div>
           <div class="kit">
             <h4>Input needed</h4>
-            <p>EP01 competitor list and EP01 site-structure matrix should already exist in the same copied Google Sheet.</p>
+            <p>EP01 competitor list, EP01 site-structure matrix, and EP01 site tree should already exist in the same copied Google Sheet.</p>
           </div>
           <div class="kit">
             <h4>Next step</h4>
@@ -236,19 +240,19 @@
       <div class="grid cols-2">
         <div class="card">
           <h3>Step 1 · Use the selected page type</h3>
-          <p>Choose the page type from EP01, such as homepage, service page, location page, or comparison page. EP02 works best when one page type is reviewed at a time.</p>
+          <p>Choose the target page from the EP01 tree, such as homepage, service page, location page, or case-study page. EP02 works best when a focused set of pages is reviewed at a time.</p>
         </div>
         <div class="card">
           <h3>Step 2 · Collect competitor headings</h3>
-          <p>Scrape the headings from selected competitor pages. Headings reveal what topics the page covers and in what order the information appears.</p>
+          <p>Scrape the selected competitor pages. Titles, meta descriptions, headings, and body-content snapshots reveal what topics the page covers and in what order they appear.</p>
         </div>
         <div class="card">
-          <h3>Step 3 · Generate the outline</h3>
-          <p>Create a title tag, meta description, H1, and heading hierarchy. Keep it as a structure, not a finished article or landing-page copy.</p>
+          <h3>Step 3 · Generate the page sections</h3>
+          <p>Create the section order for each selected page, plus title tag, meta description, H1, H2, and H3 ideas. Keep it as a structure, not finished copy.</p>
         </div>
         <div class="card">
           <h3>Step 4 · Review before writing</h3>
-          <p>Edit the generated outline for the actual brand, service, location, and offer. Then hand the structure to the writer or designer.</p>
+          <p>Edit the generated structure for the actual brand, service, location, offer, and conversion goal. Then hand it to the writer or designer.</p>
         </div>
       </div>
     </section>
@@ -259,15 +263,15 @@
       <div class="grid cols-2">
         <div class="card">
           <h3>Some websites block scraping</h3>
-          <p>If a competitor blocks Apps Script requests, open the page manually and paste the visible headings into the EP02 PAGE INPUT row.</p>
+          <p>If a competitor blocks Apps Script requests, open the page manually and paste the visible headings or important page content into the EP02 COMPETITOR CONTENT row.</p>
         </div>
         <div class="card">
           <h3>Headings may be messy</h3>
-          <p>Some pages skip H1, use decorative headings, or repeat navigation text. Clean obvious noise before using AI output for a real page brief.</p>
+          <p>Some pages skip H1, use decorative headings, repeat navigation text, or hide content behind JavaScript. Clean obvious noise before using AI output for a real page brief.</p>
         </div>
         <div class="card">
           <h3>AI needs review</h3>
-          <p>AI can find structure patterns, but it does not know the exact business, offer, compliance needs, or conversion goal unless you review and edit the final outline.</p>
+          <p>AI can find section patterns, but it does not know the exact business, offer, compliance needs, or conversion goal unless you review and edit the final structure.</p>
         </div>
         <div class="card">
           <h3>No copying</h3>
@@ -287,17 +291,22 @@
   const ep02AppsScript = String.raw`
 const EP02_EP01_COMPETITORS_SHEET = 'EP01 COMPETITORS';
 const EP02_EP01_SITE_STRUCTURE_SHEET = 'EP01 SITE STRUCTURE';
-const EP02_PAGE_INPUT_SHEET = 'EP02 PAGE INPUT';
-const EP02_CONTENT_OUTLINE_SHEET = 'EP02 CONTENT OUTLINE';
+const EP02_EP01_SITE_TREE_SHEET = 'EP01 SITE TREE';
+const EP02_TARGET_PAGES_SHEET = 'EP02 TARGET PAGES';
+const EP02_COMPETITOR_CONTENT_SHEET = 'EP02 COMPETITOR CONTENT';
+const EP02_PAGE_STRUCTURE_SHEET = 'EP02 PAGE STRUCTURE';
 const EP02_AI_LOG_SHEET = 'EP02 AI LOG';
 const EP02_OPENAI_KEY_PROPERTY = 'EP02_OPENAI_API_KEY';
 const EP02_LEGACY_OPENAI_KEY_PROPERTY = 'EP01_OPENAI_API_KEY';
 const EP02_OPENAI_MODEL = 'gpt-4.1-mini';
 const EP02_OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
-const EP02_PROMPT_VERSION = 'ep02-page-structure-v1';
+const EP02_PROMPT_VERSION = 'ep02-page-structure-v2';
 const EP02_MAX_IMPORTED_PATHS_PER_COMPETITOR = 2;
-const EP02_MAX_PAGES_TO_SCRAPE = 60;
+const EP02_MAX_COMPETITOR_PAGES_PER_TARGET = 10;
+const EP02_MAX_TARGET_PAGES_PER_AI_RUN = 6;
+const EP02_MAX_CONTENT_ROWS_TO_SCRAPE = 80;
 const EP02_MAX_HTML_CHARS = 300000;
+const EP02_MAX_BODY_TEXT_CHARS = 18000;
 
 function onOpen() {
   ep02CreateMenu_();
@@ -312,107 +321,47 @@ function ep02CreateMenu_() {
       .addItem('EP01: Find Sitemaps', 'ep01FindSitemaps')
       .addItem('EP01: Extract Sitemap URLs', 'ep01ExtractSitemapUrls')
       .addItem('EP01: Set AI API Key', 'ep01SetAiApiKey')
-      .addItem('EP01: Analyze Site Structure with AI', 'ep01AnalyzeSiteStructureWithAi')
-      .addSeparator();
+      .addItem('EP01: Analyze Site Structure with AI', 'ep01AnalyzeSiteStructureWithAi');
   }
+
+  if (typeof ep01RefreshAiSampleView === 'function') {
+    menu.addItem('EP01: Refresh AI Sample View', 'ep01RefreshAiSampleView');
+  }
+
+  if (typeof ep01BuildSiteTreeFromMatrix === 'function') {
+    menu.addItem('EP01: Build Site Tree from Matrix', 'ep01BuildSiteTreeFromMatrix');
+  }
+
+  menu.addSeparator();
 
   menu
     .addItem('EP02: Setup Tabs', 'setupEP02')
-    .addItem('EP02: Import Selected Pages from EP01', 'ep02ImportSelectedPagesFromEp01')
-    .addItem('EP02: Scrape Page Outlines', 'ep02ScrapePageOutlines')
+    .addItem('EP02: Import Target Pages from EP01 Tree', 'ep02ImportTargetPagesFromEp01Tree')
+    .addItem('EP02: Build Competitor Content List', 'ep02BuildCompetitorContentList')
+    .addItem('EP02: Scrape Competitor Content', 'ep02ScrapeCompetitorContent')
     .addItem('EP02: Set AI API Key', 'ep02SetAiApiKey')
-    .addItem('EP02: Generate Content Outline with AI', 'ep02GenerateContentOutlineWithAi')
+    .addItem('EP02: Generate Page Structure with AI', 'ep02GeneratePageStructureWithAi')
     .addToUi();
 }
 
 function setupEP02() {
   var sheets = ep02EnsureEp02Sheets_();
-  ep02PreparePageInputSheet_(sheets.input);
-  ep02PrepareContentOutlineSheet_(sheets.outline);
+  ep02PrepareTargetPagesSheet_(sheets.target);
+  ep02PrepareCompetitorContentSheet_(sheets.content);
+  ep02PreparePageStructureSheet_(sheets.structure);
   ep02PrepareAiLogSheet_(sheets.log);
   ep02CreateMenu_();
-  SpreadsheetApp.getUi().alert('EP02 tabs are ready. Run EP02: Import Selected Pages from EP01 next.');
+  SpreadsheetApp.getUi().alert('EP02 tabs are ready. Run EP02: Import Target Pages from EP01 Tree next.');
 }
 
 function ep02EnsureEp02Sheets_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   return {
-    input: ss.getSheetByName(EP02_PAGE_INPUT_SHEET) || ss.insertSheet(EP02_PAGE_INPUT_SHEET),
-    outline: ss.getSheetByName(EP02_CONTENT_OUTLINE_SHEET) || ss.insertSheet(EP02_CONTENT_OUTLINE_SHEET),
+    target: ss.getSheetByName(EP02_TARGET_PAGES_SHEET) || ss.insertSheet(EP02_TARGET_PAGES_SHEET),
+    content: ss.getSheetByName(EP02_COMPETITOR_CONTENT_SHEET) || ss.insertSheet(EP02_COMPETITOR_CONTENT_SHEET),
+    structure: ss.getSheetByName(EP02_PAGE_STRUCTURE_SHEET) || ss.insertSheet(EP02_PAGE_STRUCTURE_SHEET),
     log: ss.getSheetByName(EP02_AI_LOG_SHEET) || ss.insertSheet(EP02_AI_LOG_SHEET)
   };
-}
-
-function ep02ImportSelectedPagesFromEp01() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheets = ep02EnsureEp02Sheets_();
-  var competitorsSheet = ss.getSheetByName(EP02_EP01_COMPETITORS_SHEET);
-  var structureSheet = ss.getSheetByName(EP02_EP01_SITE_STRUCTURE_SHEET);
-
-  if (!competitorsSheet) {
-    SpreadsheetApp.getUi().alert('EP01 COMPETITORS was not found. Complete EP01 setup first.');
-    return;
-  }
-
-  ep02PreparePageInputSheet_(sheets.input);
-
-  var competitors = ep02ReadEp01Competitors_(competitorsSheet);
-  var rows = [];
-
-  if (structureSheet && structureSheet.getLastRow() >= 6) {
-    rows = ep02BuildRowsFromEp01Structure_(structureSheet, competitors);
-  }
-
-  if (!rows.length) {
-    rows = ep02BuildRowsFromEp01RankingPages_(competitors);
-  }
-
-  if (!rows.length) {
-    SpreadsheetApp.getUi().alert('No EP01 pages were found. Add competitors in EP01 first.');
-    return;
-  }
-
-  sheets.input.getRange(5, 1, rows.length, 12).setValues(rows);
-  sheets.input.getRange(5, 1, rows.length, 1).insertCheckboxes();
-  sheets.input.getRange(5, 1, rows.length, 1).setValues(rows.map(function() { return [true]; }));
-  sheets.input.getRange(5, 1, rows.length, 12).setWrap(true);
-  SpreadsheetApp.getUi().alert('EP02 imported ' + rows.length + ' selected page rows from EP01. Review the checkboxes before scraping.');
-}
-
-function ep02ScrapePageOutlines() {
-  var sheets = ep02EnsureEp02Sheets_();
-  var sheet = sheets.input;
-  var rows = ep02ReadPageInputRows_(sheet).filter(function(row) {
-    return row.include && row.page_url;
-  }).slice(0, EP02_MAX_PAGES_TO_SCRAPE);
-
-  if (!rows.length) {
-    SpreadsheetApp.getUi().alert('No selected EP02 page URLs found. Import pages or add URLs manually first.');
-    return;
-  }
-
-  var updates = [];
-  rows.forEach(function(row) {
-    var scraped = ep02ScrapePage_(row.page_url);
-    updates.push({
-      rowNumber: row.rowNumber,
-      values: [
-        scraped.title,
-        scraped.metaDescription,
-        scraped.h1,
-        scraped.headingOutline,
-        scraped.status,
-        scraped.notes
-      ]
-    });
-  });
-
-  updates.forEach(function(update) {
-    sheet.getRange(update.rowNumber, 7, 1, 6).setValues([update.values]);
-    sheet.getRange(update.rowNumber, 7, 1, 6).setWrap(true);
-  });
-
-  SpreadsheetApp.getUi().alert('EP02 scrape complete. Review EP02 PAGE INPUT before generating the content outline.');
 }
 
 function ep02SetAiApiKey() {
@@ -434,99 +383,11 @@ function ep02SetAiApiKey() {
   ui.alert('AI API key saved for this Google account.');
 }
 
-function ep02GenerateContentOutlineWithAi() {
-  var sheets = ep02EnsureEp02Sheets_();
-  ep02PrepareAiLogSheet_(sheets.log);
-
-  var apiKey = PropertiesService.getUserProperties().getProperty(EP02_OPENAI_KEY_PROPERTY) ||
-    PropertiesService.getUserProperties().getProperty(EP02_LEGACY_OPENAI_KEY_PROPERTY);
-
-  if (!apiKey) {
-    SpreadsheetApp.getUi().alert('Add your AI API key first using SEO/GEO Series > EP02: Set AI API Key.');
-    return;
-  }
-
-  var selectedRows = ep02ReadPageInputRows_(sheets.input).filter(function(row) {
-    return row.include && row.page_url;
-  });
-
-  if (!selectedRows.length) {
-    SpreadsheetApp.getUi().alert('No selected EP02 rows found. Import selected pages and scrape outlines first.');
-    return;
-  }
-
-  var payload = ep02BuildAiPayload_(selectedRows);
-  var pagesSent = selectedRows.length;
-
-  try {
-    var aiResponse = ep02CallOpenAi_(apiKey, payload);
-    var aiJson = ep02ParseAiResponse_(aiResponse);
-    ep02WriteContentOutline_(sheets.outline, aiJson);
-    ep02WriteAiLog_(sheets.log, 'Success', pagesSent, aiResponse.responseId || '', aiResponse.rawText || '', '');
-    SpreadsheetApp.getUi().alert('EP02 content outline complete. Review EP02 CONTENT OUTLINE.');
-  } catch (error) {
-    ep02WriteAiLog_(sheets.log, 'Error', pagesSent, '', '', String(error));
-    SpreadsheetApp.getUi().alert('AI outline failed: ' + String(error));
-  }
-}
-
-function ep02PreparePageInputSheet_(sheet) {
-  if (sheet.getFilter()) sheet.getFilter().remove();
-  sheet.clearContents();
-  sheet.getRange('A1:L1').breakApart().merge().setValue('EP02 PAGE INPUT');
-  sheet.getRange('A2:L2').breakApart().merge().setValue('Selected competitor pages from EP01. Scrape title, meta description, and headings, then review before AI outline generation.');
-  sheet.getRange('A4:L4').setValues([[
-    'Include?',
-    'Competitor Code',
-    'Competitor Name',
-    'Page Type',
-    'Page URL',
-    'EP01 Source',
-    'Scraped Title',
-    'Scraped Meta Description',
-    'Scraped H1',
-    'Scraped H2/H3/H4 Outline',
-    'Fetch Status',
-    'Notes'
-  ]]);
-  ep02StyleSheet_(sheet, 12);
-  sheet.setColumnWidth(1, 90);
-  sheet.setColumnWidth(4, 210);
-  sheet.setColumnWidth(5, 360);
-  sheet.setColumnWidth(7, 300);
-  sheet.setColumnWidth(8, 360);
-  sheet.setColumnWidth(9, 280);
-  sheet.setColumnWidth(10, 430);
-  sheet.setColumnWidth(12, 320);
-}
-
-function ep02PrepareContentOutlineSheet_(sheet) {
-  if (sheet.getFilter()) sheet.getFilter().remove();
-  sheet.clearContents();
-  sheet.getRange('A1:F1').breakApart().merge().setValue('EP02 CONTENT OUTLINE');
-  sheet.getRange('A2:F2').breakApart().merge().setValue('AI-generated title, meta description, and heading-only content outline. Review before writing page copy.');
-  sheet.getRange('A4:F4').setValues([[
-    'Page Type',
-    'Item Type',
-    'Level',
-    'Text',
-    'Source Pattern',
-    'Notes'
-  ]]);
-  ep02StyleSheet_(sheet, 6);
-  sheet.setColumnWidth(1, 220);
-  sheet.setColumnWidth(2, 160);
-  sheet.setColumnWidth(3, 90);
-  sheet.setColumnWidth(4, 440);
-  sheet.setColumnWidth(5, 320);
-  sheet.setColumnWidth(6, 320);
-}
-
 function ep02PrepareAiLogSheet_(sheet) {
   if (sheet.getLastRow() < 4 || sheet.getRange('A1').getValue() !== 'EP02 AI LOG') {
     sheet.clearContents();
     sheet.getRange('A1:H1').breakApart().merge().setValue('EP02 AI LOG');
-    sheet.getRange('A2:H2').breakApart().merge().setValue('Audit trail for EP02 AI content-outline generation. Raw responses may be trimmed to fit Google Sheets cell limits.');
+    sheet.getRange('A2:H2').breakApart().merge().setValue('Audit trail for EP02 AI page-structure generation. Raw responses may be trimmed to fit Google Sheets cell limits.');
     sheet.getRange('A4:H4').setValues([[
       'Timestamp',
       'Model',
@@ -570,103 +431,6 @@ function ep02ReadEp01Competitors_(sheet) {
   return output;
 }
 
-function ep02BuildRowsFromEp01Structure_(sheet, competitors) {
-  var lastRow = sheet.getLastRow();
-  var data = sheet.getRange(6, 1, lastRow - 5, 16).getValues();
-  var rows = [];
-  var seen = {};
-
-  data.forEach(function(row) {
-    var pageType = row[0] || '';
-    var recommendation = String(row[13] || '').trim();
-    if (!pageType || ['Include', 'Review'].indexOf(recommendation) === -1) return;
-
-    for (var i = 1; i <= 10; i++) {
-      var code = 'C' + i;
-      var competitor = competitors[code] || {};
-      var paths = ep02SplitPathCell_(row[i + 1]).slice(0, EP02_MAX_IMPORTED_PATHS_PER_COMPETITOR);
-
-      paths.forEach(function(path) {
-        var url = ep02ResolveUrl_(competitor.domain, path);
-        if (!url) return;
-        var key = code + '|' + pageType + '|' + url;
-        if (seen[key]) return;
-        seen[key] = true;
-        rows.push([
-          true,
-          code,
-          competitor.name || '',
-          pageType,
-          url,
-          recommendation + ' from EP01 SITE STRUCTURE',
-          '',
-          '',
-          '',
-          '',
-          '',
-          ''
-        ]);
-      });
-    }
-  });
-
-  return rows;
-}
-
-function ep02BuildRowsFromEp01RankingPages_(competitors) {
-  var rows = [];
-  Object.keys(competitors).sort().forEach(function(code) {
-    var competitor = competitors[code];
-    if (!competitor || !competitor.ranking_page_url) return;
-    rows.push([
-      true,
-      code,
-      competitor.name || '',
-      competitor.ranking_page_type || 'Ranking page',
-      competitor.ranking_page_url,
-      'Fallback from EP01 COMPETITORS',
-      '',
-      '',
-      '',
-      '',
-      '',
-      ''
-    ]);
-  });
-  return rows;
-}
-
-function ep02ReadPageInputRows_(sheet) {
-  var lastRow = sheet.getLastRow();
-  if (lastRow < 5) return [];
-  return sheet.getRange(5, 1, lastRow - 4, 12).getValues().map(function(row, index) {
-    return {
-      rowNumber: index + 5,
-      include: row[0] === true || String(row[0]).toLowerCase() === 'true',
-      competitor_code: row[1] || '',
-      competitor_name: row[2] || '',
-      page_type: row[3] || '',
-      page_url: row[4] || '',
-      source: row[5] || '',
-      scraped_title: row[6] || '',
-      scraped_meta_description: row[7] || '',
-      scraped_h1: row[8] || '',
-      scraped_heading_outline: row[9] || '',
-      fetch_status: row[10] || '',
-      notes: row[11] || ''
-    };
-  }).filter(function(row) {
-    return row.page_url || row.scraped_heading_outline;
-  });
-}
-
-function ep02SplitPathCell_(value) {
-  return String(value || '')
-    .split(/\n+/)
-    .map(function(item) { return item.trim(); })
-    .filter(Boolean);
-}
-
 function ep02ResolveUrl_(domain, pathOrUrl) {
   var value = String(pathOrUrl || '').trim();
   if (!value) return '';
@@ -685,57 +449,6 @@ function ep02NormalizeOrigin_(value) {
   }
   var match = text.match(/^(https?:\/\/[^\/?#]+)/i);
   return match ? match[1].replace(/\/$/, '') : '';
-}
-
-function ep02ScrapePage_(url) {
-  try {
-    var response = UrlFetchApp.fetch(url, {
-      method: 'get',
-      muteHttpExceptions: true,
-      followRedirects: true,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; EP02PageStructureBot/1.0)'
-      }
-    });
-    var status = response.getResponseCode();
-    var html = response.getContentText().slice(0, EP02_MAX_HTML_CHARS);
-    if (status < 200 || status > 399) {
-      return ep02EmptyScrape_('HTTP ' + status, 'Page could not be fetched.');
-    }
-
-    var cleanHtml = ep02StripNoise_(html);
-    var headings = ep02ExtractHeadings_(cleanHtml);
-    var title = ep02ExtractTitle_(cleanHtml);
-    var metaDescription = ep02ExtractMetaDescription_(cleanHtml);
-    var h1 = headings.filter(function(item) { return item.level === 'H1'; }).map(function(item) { return item.text; }).join('\n');
-    var outline = headings.filter(function(item) {
-      return ['H2', 'H3', 'H4'].indexOf(item.level) !== -1;
-    }).map(function(item) {
-      return item.level + ': ' + item.text;
-    }).join('\n');
-
-    return {
-      title: title,
-      metaDescription: metaDescription,
-      h1: h1,
-      headingOutline: outline,
-      status: 'Fetched',
-      notes: headings.length ? 'Headings found: ' + headings.length : 'No headings found. Review manually.'
-    };
-  } catch (error) {
-    return ep02EmptyScrape_('Error', String(error));
-  }
-}
-
-function ep02EmptyScrape_(status, notes) {
-  return {
-    title: '',
-    metaDescription: '',
-    h1: '',
-    headingOutline: '',
-    status: status,
-    notes: notes
-  };
 }
 
 function ep02StripNoise_(html) {
@@ -787,41 +500,837 @@ function ep02CleanHtmlText_(value) {
     .trim();
 }
 
-function ep02BuildAiPayload_(rows) {
-  var grouped = {};
-  rows.forEach(function(row) {
-    var pageType = row.page_type || 'Selected page';
-    if (!grouped[pageType]) grouped[pageType] = [];
-    grouped[pageType].push({
-      competitor_code: row.competitor_code,
-      competitor_name: row.competitor_name,
-      page_url: row.page_url,
-      title: row.scraped_title,
-      meta_description: row.scraped_meta_description,
-      h1: row.scraped_h1,
-      heading_outline: row.scraped_heading_outline,
-      fetch_status: row.fetch_status,
-      notes: row.notes
+function ep02ExtractOpenAiOutputText_(responseJson) {
+  if (responseJson.output_text) return responseJson.output_text;
+  var texts = [];
+  (responseJson.output || []).forEach(function(item) {
+    (item.content || []).forEach(function(content) {
+      if (content.text) texts.push(content.text);
     });
+  });
+  return texts.join('');
+}
+
+function ep02WriteAiLog_(sheet, status, pagesSent, responseId, rawResponse, notes) {
+  ep02PrepareAiLogSheet_(sheet);
+  sheet.appendRow([
+    new Date(),
+    EP02_OPENAI_MODEL,
+    status,
+    pagesSent,
+    EP02_PROMPT_VERSION,
+    responseId,
+    notes,
+    String(rawResponse || '').slice(0, 45000)
+  ]);
+}
+
+function ep02PrepareTargetPagesSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:O1').breakApart().merge().setValue('EP02 TARGET PAGES');
+  sheet.getRange('A2:O2').breakApart().merge().setValue('Target pages imported from EP01 SITE TREE. Choose the pages to structure and add positioning before building competitor evidence.');
+  sheet.getRange('A4:O4').setValues([[
+    'Build?',
+    'Target Page',
+    'Recommended Path',
+    'Parent Page',
+    'Page Type / Source',
+    'Recommendation',
+    'Evidence Count',
+    'Primary Keyword',
+    'Target Audience',
+    'Positioning / Angle',
+    'Offer / USP',
+    'Conversion Goal',
+    'Must Include',
+    'Must Avoid',
+    'Notes'
+  ]]);
+  ep02StyleSheet_(sheet, 15);
+  sheet.setColumnWidth(1, 90);
+  sheet.setColumnWidth(2, 240);
+  sheet.setColumnWidth(3, 220);
+  sheet.setColumnWidth(4, 180);
+  sheet.setColumnWidth(5, 240);
+  sheet.setColumnWidth(8, 220);
+  sheet.setColumnWidth(9, 260);
+  sheet.setColumnWidth(10, 340);
+  sheet.setColumnWidth(11, 280);
+  sheet.setColumnWidth(12, 240);
+  sheet.setColumnWidth(13, 320);
+  sheet.setColumnWidth(14, 280);
+  sheet.setColumnWidth(15, 320);
+}
+
+function ep02PrepareCompetitorContentSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:Q1').breakApart().merge().setValue('EP02 COMPETITOR CONTENT');
+  sheet.getRange('A2:Q2').breakApart().merge().setValue('Competitor URLs matched to selected target pages. The scrape fetches HTML and stores title, meta, headings, and a visible body-content snapshot.');
+  sheet.getRange('A4:Q4').setValues([[
+    'Include?',
+    'Target Page',
+    'Recommended Path',
+    'Page Type / Source',
+    'Competitor Code',
+    'Competitor Name',
+    'Competitor Page URL',
+    'Source Path',
+    'Match Reason',
+    'Scraped Title',
+    'Scraped Meta Description',
+    'Scraped H1',
+    'Scraped H2/H3/H4 Outline',
+    'Scraped Body Snapshot',
+    'Fetch Status',
+    'Scraped At',
+    'Notes'
+  ]]);
+  ep02StyleSheet_(sheet, 17);
+  sheet.setColumnWidth(1, 90);
+  sheet.setColumnWidth(2, 220);
+  sheet.setColumnWidth(3, 220);
+  sheet.setColumnWidth(6, 200);
+  sheet.setColumnWidth(7, 380);
+  sheet.setColumnWidth(8, 240);
+  sheet.setColumnWidth(9, 260);
+  sheet.setColumnWidth(10, 300);
+  sheet.setColumnWidth(11, 340);
+  sheet.setColumnWidth(12, 280);
+  sheet.setColumnWidth(13, 430);
+  sheet.setColumnWidth(14, 520);
+  sheet.setColumnWidth(17, 320);
+  sheet.hideColumns(8, 2);
+  sheet.hideColumns(14);
+}
+
+function ep02PreparePageStructureSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:G1').breakApart().merge().setValue('EP02 PAGE STRUCTURE');
+  sheet.getRange('A2:G2').breakApart().merge().setValue('Readable section brief for each selected page. This is the output users follow before writing copy.');
+  sheet.getRange('A4:G4').setValues([[
+    'Page',
+    'Path',
+    'Block',
+    'Heading / Field',
+    'What To Include',
+    'Why This Matters',
+    'Evidence / Notes'
+  ]]);
+  ep02StyleSheet_(sheet, 7);
+  sheet.setColumnWidth(1, 230);
+  sheet.setColumnWidth(2, 220);
+  sheet.setColumnWidth(3, 130);
+  sheet.setColumnWidth(4, 260);
+  sheet.setColumnWidth(5, 520);
+  sheet.setColumnWidth(6, 380);
+  sheet.setColumnWidth(7, 360);
+}
+
+function ep02ImportTargetPagesFromEp01Tree() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheets = ep02EnsureEp02Sheets_();
+  var treeSheet = ss.getSheetByName(EP02_EP01_SITE_TREE_SHEET);
+  var structureSheet = ss.getSheetByName(EP02_EP01_SITE_STRUCTURE_SHEET);
+  var existingTargets = ep02ReadTargetRows_(sheets.target);
+  var targets = [];
+
+  if (treeSheet && treeSheet.getLastRow() >= 5) {
+    targets = ep02BuildTargetObjectsFromTree_(treeSheet);
+  }
+
+  if (!targets.length && structureSheet && structureSheet.getLastRow() >= 6) {
+    targets = ep02BuildTargetObjectsFromStructure_(structureSheet);
+  }
+
+  if (!targets.length) {
+    SpreadsheetApp.getUi().alert('No EP01 target pages found. Run EP01 SITE TREE first, then return to EP02.');
+    return;
+  }
+
+  targets = ep02MergeTargetPositioning_(targets, existingTargets);
+  ep02PrepareTargetPagesSheet_(sheets.target);
+  ep02WriteTargetRows_(sheets.target, targets);
+  SpreadsheetApp.getUi().alert('EP02 imported ' + targets.length + ' target pages. Add positioning inputs in EP02 TARGET PAGES, then build the competitor content list.');
+}
+
+function ep02BuildCompetitorContentList() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheets = ep02EnsureEp02Sheets_();
+  var competitorsSheet = ss.getSheetByName(EP02_EP01_COMPETITORS_SHEET);
+  var structureSheet = ss.getSheetByName(EP02_EP01_SITE_STRUCTURE_SHEET);
+
+  if (!competitorsSheet) {
+    SpreadsheetApp.getUi().alert('EP01 COMPETITORS was not found. Complete EP01 setup first.');
+    return;
+  }
+
+  var competitors = ep02ReadEp01Competitors_(competitorsSheet);
+  var targets = ep02ReadTargetRows_(sheets.target).filter(function(target) {
+    return target.build && target.target_page;
+  });
+
+  if (!targets.length) {
+    SpreadsheetApp.getUi().alert('No selected target pages found. Run EP02: Import Target Pages from EP01 Tree and select pages first.');
+    return;
+  }
+
+  var structureRows = structureSheet && structureSheet.getLastRow() >= 6 ? ep02ReadEp01StructureRows_(structureSheet) : [];
+  var contentRows = ep02BuildCompetitorContentObjects_(targets, structureRows, competitors);
+
+  if (!contentRows.length) {
+    SpreadsheetApp.getUi().alert('No competitor URLs matched the selected target pages. Check EP01 SITE STRUCTURE or add competitor URLs manually in EP02 COMPETITOR CONTENT.');
+    return;
+  }
+
+  ep02PrepareCompetitorContentSheet_(sheets.content);
+  ep02WriteCompetitorContentRows_(sheets.content, contentRows);
+  SpreadsheetApp.getUi().alert('EP02 built ' + contentRows.length + ' competitor content rows. Review them, then run EP02: Scrape Competitor Content.');
+}
+
+function ep02ScrapeCompetitorContent() {
+  var sheets = ep02EnsureEp02Sheets_();
+  var sheet = sheets.content;
+  var rows = ep02ReadCompetitorContentRows_(sheet).filter(function(row) {
+    return row.include && row.page_url && row.fetch_status !== 'Fetched';
+  }).slice(0, EP02_MAX_CONTENT_ROWS_TO_SCRAPE);
+
+  if (!rows.length) {
+    SpreadsheetApp.getUi().alert('No unscraped selected competitor URLs found. Build the content list first, or clear Fetch Status to scrape again.');
+    return;
+  }
+
+  rows.forEach(function(row) {
+    var scraped = ep02ScrapeCompetitorPage_(row.page_url);
+    sheet.getRange(row.rowNumber, 10, 1, 8).setValues([[
+      scraped.title,
+      scraped.metaDescription,
+      scraped.h1,
+      scraped.headingOutline,
+      scraped.bodySnapshot,
+      scraped.status,
+      new Date(),
+      scraped.notes
+    ]]);
+    sheet.getRange(row.rowNumber, 10, 1, 8).setWrap(true);
+  });
+
+  SpreadsheetApp.getUi().alert('EP02 scrape complete for ' + rows.length + ' rows. Review EP02 COMPETITOR CONTENT before generating page structure.');
+}
+
+function ep02GeneratePageStructureWithAi() {
+  var sheets = ep02EnsureEp02Sheets_();
+  ep02PrepareAiLogSheet_(sheets.log);
+
+  var apiKey = PropertiesService.getUserProperties().getProperty(EP02_OPENAI_KEY_PROPERTY) ||
+    PropertiesService.getUserProperties().getProperty(EP02_LEGACY_OPENAI_KEY_PROPERTY);
+
+  if (!apiKey) {
+    SpreadsheetApp.getUi().alert('Add your AI API key first using SEO/GEO Series > EP02: Set AI API Key.');
+    return;
+  }
+
+  var targets = ep02ReadTargetRows_(sheets.target).filter(function(target) {
+    return target.build && target.target_page;
+  });
+  var contentRows = ep02ReadCompetitorContentRows_(sheets.content).filter(function(row) {
+    return row.include && (row.scraped_heading_outline || row.scraped_body_snapshot || row.scraped_title || row.scraped_h1);
+  });
+
+  if (!targets.length) {
+    SpreadsheetApp.getUi().alert('No selected target pages found in EP02 TARGET PAGES.');
+    return;
+  }
+
+  if (targets.length > EP02_MAX_TARGET_PAGES_PER_AI_RUN) {
+    SpreadsheetApp.getUi().alert('Too many target pages selected. Select ' + EP02_MAX_TARGET_PAGES_PER_AI_RUN + ' or fewer pages in EP02 TARGET PAGES, then run AI again. This keeps the final section plan readable.');
+    return;
+  }
+
+  var combinedJson = { page_structures: [] };
+  var pagesSent = 0;
+  var rawResponses = [];
+  var responseIds = [];
+  var skippedTargets = [];
+
+  try {
+    targets.forEach(function(target) {
+      var payload = ep02BuildPageStructurePayload_([target], contentRows);
+      var evidenceCount = ep02CountPayloadEvidencePages_(payload);
+      if (!payload.target_pages.length || !evidenceCount) {
+        skippedTargets.push(target.target_page);
+        return;
+      }
+
+      var aiResponse = ep02CallOpenAiForPageStructure_(apiKey, payload);
+      var aiJson = ep02ParsePageStructureAiResponse_(aiResponse);
+      combinedJson.page_structures = combinedJson.page_structures.concat(aiJson.page_structures || []);
+      pagesSent += evidenceCount;
+      if (aiResponse.responseId) responseIds.push(aiResponse.responseId);
+      if (aiResponse.rawText) rawResponses.push(aiResponse.rawText);
+    });
+
+    if (!combinedJson.page_structures.length || !pagesSent) {
+      SpreadsheetApp.getUi().alert('No scraped competitor evidence found for selected target pages. Scrape competitor content first, or paste evidence manually.');
+      return;
+    }
+
+    ep02WritePageStructure_(sheets.structure, combinedJson);
+    ep02WriteAiLog_(sheets.log, 'Success', pagesSent, responseIds.join('\n'), rawResponses.join('\n\n--- NEXT RESPONSE ---\n\n'), skippedTargets.length ? 'Skipped targets without evidence: ' + skippedTargets.join(', ') : '');
+    SpreadsheetApp.getUi().alert('EP02 page structure complete for ' + combinedJson.page_structures.length + ' target pages. Review EP02 PAGE STRUCTURE.');
+  } catch (error) {
+    ep02WriteAiLog_(sheets.log, 'Error', pagesSent, responseIds.join('\n'), rawResponses.join('\n\n--- NEXT RESPONSE ---\n\n'), String(error));
+    SpreadsheetApp.getUi().alert('AI page structure failed: ' + String(error));
+  }
+}
+
+function ep02BuildTargetObjectsFromTree_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 5) return [];
+
+  var rows = sheet.getRange(5, 1, lastRow - 4, 10).getValues();
+  var targets = [];
+  var seen = {};
+
+  rows.forEach(function(row) {
+    var depth = Number(row[0] || 2);
+    var pageName = String(row[2] || ep02CleanTreeLabel_(row[1]) || '').trim();
+    var path = String(row[3] || '').trim();
+    var recommendation = ep02NormalizePageRecommendation_(row[6]);
+
+    if (!pageName || !path) return;
+    if (['Include', 'Review', 'Optional'].indexOf(recommendation) === -1) return;
+
+    var importedNote = depth > 2 ? 'Child page imported unchecked by default. Check Build? when you are ready to create this specific page structure.' : '';
+    var target = {
+      build: recommendation === 'Include' && depth <= 2,
+      target_page: pageName,
+      recommended_path: path,
+      parent_page: row[4] || '',
+      page_type_source: row[5] || pageName,
+      recommendation: recommendation,
+      evidence_count: row[7] || '',
+      primary_keyword: '',
+      target_audience: '',
+      positioning_angle: '',
+      offer_usp: '',
+      conversion_goal: '',
+      must_include: '',
+      must_avoid: '',
+      notes: [importedNote, row[8] || '', row[9] || ''].filter(Boolean).join('\n')
+    };
+
+    var key = ep02TargetKey_(target);
+    if (seen[key]) return;
+    seen[key] = true;
+    targets.push(target);
+  });
+
+  return targets;
+}
+
+function ep02BuildTargetObjectsFromStructure_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 6) return [];
+
+  var rows = sheet.getRange(6, 1, lastRow - 5, 16).getValues();
+  var targets = [];
+  var seen = {};
+
+  rows.forEach(function(row) {
+    var pageType = String(row[0] || '').trim();
+    if (!pageType || /^B\./.test(pageType) || pageType === 'Competitor Code') return;
+
+    var recommendation = ep02NormalizePageRecommendation_(row[13]);
+    if (['Include', 'Review'].indexOf(recommendation) === -1) return;
+
+    var target = {
+      build: recommendation === 'Include',
+      target_page: ep02HumanizeText_(pageType),
+      recommended_path: ep02InferTargetPath_(pageType),
+      parent_page: 'Home',
+      page_type_source: pageType,
+      recommendation: recommendation,
+      evidence_count: row[12] || '',
+      primary_keyword: '',
+      target_audience: '',
+      positioning_angle: '',
+      offer_usp: '',
+      conversion_goal: '',
+      must_include: '',
+      must_avoid: '',
+      notes: [row[14] || '', row[15] || ''].filter(Boolean).join('\n')
+    };
+
+    var key = ep02TargetKey_(target);
+    if (seen[key]) return;
+    seen[key] = true;
+    targets.push(target);
+  });
+
+  return targets;
+}
+
+function ep02MergeTargetPositioning_(targets, existingTargets) {
+  var existingByKey = {};
+  existingTargets.forEach(function(target) {
+    existingByKey[ep02TargetKey_(target)] = target;
+  });
+
+  return targets.map(function(target) {
+    var existing = existingByKey[ep02TargetKey_(target)];
+    if (!existing) return target;
+
+    target.build = existing.build;
+    target.primary_keyword = existing.primary_keyword || '';
+    target.target_audience = existing.target_audience || '';
+    target.positioning_angle = existing.positioning_angle || '';
+    target.offer_usp = existing.offer_usp || '';
+    target.conversion_goal = existing.conversion_goal || '';
+    target.must_include = existing.must_include || '';
+    target.must_avoid = existing.must_avoid || '';
+    target.notes = existing.notes || target.notes || '';
+    return target;
+  });
+}
+
+function ep02WriteTargetRows_(sheet, targets) {
+  var rows = targets.map(ep02TargetObjectToRow_);
+  if (!rows.length) return;
+  sheet.getRange(5, 1, rows.length, 15).setValues(rows);
+  sheet.getRange(5, 1, rows.length, 15).setWrap(true);
+  sheet.getRange(5, 1, rows.length, 1).insertCheckboxes();
+  sheet.getRange(5, 1, rows.length, 1).setValues(rows.map(function(row) { return [row[0]]; }));
+}
+
+function ep02TargetObjectToRow_(target) {
+  return [
+    target.build === true,
+    target.target_page || '',
+    target.recommended_path || '',
+    target.parent_page || '',
+    target.page_type_source || '',
+    target.recommendation || '',
+    target.evidence_count || '',
+    target.primary_keyword || '',
+    target.target_audience || '',
+    target.positioning_angle || '',
+    target.offer_usp || '',
+    target.conversion_goal || '',
+    target.must_include || '',
+    target.must_avoid || '',
+    target.notes || ''
+  ];
+}
+
+function ep02ReadTargetRows_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 5) return [];
+
+  return sheet.getRange(5, 1, lastRow - 4, 15).getValues().map(function(row, index) {
+    return {
+      rowNumber: index + 5,
+      build: row[0] === true || String(row[0]).toLowerCase() === 'true',
+      target_page: row[1] || '',
+      recommended_path: row[2] || '',
+      parent_page: row[3] || '',
+      page_type_source: row[4] || '',
+      recommendation: row[5] || '',
+      evidence_count: row[6] || '',
+      primary_keyword: row[7] || '',
+      target_audience: row[8] || '',
+      positioning_angle: row[9] || '',
+      offer_usp: row[10] || '',
+      conversion_goal: row[11] || '',
+      must_include: row[12] || '',
+      must_avoid: row[13] || '',
+      notes: row[14] || ''
+    };
+  }).filter(function(row) {
+    return row.target_page || row.recommended_path;
+  });
+}
+
+function ep02ReadEp01StructureRows_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 6) return [];
+
+  return sheet.getRange(6, 1, lastRow - 5, 16).getValues().map(function(row) {
+    var competitorPaths = {};
+    for (var i = 1; i <= 10; i++) {
+      competitorPaths['C' + i] = ep02SplitEvidenceCell_(row[i + 1]);
+    }
+
+    return {
+      page_type: row[0] || '',
+      evidence_patterns: ep02SplitEvidenceCell_(row[1]),
+      competitor_paths: competitorPaths,
+      recommendation: row[13] || '',
+      reasoning: row[14] || '',
+      notes: row[15] || ''
+    };
+  }).filter(function(row) {
+    return row.page_type && !/^B\./.test(row.page_type) && row.page_type !== 'Competitor Code';
+  });
+}
+
+function ep02BuildCompetitorContentObjects_(targets, structureRows, competitors) {
+  var rows = [];
+  var seen = {};
+
+  targets.forEach(function(target) {
+    var matchedRows = ep02FindStructureRowsForTarget_(target, structureRows);
+    var targetRows = [];
+
+    matchedRows.forEach(function(structureRow) {
+      for (var i = 1; i <= 10; i++) {
+        var code = 'C' + i;
+        var competitor = competitors[code] || {};
+        var rankedPaths = ep02RankPathsForTarget_(structureRow.competitor_paths[code] || [], target);
+
+        rankedPaths.slice(0, 1).forEach(function(match) {
+          var url = ep02ResolveUrl_(competitor.domain, match.sourcePath);
+          if (!url) return;
+
+          var key = ep02TargetKey_(target) + '|' + code + '|' + url;
+          if (seen[key]) return;
+          seen[key] = true;
+
+          targetRows.push({
+            include: true,
+            target_page: target.target_page,
+            recommended_path: target.recommended_path,
+            page_type_source: target.page_type_source,
+            competitor_code: code,
+            competitor_name: competitor.name || '',
+            page_url: url,
+            source_path: match.sourcePath,
+            match_reason: structureRow.page_type + ' evidence, score ' + match.score,
+            scraped_title: '',
+            scraped_meta_description: '',
+            scraped_h1: '',
+            scraped_heading_outline: '',
+            scraped_body_snapshot: '',
+            fetch_status: '',
+            scraped_at: '',
+            notes: structureRow.reasoning || structureRow.notes || ''
+          });
+        });
+      }
+    });
+
+    rows = rows.concat(targetRows.slice(0, EP02_MAX_COMPETITOR_PAGES_PER_TARGET));
+  });
+
+  return rows;
+}
+
+function ep02FindStructureRowsForTarget_(target, structureRows) {
+  if (!structureRows.length) return [];
+
+  var sourceNorm = ep02Comparable_(target.page_type_source);
+  var exactRows = structureRows.filter(function(row) {
+    return ep02Comparable_(row.page_type) === sourceNorm;
+  });
+  if (exactRows.length) return exactRows;
+
+  var sourceParts = String(target.page_type_source || '').split(/\s*,\s*/).map(ep02Comparable_).filter(Boolean);
+  if (sourceParts.length) {
+    exactRows = structureRows.filter(function(row) {
+      return sourceParts.indexOf(ep02Comparable_(row.page_type)) !== -1;
+    });
+    if (exactRows.length) return exactRows;
+  }
+
+  var group = ep02InferTargetGroup_(target);
+  var groupRows = structureRows.filter(function(row) {
+    return ep02InferTextGroup_(row.page_type + ' ' + ep02ToArray_(row.evidence_patterns).join(' ')) === group;
+  });
+  if (groupRows.length) return groupRows;
+
+  var targetTokens = ep02SpecificTargetTokens_(target);
+  return structureRows.filter(function(row) {
+    var text = ep02Comparable_(row.page_type + ' ' + ep02ToArray_(row.evidence_patterns).join(' '));
+    return targetTokens.some(function(token) {
+      return text.indexOf(token) !== -1;
+    });
+  });
+}
+
+function ep02RankPathsForTarget_(paths, target) {
+  var specificTokens = ep02SpecificTargetTokens_(target);
+  var genericTarget = ep02IsGenericTarget_(target);
+  var threshold = genericTarget ? 1 : Math.max(12, Math.min(30, specificTokens.length * 12));
+  var seen = {};
+  var scored = [];
+
+  ep02ToArray_(paths).forEach(function(rawPath) {
+    var sourcePath = ep02NormalizePathCandidate_(rawPath);
+    if (!sourcePath || seen[sourcePath]) return;
+    seen[sourcePath] = true;
+
+    var score = ep02ScorePathForTarget_(sourcePath, target, specificTokens, genericTarget);
+    if (score >= threshold) {
+      scored.push({ sourcePath: sourcePath, score: score });
+    }
+  });
+
+  if (!scored.length && genericTarget) {
+    ep02ToArray_(paths).forEach(function(rawPath) {
+      var sourcePath = ep02NormalizePathCandidate_(rawPath);
+      if (!sourcePath || seen['fallback|' + sourcePath]) return;
+      seen['fallback|' + sourcePath] = true;
+      if (ep02InferPathGroup_(sourcePath) === ep02InferTargetGroup_(target)) {
+        scored.push({ sourcePath: sourcePath, score: 1 });
+      }
+    });
+  }
+
+  return scored.sort(function(a, b) {
+    return b.score - a.score || a.sourcePath.length - b.sourcePath.length;
+  });
+}
+
+function ep02ScorePathForTarget_(path, target, specificTokens, genericTarget) {
+  var score = 0;
+  var functionalPath = ep02FunctionalPath_(path);
+  var targetPath = ep02FunctionalPath_(target.recommended_path || '');
+  var pathText = functionalPath.toLowerCase();
+  var targetSlug = ep02LastPathSegment_(targetPath);
+  var targetGroup = ep02InferTargetGroup_(target);
+
+  if (targetPath && functionalPath === targetPath) score += 100;
+  if (targetSlug && targetSlug !== 'home' && pathText.indexOf(targetSlug) !== -1) score += 60;
+
+  specificTokens.forEach(function(token) {
+    if (pathText.indexOf(token) !== -1) score += 16;
+  });
+
+  if (ep02InferPathGroup_(functionalPath) === targetGroup) score += genericTarget ? 24 : 4;
+  if (genericTarget && ep02PathDepth_(functionalPath) <= 2) score += 10;
+  if (/(category|tag|author|page\/\d+)/.test(pathText) && targetGroup !== 'Resources') score -= 20;
+
+  return score;
+}
+
+function ep02WriteCompetitorContentRows_(sheet, contentRows) {
+  var rows = contentRows.map(ep02CompetitorContentObjectToRow_);
+  if (!rows.length) return;
+  sheet.getRange(5, 1, rows.length, 17).setValues(rows);
+  sheet.getRange(5, 1, rows.length, 17).setWrap(true);
+  sheet.getRange(5, 1, rows.length, 1).insertCheckboxes();
+  sheet.getRange(5, 1, rows.length, 1).setValues(rows.map(function(row) { return [row[0]]; }));
+}
+
+function ep02CompetitorContentObjectToRow_(row) {
+  return [
+    row.include === true,
+    row.target_page || '',
+    row.recommended_path || '',
+    row.page_type_source || '',
+    row.competitor_code || '',
+    row.competitor_name || '',
+    row.page_url || '',
+    row.source_path || '',
+    row.match_reason || '',
+    row.scraped_title || '',
+    row.scraped_meta_description || '',
+    row.scraped_h1 || '',
+    row.scraped_heading_outline || '',
+    row.scraped_body_snapshot || '',
+    row.fetch_status || '',
+    row.scraped_at || '',
+    row.notes || ''
+  ];
+}
+
+function ep02ReadCompetitorContentRows_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 5) return [];
+
+  return sheet.getRange(5, 1, lastRow - 4, 17).getValues().map(function(row, index) {
+    return {
+      rowNumber: index + 5,
+      include: row[0] === true || String(row[0]).toLowerCase() === 'true',
+      target_page: row[1] || '',
+      recommended_path: row[2] || '',
+      page_type_source: row[3] || '',
+      competitor_code: row[4] || '',
+      competitor_name: row[5] || '',
+      page_url: row[6] || '',
+      source_path: row[7] || '',
+      match_reason: row[8] || '',
+      scraped_title: row[9] || '',
+      scraped_meta_description: row[10] || '',
+      scraped_h1: row[11] || '',
+      scraped_heading_outline: row[12] || '',
+      scraped_body_snapshot: row[13] || '',
+      fetch_status: row[14] || '',
+      scraped_at: row[15] || '',
+      notes: row[16] || ''
+    };
+  }).filter(function(row) {
+    return row.target_page || row.page_url || row.scraped_body_snapshot;
+  });
+}
+
+function ep02ScrapeCompetitorPage_(url) {
+  try {
+    var response = UrlFetchApp.fetch(url, {
+      method: 'get',
+      muteHttpExceptions: true,
+      followRedirects: true,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; EP02PageStructureBot/2.0)'
+      }
+    });
+    var status = response.getResponseCode();
+    var html = response.getContentText().slice(0, EP02_MAX_HTML_CHARS);
+    if (status < 200 || status > 399) {
+      return ep02EmptyCompetitorScrape_('HTTP ' + status, 'Page could not be fetched.');
+    }
+
+    var cleanHtml = ep02StripNoise_(html);
+    var headings = ep02ExtractHeadings_(cleanHtml);
+    var title = ep02ExtractTitle_(cleanHtml);
+    var metaDescription = ep02ExtractMetaDescription_(cleanHtml);
+    var h1 = headings.filter(function(item) { return item.level === 'H1'; }).map(function(item) { return item.text; }).join('\n');
+    var outline = headings.filter(function(item) {
+      return ['H2', 'H3', 'H4'].indexOf(item.level) !== -1;
+    }).map(function(item) {
+      return item.level + ': ' + item.text;
+    }).join('\n');
+    var bodySnapshot = ep02ExtractBodySnapshot_(html);
+
+    return {
+      title: title,
+      metaDescription: metaDescription,
+      h1: h1,
+      headingOutline: outline,
+      bodySnapshot: bodySnapshot,
+      status: 'Fetched',
+      notes: headings.length ? 'Headings found: ' + headings.length + '. Body snapshot chars: ' + bodySnapshot.length : 'No headings found. Body snapshot chars: ' + bodySnapshot.length
+    };
+  } catch (error) {
+    return ep02EmptyCompetitorScrape_('Error', String(error));
+  }
+}
+
+function ep02EmptyCompetitorScrape_(status, notes) {
+  return {
+    title: '',
+    metaDescription: '',
+    h1: '',
+    headingOutline: '',
+    bodySnapshot: '',
+    status: status,
+    notes: notes
+  };
+}
+
+function ep02ExtractBodySnapshot_(html) {
+  var text = String(html || '');
+  var bodyMatch = text.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i);
+  var body = bodyMatch ? bodyMatch[1] : text;
+  body = body
+    .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<noscript\b[\s\S]*?<\/noscript>/gi, ' ')
+    .replace(/<svg\b[\s\S]*?<\/svg>/gi, ' ')
+    .replace(/<canvas\b[\s\S]*?<\/canvas>/gi, ' ')
+    .replace(/<(nav|header|footer|aside|form)\b[\s\S]*?<\/\1>/gi, ' ')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/(p|div|section|article|li|h1|h2|h3|h4|h5|h6)>/gi, '\n');
+
+  return ep02TrimCellText_(ep02CleanContentText_(body), EP02_MAX_BODY_TEXT_CHARS);
+}
+
+function ep02CleanContentText_(value) {
+  return String(value || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#x27;/g, "'")
+    .replace(/&#(\d+);/g, function(match, code) {
+      return String.fromCharCode(Number(code));
+    })
+    .replace(/&#x([0-9a-f]+);/gi, function(match, code) {
+      return String.fromCharCode(parseInt(code, 16));
+    })
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function ep02BuildPageStructurePayload_(targets, contentRows) {
+  var evidenceByTarget = {};
+  contentRows.forEach(function(row) {
+    var key = ep02TargetKey_(row);
+    if (!evidenceByTarget[key]) evidenceByTarget[key] = [];
+    evidenceByTarget[key].push(row);
   });
 
   return {
     prompt_version: EP02_PROMPT_VERSION,
     instructions: {
-      purpose: 'Create heading-only page structure from competitor page outlines.',
-      output_rule: 'Return title tag, meta description, and headings only. Do not write body copy.',
-      evidence_rule: 'Use repeated competitor heading patterns as evidence, but do not copy competitor wording directly.'
+      purpose: 'Create a section plan for each selected page from competitor HTML evidence and user positioning input.',
+      output_rule: 'Return SEO fields and the section plan inside each selected page. Do not write body copy.',
+      evidence_rule: 'Use repeated competitor patterns as evidence, but do not copy competitor wording directly.',
+      positioning_rule: 'Use the user positioning fields as the deciding context for what the page should emphasize.'
     },
-    page_types: Object.keys(grouped).sort().map(function(pageType) {
+    target_pages: targets.map(function(target) {
+      var evidence = (evidenceByTarget[ep02TargetKey_(target)] || []).slice(0, EP02_MAX_COMPETITOR_PAGES_PER_TARGET);
       return {
-        page_type: pageType,
-        competitor_pages: grouped[pageType]
+        target_page: target.target_page,
+        recommended_path: target.recommended_path,
+        parent_page: target.parent_page,
+        page_type_source: target.page_type_source,
+        recommendation: target.recommendation,
+        positioning: {
+          primary_keyword: target.primary_keyword,
+          target_audience: target.target_audience,
+          positioning_angle: target.positioning_angle,
+          offer_usp: target.offer_usp,
+          conversion_goal: target.conversion_goal,
+          must_include: target.must_include,
+          must_avoid: target.must_avoid,
+          notes: target.notes
+        },
+        competitor_pages: evidence.map(function(row) {
+          return {
+            competitor_code: row.competitor_code,
+            competitor_name: row.competitor_name,
+            page_url: row.page_url,
+            source_path: row.source_path,
+            match_reason: row.match_reason,
+            title: row.scraped_title,
+            meta_description: row.scraped_meta_description,
+            h1: row.scraped_h1,
+            heading_outline: row.scraped_heading_outline,
+            body_snapshot: ep02TrimCellText_(row.scraped_body_snapshot, EP02_MAX_BODY_TEXT_CHARS),
+            fetch_status: row.fetch_status,
+            notes: row.notes
+          };
+        })
       };
+    }).filter(function(target) {
+      return target.competitor_pages.length > 0;
     })
   };
 }
 
-function ep02CallOpenAi_(apiKey, payload) {
+function ep02CountPayloadEvidencePages_(payload) {
+  return (payload.target_pages || []).reduce(function(total, target) {
+    return total + (target.competitor_pages || []).length;
+  }, 0);
+}
+
+function ep02CallOpenAiForPageStructure_(apiKey, payload) {
   var requestBody = {
     model: EP02_OPENAI_MODEL,
     input: [
@@ -830,7 +1339,7 @@ function ep02CallOpenAi_(apiKey, payload) {
         content: [
           {
             type: 'input_text',
-            text: ep02AiSystemPrompt_()
+            text: ep02PageStructureSystemPrompt_()
           }
         ]
       },
@@ -876,37 +1385,51 @@ function ep02CallOpenAi_(apiKey, payload) {
   };
 }
 
-function ep02AiSystemPrompt_() {
+function ep02PageStructureSystemPrompt_() {
   return [
-    'You create page structures from competitor heading outlines.',
+    'You create page section plans from competitor HTML evidence and user positioning input.',
     '',
-    'Use only the data provided. Do not assume the business name, country, city, offer, or claim unless it is visible in the supplied page evidence.',
+    'Use only the supplied target-page data, positioning fields, titles, meta descriptions, headings, and body snapshots.',
     '',
     'Important rules:',
-    '- Return title tag, meta description, and headings only.',
+    '- Return the sections that should appear inside each selected page.',
+    '- Return title tag and meta description as SEO fields, not as page sections.',
+    '- Treat each H2 as a major page section. Treat H3 and H4 as child subsections only when they clarify a major section.',
     '- Do not write paragraph body copy.',
     '- Do not copy competitor headings directly unless the phrase is generic and unavoidable.',
-    '- Use repeated competitor patterns to decide which sections are required.',
-    '- Keep heading text clear, specific, and useful for a writer or designer.',
-    '- Avoid generic filler headings such as Welcome, Overview, or Our Solutions unless the evidence strongly supports them.',
-    '- Prefer a practical page hierarchy: one H1, several H2s, and H3s only where they clarify a section.',
+    '- Use repeated competitor patterns to decide required sections and section order.',
+    '- If a section appears in only one competitor and is not essential, mark it Optional or omit it.',
+    '- Use positioning input to decide the angle, audience emphasis, order, and conversion goal.',
+    '- If positioning fields are blank, keep the structure neutral and note which positioning input is missing.',
+    '- Prefer one H1, clear H2 sections, and H3 rows only where they make the page easier to brief.',
+    '- Avoid generic filler headings such as Welcome, Overview, or Our Solutions unless evidence strongly supports them.',
+    '- The output should be easy for a writer or web designer to use as a page brief.',
     '',
-    'For each page type, return one outline.',
+    'For each target page, return one page structure.',
     '',
     'Return only valid JSON. Do not include markdown.',
     '',
     'Output JSON schema:',
     '{',
-    '  "outlines": [',
+    '  "page_structures": [',
     '    {',
-    '      "page_type": "string",',
+    '      "target_page": "string",',
+    '      "recommended_path": "string",',
     '      "title_tag": "string",',
     '      "meta_description": "string",',
+    '      "page_goal": "string",',
+    '      "positioning_summary": "string",',
     '      "source_patterns": ["string"],',
-    '      "headings": [',
+    '      "content_gaps": ["string"],',
+    '      "sections": [',
     '        {',
+    '          "order": 1,',
     '          "level": "H1 | H2 | H3 | H4",',
-    '          "text": "string",',
+    '          "section_type": "Hero | Intro | Service Overview | Proof | FAQ | CTA | Other",',
+    '          "section_heading": "string",',
+    '          "purpose": "string",',
+    '          "subsections": ["string"],',
+    '          "priority": "Required | Recommended | Optional",',
     '          "source_pattern": "string",',
     '          "notes": "string"',
     '        }',
@@ -918,88 +1441,409 @@ function ep02AiSystemPrompt_() {
   ].join('\n');
 }
 
-function ep02ExtractOpenAiOutputText_(responseJson) {
-  if (responseJson.output_text) return responseJson.output_text;
-  var texts = [];
-  (responseJson.output || []).forEach(function(item) {
-    (item.content || []).forEach(function(content) {
-      if (content.text) texts.push(content.text);
-    });
-  });
-  return texts.join('');
-}
-
-function ep02ParseAiResponse_(aiResponse) {
+function ep02ParsePageStructureAiResponse_(aiResponse) {
   var text = String(aiResponse.outputText || '').trim();
   if (!text) throw new Error('AI returned an empty response.');
   var parsed = JSON.parse(text);
-  if (!parsed.outlines || !Array.isArray(parsed.outlines)) {
-    throw new Error('AI response did not include outlines array.');
+
+  if (!parsed.page_structures && parsed.outlines) {
+    parsed.page_structures = parsed.outlines.map(function(outline) {
+      return {
+        target_page: outline.page_type || outline.target_page || 'Selected page',
+        recommended_path: outline.recommended_path || '',
+        title_tag: outline.title_tag || '',
+        meta_description: outline.meta_description || '',
+        page_goal: outline.page_goal || '',
+        positioning_summary: outline.positioning_summary || '',
+        source_patterns: outline.source_patterns || [],
+        content_gaps: [],
+        sections: ep02NormalizeSections_(outline.sections || outline.headings || []),
+        notes: outline.notes || ''
+      };
+    });
+  }
+
+  if (!parsed.page_structures || !Array.isArray(parsed.page_structures)) {
+    throw new Error('AI response did not include page_structures array.');
   }
   return parsed;
 }
 
-function ep02WriteContentOutline_(sheet, aiJson) {
-  ep02PrepareContentOutlineSheet_(sheet);
+function ep02WritePageStructure_(sheet, aiJson) {
+  ep02PreparePageStructureSheet_(sheet);
   var rows = [];
 
-  (aiJson.outlines || []).forEach(function(outline) {
-    var pageType = outline.page_type || 'Selected page';
+  (aiJson.page_structures || []).forEach(function(structure) {
+    var targetPage = structure.target_page || 'Selected page';
+    var recommendedPath = structure.recommended_path || '';
+    var sourcePatterns = ep02ToArray_(structure.source_patterns).join('\n');
+    var positioning = structure.positioning_summary || '';
+    var pageGoal = structure.page_goal || positioning || structure.notes || '';
+
     rows.push([
-      pageType,
-      'Title Tag',
+      targetPage,
+      recommendedPath,
+      'Page Brief',
+      'Page Goal',
+      pageGoal,
       '',
-      outline.title_tag || '',
-      ep02AsArray_(outline.source_patterns).join('\n'),
-      outline.notes || ''
+      ep02CombineNotes_(sourcePatterns, structure.notes || '')
     ]);
     rows.push([
-      pageType,
+      targetPage,
+      recommendedPath,
+      'SEO',
+      'Title Tag',
+      structure.title_tag || '',
+      'Search title for this page.',
+      ep02CombineNotes_(sourcePatterns, structure.notes || '')
+    ]);
+    rows.push([
+      targetPage,
+      recommendedPath,
+      'SEO',
       'Meta Description',
-      '',
-      outline.meta_description || '',
-      ep02AsArray_(outline.source_patterns).join('\n'),
-      outline.notes || ''
+      structure.meta_description || '',
+      'Search-result summary for this page.',
+      ep02CombineNotes_(sourcePatterns, structure.notes || '')
     ]);
 
-    ep02AsArray_(outline.headings).forEach(function(heading) {
+    ep02NormalizeSections_(structure.sections || structure.headings || []).forEach(function(section, index) {
+      var sectionOrder = section.order || index + 1;
       rows.push([
-        pageType,
-        'Heading',
-        heading.level || '',
-        heading.text || '',
-        heading.source_pattern || '',
-        heading.notes || ''
+        targetPage,
+        recommendedPath,
+        'Section ' + sectionOrder,
+        ep02SectionDisplayText_(section),
+        ep02SectionPlanText_(section),
+        ep02SectionWhyText_(section),
+        ep02CombineNotes_(section.source_pattern || '', section.notes || '')
       ]);
     });
 
-    rows.push(['', '', '', '', '', '']);
+    ep02ToArray_(structure.content_gaps).forEach(function(gap) {
+      rows.push([
+        targetPage,
+        recommendedPath,
+        'Review Point',
+        'Missing Input',
+        String(gap || ''),
+        'Review this before writing.',
+        'Review before writing.'
+      ]);
+    });
+
+    rows.push(['', '', '', '', '', '', '']);
   });
 
   if (rows.length) {
-    sheet.getRange(5, 1, rows.length, 6).setValues(rows);
-    sheet.getRange(5, 1, rows.length, 6).setWrap(true);
+    sheet.getRange(5, 1, rows.length, 7).setValues(rows);
+    sheet.getRange(5, 1, rows.length, 7).setWrap(true);
+    ep02StylePageStructureRows_(sheet, rows);
   }
 }
 
-function ep02AsArray_(value) {
+function ep02NormalizeSections_(sections) {
+  return ep02ToArray_(sections).map(function(section, index) {
+    if (typeof section === 'string') {
+      return {
+        order: index + 1,
+        level: 'H2',
+        section_type: 'Page Section',
+        section_heading: section,
+        purpose: '',
+        subsections: [],
+        priority: 'Recommended',
+        source_pattern: '',
+        notes: ''
+      };
+    }
+
+    return {
+      order: Number(section.order || index + 1),
+      level: section.level || '',
+      section_type: section.section_type || section.type || 'Page Section',
+      section_heading: section.section_heading || section.heading || section.text || '',
+      purpose: section.purpose || section.subheading_idea || section.section_purpose || '',
+      subsections: section.subsections || section.child_subsections || section.h3_ideas || [],
+      priority: section.priority || '',
+      source_pattern: section.source_pattern || '',
+      notes: section.notes || ''
+    };
+  }).filter(function(section) {
+    return section.section_heading || section.purpose || ep02ToArray_(section.subsections).length;
+  });
+}
+
+function ep02SectionDisplayText_(section) {
+  var level = ep02NormalizeHeadingLevel_(section.level);
+  var heading = section.section_heading || '';
+  if (!level) return heading;
+  return level + ': ' + heading;
+}
+
+function ep02SectionPlanText_(section) {
+  var parts = [];
+  var purpose = section.purpose || section.subheading_idea || section.section_purpose || '';
+  if (purpose) parts.push(purpose);
+
+  var subsections = ep02ToArray_(section.subsections);
+  if (subsections.length) {
+    parts.push('Subsections:\n- ' + subsections.join('\n- '));
+  }
+
+  return parts.join('\n');
+}
+
+function ep02SectionWhyText_(section) {
+  var parts = [];
+  var priority = ep02NormalizeSectionPriority_(section.priority);
+
+  if (priority) parts.push('Priority: ' + priority);
+  return parts.join('\n');
+}
+
+function ep02CombineNotes_(evidence, notes) {
+  var parts = [];
+  if (evidence) parts.push('Evidence: ' + evidence);
+  if (notes) parts.push('Notes: ' + notes);
+  return parts.join('\n');
+}
+
+function ep02NormalizeSectionPriority_(value) {
+  var text = String(value || '').trim();
+  if (['Required', 'Recommended', 'Optional'].indexOf(text) !== -1) return text;
+  return 'Recommended';
+}
+
+function ep02StylePageStructureRows_(sheet, rows) {
+  rows.forEach(function(row, index) {
+    var rowNumber = index + 5;
+    var blockType = row[2];
+    var headingText = String(row[3] || '');
+
+    if (!row.join('')) return;
+
+    if (blockType === '') {
+      sheet.getRange(rowNumber, 1, 1, 7).setBackground('#D8ECD1').setFontWeight('bold');
+    } else if (blockType === 'SEO') {
+      sheet.getRange(rowNumber, 1, 1, 7).setBackground('#F6F0D4');
+    } else if (blockType === 'Page Brief') {
+      sheet.getRange(rowNumber, 1, 1, 7).setBackground('#D8ECD1').setFontWeight('bold');
+    } else if (/^H1:/.test(headingText)) {
+      sheet.getRange(rowNumber, 1, 1, 7).setBackground('#EAF6EF').setFontWeight('bold');
+    } else if (/^H2:/.test(headingText)) {
+      sheet.getRange(rowNumber, 1, 1, 7).setBackground('#F3F8F0');
+    }
+  });
+}
+
+function ep02NormalizeHeadingLevel_(value) {
+  var text = String(value || '').toUpperCase().trim();
+  return ['H1', 'H2', 'H3', 'H4'].indexOf(text) !== -1 ? text : '';
+}
+
+function ep02CleanTreeLabel_(value) {
+  return String(value || '').replace(/^\s*-\s*/, '').trim();
+}
+
+function ep02NormalizePageRecommendation_(value) {
+  var text = String(value || '').trim();
+  if (['Include', 'Review', 'Optional'].indexOf(text) !== -1) return text;
+  return 'Review';
+}
+
+function ep02SplitEvidenceCell_(value) {
+  return ep02ToArray_(value).map(function(item) {
+    return String(item || '').replace(/^["']+|["']+$/g, '').trim();
+  }).filter(Boolean);
+}
+
+function ep02ToArray_(value) {
   if (!value) return [];
-  if (Array.isArray(value)) return value;
+  if (Array.isArray(value)) {
+    var output = [];
+    value.forEach(function(item) {
+      if (Array.isArray(item)) {
+        output = output.concat(ep02ToArray_(item));
+      } else {
+        output.push(item);
+      }
+    });
+    return output;
+  }
+  if (typeof value === 'string') {
+    return value.split(/\n+/).map(function(item) {
+      return item.trim();
+    }).filter(Boolean);
+  }
   return [value];
 }
 
-function ep02WriteAiLog_(sheet, status, pagesSent, responseId, rawResponse, notes) {
-  ep02PrepareAiLogSheet_(sheet);
-  sheet.appendRow([
-    new Date(),
-    EP02_OPENAI_MODEL,
-    status,
-    pagesSent,
-    EP02_PROMPT_VERSION,
-    responseId,
-    notes,
-    String(rawResponse || '').slice(0, 45000)
-  ]);
+function ep02NormalizePathCandidate_(value) {
+  var text = String(value || '').replace(/^["']+|["']+$/g, '').trim();
+  if (!text || text === '-') return '';
+  if (/^https?:\/\//i.test(text)) text = ep02PagePath_(text);
+  if (text.charAt(0) !== '/') return '';
+  text = text.split('#')[0].split('?')[0].replace(/\/+/g, '/');
+  if (text !== '/' && text.charAt(text.length - 1) !== '/') text += '/';
+  return text;
+}
+
+function ep02PagePath_(url) {
+  var match = String(url || '').match(/^https?:\/\/[^\/?#]+([^?#]*)/i);
+  var path = match ? match[1] : '';
+  return path || '/';
+}
+
+function ep02FunctionalPath_(path) {
+  var clean = ep02NormalizePathCandidate_(path);
+  if (!clean || clean === '/') return clean || '';
+  var segments = clean.split('/').filter(Boolean);
+  if (segments.length && /^[a-z]{2}$/i.test(segments[0])) segments.shift();
+  if (!segments.length) return '/';
+  return '/' + segments.join('/') + '/';
+}
+
+function ep02LastPathSegment_(path) {
+  var segments = String(path || '').split('/').filter(Boolean);
+  return segments.length ? segments[segments.length - 1] : '';
+}
+
+function ep02PathDepth_(path) {
+  return String(path || '').split('/').filter(Boolean).length;
+}
+
+function ep02TargetKey_(target) {
+  return ep02Comparable_(target.target_page || '') + '|' + ep02FunctionalPath_(target.recommended_path || '');
+}
+
+function ep02Comparable_(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function ep02SpecificTargetTokens_(target) {
+  var stop = {
+    a: true,
+    an: true,
+    and: true,
+    for: true,
+    from: true,
+    in: true,
+    of: true,
+    page: true,
+    pages: true,
+    section: true,
+    company: true,
+    agency: true,
+    near: true,
+    me: true,
+    our: true,
+    us: true
+  };
+  var text = [target.target_page, target.recommended_path, target.page_type_source].join(' ');
+  var seen = {};
+  return ep02Comparable_(text).split(/\s+/).filter(function(token) {
+    if (!token || token.length < 2 || stop[token] || seen[token]) return false;
+    seen[token] = true;
+    return true;
+  });
+}
+
+function ep02InferTargetGroup_(target) {
+  return ep02InferTextGroup_([
+    target.target_page || '',
+    target.recommended_path || '',
+    target.parent_page || '',
+    target.page_type_source || ''
+  ].join(' '));
+}
+
+function ep02InferPathGroup_(path) {
+  return ep02InferTextGroup_(path);
+}
+
+function ep02InferTextGroup_(value) {
+  var text = String(value || '').toLowerCase();
+  if (/^\/?$/.test(text) || /\b(home|homepage)\b/.test(text)) return 'Home';
+  if (/privacy|terms|cookie|legal|policy/.test(text)) return 'Legal';
+  if (/career|jobs|recruit/.test(text)) return 'Careers';
+  if (/contact|inquiry|get in touch/.test(text)) return 'Contact';
+  if (/about|company|team|mission/.test(text)) return 'About';
+  if (/location|city|area|region|country|near me|local|saudi|riyadh|jeddah|dammam|dubai|kuwait|oman|qatar|bahrain|libya/.test(text)) return 'Locations';
+  if (/case stud|portfolio|project|client|work/.test(text)) return 'Work';
+  if (/blog|article|resource|guide|news|insight|category|tag/.test(text)) return 'Resources';
+  if (/package|pricing|plans/.test(text)) return 'Packages';
+  if (/service|solution|offering|marketing|seo|ppc|advertising|branding|brand|web|website|development|design|content|graphic|video|motion|performance|influencer|technology|identity|uiux|amazon|strategy|production/.test(text)) return 'Services';
+  return 'Other';
+}
+
+function ep02IsGenericTarget_(target) {
+  var group = ep02InferTargetGroup_(target);
+  var name = ep02Comparable_(target.target_page);
+  var path = ep02FunctionalPath_(target.recommended_path || '');
+
+  if (group === 'Home') return true;
+  if (group === 'Services') return name === 'services' || path === '/services/';
+  if (group === 'Locations') return name === 'locations' || path === '/locations/';
+  if (group === 'Resources') return /^(resources|blog resources|blog)$/.test(name) || path === '/blog/' || path === '/resources/';
+  if (group === 'Work') return /^(work|portfolio|projects|case studies)$/.test(name) || path === '/work/' || path === '/portfolio/' || path === '/projects/' || path === '/case-studies/';
+  if (group === 'Legal') return name === 'legal' || path === '/legal/';
+  return false;
+}
+
+function ep02InferTargetPath_(value) {
+  var group = ep02InferTextGroup_(value);
+  if (group === 'Home') return '/';
+  if (group === 'Services') return '/services/' + ep02Slugify_(value) + '/';
+  if (group === 'Locations') return '/locations/' + ep02Slugify_(value) + '/';
+  if (group === 'Resources') return '/blog/';
+  if (group === 'Work') return '/work/';
+  if (group === 'Legal') return '/legal/';
+  if (group === 'Contact') return '/contact/';
+  if (group === 'About') return '/about/';
+  if (group === 'Careers') return '/careers/';
+  if (group === 'Packages') return '/packages/';
+  return '/' + ep02Slugify_(value) + '/';
+}
+
+function ep02Slugify_(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function ep02HumanizeText_(value) {
+  var text = String(value || 'Page').replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+  return text.replace(/\b\w/g, function(letter) {
+    return letter.toUpperCase();
+  });
+}
+
+function ep02TrimCellText_(value, maxLength) {
+  var text = String(value || '').trim();
+  var limit = Number(maxLength || 45000);
+  if (text.length <= limit) return text;
+  return text.slice(0, limit - 80).trim() + '\n[Trimmed for Google Sheets cell limit]';
+}
+
+function ep02ImportSelectedPagesFromEp01() {
+  ep02ImportTargetPagesFromEp01Tree();
+}
+
+function ep02ScrapePageOutlines() {
+  ep02ScrapeCompetitorContent();
+}
+
+function ep02GenerateContentOutlineWithAi() {
+  ep02GeneratePageStructureWithAi();
 }
 `;
 
