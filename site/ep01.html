@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EP01 · Site Structure · SEO + GEO Series</title>
-  <meta name="description" content="Set up EP01 tabs, add ranking page URLs and competitor domains, collect sitemap URL inventory, and use AI to group competitor pages into a proposed site structure." />
+  <meta name="description" content="Set up EP01 tabs, add ranking page URLs and competitor domains, collect sitemap URL inventory, and use AI to group competitor pages into a proposed site structure and site tree." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -41,7 +41,7 @@
       <div>
         <div class="badge">Episode 01 · Site Structure</div>
         <h1>Create the Site Structure First</h1>
-        <p class="lead">Start EP01 by recording the competitors ranking on Google, collecting their sitemap URL inventory, and using AI to group those URLs into a proposed site structure. The sheet keeps raw URLs visible, including language-prefixed paths like <code>/ar/service/</code>.</p>
+        <p class="lead">Start EP01 by recording the competitors ranking on Google, collecting their sitemap URL inventory, and using AI to group those URLs into a proposed site structure. The sheet now produces both the evidence matrix and a clean page tree showing what pages to include.</p>
         <div class="cta-row">
           <a class="btn" href="#apps-script">Copy EP01 Script</a>
           <a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1RcsHgU3wlQZ2DhEgZDP2uSCR5bPCiEUZb99kvWNaaaw/copy" target="_blank" rel="noopener">Make a Copy of the Sheet</a>
@@ -56,8 +56,8 @@
         </div>
         <div class="stat-card">
           <div class="stat-title">Script output</div>
-          <div class="stat-value">Inventory · AI Matrix</div>
-          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script collects sitemap URLs, preserves original paths, and asks AI to group page types.</p>
+          <div class="stat-value">Inventory · Matrix · Tree</div>
+          <p style="font-size:13px;margin-top:6px;color:var(--muted);">The script collects sitemap URLs, preserves original paths, groups page types, and builds a recommended page tree.</p>
         </div>
       </div>
     </section>
@@ -100,6 +100,7 @@
             <li>Use <code>SEO/GEO Series &gt; EP01: Extract Sitemap URLs</code>.</li>
             <li>Use <code>SEO/GEO Series &gt; EP01: Set AI API Key</code>.</li>
             <li>Use <code>SEO/GEO Series &gt; EP01: Analyze Site Structure with AI</code>.</li>
+            <li>If you already have the matrix, use <code>SEO/GEO Series &gt; EP01: Build Site Tree from Matrix</code>.</li>
           </ul>
         </div>
         <div>
@@ -108,6 +109,7 @@
             <p><strong>EP01 COMPETITORS</strong></p>
             <p><strong>EP01 URL INVENTORY</strong></p>
             <p><strong>EP01 SITE STRUCTURE</strong></p>
+            <p><strong>EP01 SITE TREE</strong></p>
             <p><strong>EP01 AI LOG</strong></p>
           </div>
           <div class="kit">
@@ -187,8 +189,8 @@
     </section>
 
     <section class="section" id="site-structure-tab">
-      <div class="eyebrow">Tabs 2 and 3</div>
-      <h2 class="section-title">EP01 URL INVENTORY and SITE STRUCTURE</h2>
+      <div class="eyebrow">Tabs 2, 3, and 4</div>
+      <h2 class="section-title">EP01 URL INVENTORY, SITE STRUCTURE, and SITE TREE</h2>
       <div class="grid cols-2">
         <div class="card">
           <h3>URL inventory first</h3>
@@ -202,6 +204,13 @@
           <p>The site-structure tab shows an AI-generated page-type matrix. Competitors are listed across C1 to C10, and cells contain the exact paths found for each competitor.</p>
           <div class="meta">
             <span class="tag warning">Manual review</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Site tree third</h3>
+          <p>The site-tree tab converts the matrix into a clean hierarchy: home, top-level pages, grouped service pages, location pages, resources, and utility pages to include or review.</p>
+          <div class="meta">
+            <span class="tag warning">Planning output</span>
           </div>
         </div>
         <div class="card">
@@ -274,6 +283,7 @@
           <p><strong>EP01 COMPETITORS</strong> is for the search result research. Add the exact ranking page URL and the competitor domain here. The ranking page explains the page type that is currently winning for the keyword.</p>
           <p><strong>EP01 URL INVENTORY</strong> is for raw sitemap URLs. It preserves the original path and also calculates language prefix, functional path, and top-level functional path.</p>
           <p><strong>EP01 SITE STRUCTURE</strong> is for the AI-generated page-type coverage matrix. It shows which competitors have each page type, exact supporting paths, recommendation, and reasoning.</p>
+          <p><strong>EP01 SITE TREE</strong> is the final planning view. It turns the matrix into a page hierarchy showing what pages to include, where they sit, and why they are recommended.</p>
         </div>
         <div>
           <div class="kit">
@@ -323,11 +333,12 @@
 const EP01_COMPETITORS_SHEET = 'EP01 COMPETITORS';
 const EP01_URL_INVENTORY_SHEET = 'EP01 URL INVENTORY';
 const EP01_SITE_STRUCTURE_SHEET = 'EP01 SITE STRUCTURE';
+const EP01_SITE_TREE_SHEET = 'EP01 SITE TREE';
 const EP01_AI_LOG_SHEET = 'EP01 AI LOG';
 const EP01_OPENAI_KEY_PROPERTY = 'EP01_OPENAI_API_KEY';
 const EP01_OPENAI_MODEL = 'gpt-4.1-mini';
 const EP01_OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
-const EP01_PROMPT_VERSION = 'ep01-site-structure-v2';
+const EP01_PROMPT_VERSION = 'ep01-site-structure-v3';
 const EP01_MAX_PAGES_PER_COMPETITOR = 1000;
 const EP01_MAX_CHILD_SITEMAPS = 50;
 
@@ -343,6 +354,7 @@ function ep01CreateMenu_() {
     .addItem('EP01: Extract Sitemap URLs', 'ep01ExtractSitemapUrls')
     .addItem('EP01: Set AI API Key', 'ep01SetAiApiKey')
     .addItem('EP01: Analyze Site Structure with AI', 'ep01AnalyzeSiteStructureWithAi')
+    .addItem('EP01: Build Site Tree from Matrix', 'ep01BuildSiteTreeFromMatrix')
     .addToUi();
 }
 
@@ -351,6 +363,7 @@ function setupEP01() {
   ep01PrepareCompetitorSheet_(sheets.competitors);
   ep01PrepareInventorySheet_(sheets.inventory);
   ep01PrepareStructureSheet_(sheets.structure);
+  ep01PrepareSiteTreeSheet_(sheets.tree);
   ep01PrepareAiLogSheet_(sheets.log);
   ep01CreateMenu_();
   SpreadsheetApp.getUi().alert('EP01 tabs are ready. Add competitor name, ranking page URL, ranking page type, and domain in EP01 COMPETITORS.');
@@ -362,6 +375,7 @@ function ep01EnsureEp01Sheets_() {
     competitors: ss.getSheetByName(EP01_COMPETITORS_SHEET) || ss.insertSheet(EP01_COMPETITORS_SHEET),
     inventory: ss.getSheetByName(EP01_URL_INVENTORY_SHEET) || ss.insertSheet(EP01_URL_INVENTORY_SHEET),
     structure: ss.getSheetByName(EP01_SITE_STRUCTURE_SHEET) || ss.insertSheet(EP01_SITE_STRUCTURE_SHEET),
+    tree: ss.getSheetByName(EP01_SITE_TREE_SHEET) || ss.insertSheet(EP01_SITE_TREE_SHEET),
     log: ss.getSheetByName(EP01_AI_LOG_SHEET) || ss.insertSheet(EP01_AI_LOG_SHEET)
   };
 }
@@ -542,12 +556,26 @@ function ep01AnalyzeSiteStructureWithAi() {
     var aiResponse = ep01CallOpenAi_(apiKey, payload);
     var aiJson = ep01ParseAiResponse_(aiResponse);
     ep01WriteAiStructure_(sheets.structure, aiJson, payload);
+    ep01WriteSiteTree_(sheets.tree, ep01BuildSiteTreeRows_(aiJson));
     ep01WriteAiLog_(sheets.log, 'Success', urlsSent, aiResponse.responseId || '', aiResponse.rawText || '', '');
-    SpreadsheetApp.getUi().alert('AI site-structure analysis complete. URLs sent to AI: ' + urlsSent + '. Review EP01 SITE STRUCTURE.');
+    SpreadsheetApp.getUi().alert('AI site-structure analysis complete. URLs sent to AI: ' + urlsSent + '. Review EP01 SITE STRUCTURE and EP01 SITE TREE.');
   } catch (error) {
     ep01WriteAiLog_(sheets.log, 'Error', urlsSent, '', '', String(error));
     SpreadsheetApp.getUi().alert('AI analysis failed: ' + String(error));
   }
+}
+
+function ep01BuildSiteTreeFromMatrix() {
+  var sheets = ep01EnsureEp01Sheets_();
+  var pageTypes = ep01ReadPageTypesFromStructure_(sheets.structure);
+
+  if (!pageTypes.length) {
+    SpreadsheetApp.getUi().alert('No EP01 SITE STRUCTURE matrix rows found. Run EP01: Analyze Site Structure with AI first.');
+    return;
+  }
+
+  ep01WriteSiteTree_(sheets.tree, ep01BuildSiteTreeRows_({ page_types: pageTypes }));
+  SpreadsheetApp.getUi().alert('EP01 site tree complete. Review EP01 SITE TREE.');
 }
 
 function ep01PrepareCompetitorSheet_(sheet) {
@@ -623,6 +651,26 @@ function ep01PrepareStructureSheet_(sheet) {
   ep01StyleStructureSheet_(sheet);
 }
 
+function ep01PrepareSiteTreeSheet_(sheet) {
+  if (sheet.getFilter()) sheet.getFilter().remove();
+  sheet.clearContents();
+  sheet.getRange('A1:J1').breakApart().merge().setValue('EP01 SITE TREE');
+  sheet.getRange('A2:J2').breakApart().merge().setValue('Recommended website page tree from EP01 competitor evidence. Include and Review pages are shown as a hierarchy for planning.');
+  sheet.getRange('A4:J4').setValues([[
+    'Depth',
+    'Tree View',
+    'Page Name',
+    'Recommended Path',
+    'Parent Page',
+    'Page Type / Source',
+    'Recommendation',
+    'Evidence Count',
+    'Why Include',
+    'Notes'
+  ]]);
+  ep01StyleSiteTreeSheet_(sheet);
+}
+
 function ep01PrepareAiLogSheet_(sheet) {
   if (sheet.getLastRow() < 4 || sheet.getRange('A1').getValue() !== 'EP01 AI LOG') {
     sheet.clearContents();
@@ -682,6 +730,20 @@ function ep01StyleStructureSheet_(sheet) {
   sheet.setColumnWidth(14, 140);
   sheet.setColumnWidth(15, 300);
   sheet.setColumnWidth(16, 260);
+}
+
+function ep01StyleSiteTreeSheet_(sheet) {
+  ep01StyleSheet_(sheet, 10);
+  sheet.setColumnWidth(1, 80);
+  sheet.setColumnWidth(2, 320);
+  sheet.setColumnWidth(3, 240);
+  sheet.setColumnWidth(4, 220);
+  sheet.setColumnWidth(5, 180);
+  sheet.setColumnWidth(6, 220);
+  sheet.setColumnWidth(7, 140);
+  sheet.setColumnWidth(8, 110);
+  sheet.setColumnWidth(9, 360);
+  sheet.setColumnWidth(10, 300);
 }
 
 function ep01ReadCompetitorContexts_(sheet) {
@@ -830,6 +892,7 @@ function ep01AiSystemPrompt_() {
     '',
     'Your task:',
     'Analyze the supplied sitemap URL inventory and group URLs into meaningful top-level page types that would help a user decide what pages their website may need.',
+    'Also create a practical site tree showing which pages to include in the website and where those pages should sit.',
     '',
     'For each page type:',
     '- Give a clear page type name.',
@@ -839,6 +902,14 @@ function ep01AiSystemPrompt_() {
     '- Count how many competitors have that page type.',
     '- Recommend one of: Include, Review, Optional.',
     '- Give short reasoning based only on the data.',
+    '',
+    'For the site tree:',
+    '- Include a Home page at depth 1 when homepage evidence exists, or when the competitor set clearly uses homepages.',
+    '- Use depth 2 for top-level sections and pages.',
+    '- Use depth 3 for child pages such as individual service, location, comparison, case study, or resource pages.',
+    '- Group service pages under Services, location pages under Locations, resources/blog pages under Resources, company pages under Company, legal pages under Legal, and work/case-study pages under Work when the evidence supports those groups.',
+    '- Include pages with Include and Review recommendations. Do not include Optional pages unless they are required utility pages such as privacy, terms, or contact.',
+    '- Do not invent specific services, cities, products, or industries unless visible in the paths or page-type evidence.',
     '',
     'Recommendation rules:',
     '- Include: found across multiple competitors or clearly important from homepage/service structure.',
@@ -872,6 +943,20 @@ function ep01AiSystemPrompt_() {
     '      "total_urls_found": 0,',
     '      "urls_sent_to_ai": 0,',
     '      "main_url_patterns": ["string"],',
+    '      "notes": "string"',
+    '    }',
+    '  ],',
+    '  "site_tree": [',
+    '    {',
+    '      "depth": 1,',
+    '      "page_name": "string",',
+    '      "recommended_path": "string",',
+    '      "parent_page": "string",',
+    '      "page_type": "string",',
+    '      "recommendation": "Include | Review | Optional",',
+    '      "evidence_count": 0,',
+    '      "source_page_types": ["string"],',
+    '      "reasoning": "string",',
     '      "notes": "string"',
     '    }',
     '  ],',
@@ -936,6 +1021,485 @@ function ep01WriteAiStructure_(sheet, aiJson, payload) {
   }
 }
 
+function ep01ReadPageTypesFromStructure_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 6) return [];
+
+  var rows = sheet.getRange(6, 1, lastRow - 5, 16).getValues();
+  var pageTypes = [];
+
+  rows.forEach(function(row) {
+    var pageType = String(row[0] || '').trim();
+    if (!pageType || /^B\./.test(pageType) || pageType === 'Competitor Code') return;
+
+    var matches = {};
+    for (var i = 1; i <= 10; i++) {
+      matches['C' + i] = ep01AsArray_(row[i + 1]);
+    }
+
+    var count = Number(row[12] || ep01CountCompetitorMatches_(matches));
+    pageTypes.push({
+      page_type: pageType,
+      evidence_patterns: ep01AsArray_(row[1]),
+      competitor_matches: matches,
+      competitor_count: count,
+      recommendation: ep01NormalizeRecommendation_(row[13], count),
+      reasoning: row[14] || '',
+      notes: row[15] || ''
+    });
+  });
+
+  return pageTypes;
+}
+
+function ep01BuildSiteTreeRows_(aiJson) {
+  var aiTreeRows = ep01NormalizeAiSiteTreeRows_(aiJson.site_tree);
+  if (aiTreeRows.length) return aiTreeRows;
+  return ep01BuildFallbackSiteTreeRows_(aiJson.page_types || []);
+}
+
+function ep01NormalizeAiSiteTreeRows_(siteTree) {
+  if (!siteTree || !Array.isArray(siteTree)) return [];
+
+  return siteTree.map(function(item) {
+    var depth = ep01NormalizeTreeDepth_(item.depth || item.level);
+    var pageName = item.page_name || item.name || item.page_type || 'Untitled page';
+    var recommendation = ep01NormalizeTreeRecommendation_(item.recommendation);
+    var evidenceCount = Number(item.evidence_count || item.competitor_count || item.count || 0);
+
+    return [
+      depth,
+      ep01TreeLabel_(depth, pageName),
+      pageName,
+      item.recommended_path || item.path || item.url || '',
+      item.parent_page || item.parent || '',
+      item.page_type || ep01AsArray_(item.source_page_types).join(', '),
+      recommendation,
+      evidenceCount,
+      item.reasoning || item.why_include || '',
+      item.notes || ''
+    ];
+  }).filter(function(row) {
+    return row[2];
+  });
+}
+
+function ep01BuildFallbackSiteTreeRows_(pageTypes) {
+  var normalized = pageTypes.map(function(pageType) {
+    var matches = ep01NormalizeCompetitorMatches_(pageType.competitor_matches);
+    var count = Number(pageType.competitor_count || ep01CountCompetitorMatches_(matches));
+    var evidencePatterns = ep01AsArray_(pageType.evidence_patterns);
+    return {
+      page_type: pageType.page_type || '',
+      recommendation: ep01NormalizeRecommendation_(pageType.recommendation, count),
+      count: count,
+      reasoning: pageType.reasoning || pageType.summary || '',
+      notes: pageType.notes || '',
+      evidence_patterns: evidencePatterns,
+      matches: matches,
+      paths: ep01CollectPageTypePaths_(evidencePatterns, matches)
+    };
+  }).filter(function(item) {
+    return item.page_type && (
+      ['Include', 'Review'].indexOf(item.recommendation) !== -1 ||
+      ep01IsRequiredUtilityPageType_(item.page_type)
+    );
+  }).sort(function(a, b) {
+    if (a.recommendation !== b.recommendation) return a.recommendation === 'Include' ? -1 : 1;
+    return b.count - a.count;
+  });
+
+  var rows = [];
+  var home = ep01FindHomepagePageType_(normalized);
+  rows.push(ep01SiteTreeRow_(1, 'Home', '/', '', home ? home.page_type : 'Homepage', home ? home.recommendation : 'Include', home ? home.count : 0, home ? home.reasoning : 'Base page for the website structure.', home ? home.notes : 'Review and adjust based on the actual business.'));
+
+  var groupRows = {};
+  var addedRows = {};
+  normalized.forEach(function(item) {
+    if (ep01IsHomepagePageType_(item.page_type)) return;
+
+    var directPage = ep01InferDirectTreePage_(item);
+    if (directPage) {
+      ep01AddUniqueTreeRow_(rows, addedRows, ep01SiteTreeRow_(
+        directPage.depth,
+        directPage.pageName,
+        directPage.path,
+        directPage.parent,
+        item.page_type,
+        item.recommendation,
+        item.count,
+        item.reasoning,
+        item.notes
+      ));
+      ep01AddChildRowsFromPaths_(rows, addedRows, item, directPage.group);
+      return;
+    }
+
+    var group = ep01InferSiteTreeGroup_(item.page_type);
+    var isGenericGroup = group && ep01IsGenericGroupPageType_(item.page_type, group.name);
+
+    if (group && !groupRows[group.name]) {
+      groupRows[group.name] = true;
+      ep01AddUniqueTreeRow_(rows, addedRows, ep01SiteTreeRow_(2, group.name, group.path, 'Home', group.name + ' section', 'Include', '', 'Groups related pages found in competitor evidence.', 'Review child pages before finalizing.'));
+    }
+
+    var depth = group && !isGenericGroup ? 3 : 2;
+    var parent = group && !isGenericGroup ? group.name : 'Home';
+    var pageName = isGenericGroup ? group.name : ep01HumanizePageType_(item.page_type);
+    var path = isGenericGroup ? group.path : ep01InferRecommendedPath_(item.page_type, group);
+
+    if (isGenericGroup) {
+      ep01MergeIntoExistingTreeRow_(rows, pageName, item);
+      ep01AddChildRowsFromPaths_(rows, addedRows, item, group);
+      return;
+    }
+
+    ep01AddUniqueTreeRow_(rows, addedRows, ep01SiteTreeRow_(depth, pageName, path, parent, item.page_type, item.recommendation, item.count, item.reasoning, item.notes));
+    ep01AddChildRowsFromPaths_(rows, addedRows, item, group);
+  });
+
+  return rows;
+}
+
+function ep01SiteTreeRow_(depth, pageName, path, parent, pageType, recommendation, evidenceCount, reasoning, notes) {
+  return [
+    depth,
+    ep01TreeLabel_(depth, pageName),
+    pageName,
+    path,
+    parent,
+    pageType,
+    recommendation,
+    evidenceCount,
+    reasoning,
+    notes
+  ];
+}
+
+function ep01WriteSiteTree_(sheet, rows) {
+  ep01PrepareSiteTreeSheet_(sheet);
+  if (!rows.length) return;
+
+  sheet.getRange(5, 1, rows.length, 10).setValues(rows);
+  sheet.getRange(5, 1, rows.length, 10).setWrap(true);
+  ep01ApplySiteTreeRecommendationValidation_(sheet, 5, rows.length);
+}
+
+function ep01AddUniqueTreeRow_(rows, addedRows, row) {
+  var key = String(row[3] || row[2] || '').toLowerCase();
+  if (!key || addedRows[key]) return;
+  addedRows[key] = true;
+  rows.push(row);
+}
+
+function ep01CollectPageTypePaths_(evidencePatterns, matches) {
+  var values = [];
+  ep01AsArray_(evidencePatterns).forEach(function(value) {
+    values.push(value);
+  });
+  Object.keys(matches || {}).forEach(function(code) {
+    ep01AsArray_(matches[code]).forEach(function(value) {
+      values.push(value);
+    });
+  });
+
+  var seen = {};
+  var paths = [];
+  values.forEach(function(value) {
+    ep01AsArray_(value).forEach(function(candidate) {
+      var path = ep01NormalizeTreePathCandidate_(candidate);
+      if (!path || seen[path]) return;
+      seen[path] = true;
+      paths.push(path);
+    });
+  });
+  return paths;
+}
+
+function ep01NormalizeTreePathCandidate_(value) {
+  var text = String(value || '')
+    .replace(/^["']+|["']+$/g, '')
+    .trim();
+
+  if (!text || text === '-') return '';
+  if (/^https?:\/\//i.test(text)) text = ep01PagePath_(text);
+  if (text.charAt(0) !== '/') return '';
+
+  text = text.split('#')[0].split('?')[0].replace(/\/+/g, '/');
+  if (text !== '/' && text.charAt(text.length - 1) !== '/') text += '/';
+
+  var functionalPath = ep01AnalyzeUrlPath_(text).functionalPath;
+  if (!functionalPath || functionalPath === '/') return '/';
+  return functionalPath;
+}
+
+function ep01InferDirectTreePage_(item) {
+  var text = String(item.page_type || '').toLowerCase();
+  if (/about|company information/.test(text)) return { depth: 2, pageName: 'About Us', path: '/about/', parent: 'Home' };
+  if (/contact|inquiry|get in touch/.test(text)) return { depth: 2, pageName: 'Contact', path: '/contact/', parent: 'Home' };
+  if (/career|jobs|recruitment/.test(text)) return { depth: 2, pageName: 'Careers', path: '/careers/', parent: 'Home' };
+  if (/package|pricing|plans/.test(text)) return { depth: 2, pageName: 'Packages / Pricing', path: '/packages/', parent: 'Home' };
+  if (/blog|article|resource|guide|news|insight/.test(text)) return { depth: 2, pageName: 'Blog / Resources', path: '/blog/', parent: 'Home', group: { name: 'Blog / Resources', path: '/blog/' } };
+  return null;
+}
+
+function ep01AddChildRowsFromPaths_(rows, addedRows, item, group) {
+  if (!group || !item.paths || !item.paths.length) return;
+
+  var childPages = ep01BuildChildPagesFromPaths_(item.paths, group.name).slice(0, 14);
+  childPages.forEach(function(child) {
+    ep01AddUniqueTreeRow_(rows, addedRows, ep01SiteTreeRow_(
+      3,
+      child.pageName,
+      child.path,
+      group.name,
+      item.page_type,
+      item.recommendation,
+      child.count,
+      item.reasoning,
+      item.notes || child.notes
+    ));
+  });
+}
+
+function ep01BuildChildPagesFromPaths_(paths, groupName) {
+  var counts = {};
+  paths.forEach(function(path) {
+    if (!ep01ShouldUsePathForGroup_(path, groupName)) return;
+
+    var cleanPath = ep01CanonicalTreePathForGroup_(path, groupName);
+    if (!cleanPath) return;
+
+    if (!counts[cleanPath]) {
+      counts[cleanPath] = {
+        path: cleanPath,
+        pageName: ep01PageNameFromPath_(cleanPath, groupName),
+        count: 0,
+        notes: 'Derived from repeated competitor URL paths.'
+      };
+    }
+    counts[cleanPath].count += 1;
+  });
+
+  return Object.keys(counts).map(function(path) {
+    return counts[path];
+  }).filter(function(item) {
+    return item.pageName && !ep01IsLowValueTreeChild_(item.path, item.pageName, groupName);
+  }).sort(function(a, b) {
+    return b.count - a.count || a.pageName.localeCompare(b.pageName);
+  });
+}
+
+function ep01ShouldUsePathForGroup_(path, groupName) {
+  if (!path || path === '/') return false;
+  if (groupName === 'Services') {
+    if (ep01PathContainsLocation_(path)) return false;
+    return /service|services|marketing|seo|ppc|advertising|branding|brand|web|website|development|design|content|graphic|video|motion|performance|influencer|technology|identity|uiux|amazon|strategy|production/.test(path);
+  }
+  if (groupName === 'Locations') return ep01PathContainsLocation_(path);
+  if (groupName === 'Work') return /case|portfolio|project|work/.test(path);
+  if (groupName === 'Legal') return /privacy|terms|cookie|legal|policy/.test(path);
+  if (groupName === 'Blog / Resources' || groupName === 'Resources') return /blog|article|resource|guide|news|insight|category|tag/.test(path);
+  return true;
+}
+
+function ep01CanonicalTreePathForGroup_(path, groupName) {
+  var segments = String(path || '').split('/').filter(Boolean);
+  if (!segments.length) return '';
+
+  if (groupName === 'Services') {
+    var serviceIndex = ep01FindSegmentIndex_(segments, ['service', 'services', 'our-services']);
+    if (serviceIndex !== -1 && segments[serviceIndex + 1]) return '/services/' + segments[serviceIndex + 1] + '/';
+    return '/services/' + segments[segments.length - 1] + '/';
+  }
+
+  if (groupName === 'Locations') {
+    var location = ep01ExtractLocationSlug_(segments);
+    return location ? '/locations/' + location + '/' : '';
+  }
+
+  if (groupName === 'Work') {
+    if (segments.indexOf('portfolio') !== -1) return '/portfolio/';
+    if (segments.indexOf('projects') !== -1 || segments.indexOf('project') !== -1) return '/projects/';
+    return '/case-studies/';
+  }
+
+  if (groupName === 'Legal') {
+    if (/privacy/.test(path)) return '/privacy-policy/';
+    if (/terms/.test(path)) return '/terms-and-conditions/';
+    if (/cookie/.test(path)) return '/cookie-policy/';
+    return '/legal/';
+  }
+
+  if (groupName === 'Blog / Resources' || groupName === 'Resources') {
+    if (/category/.test(path)) return '/blog/category/';
+    if (/tag/.test(path)) return '/blog/tag/';
+    if (/article|articles/.test(path)) return '/articles/';
+    return '/blog/';
+  }
+
+  return path;
+}
+
+function ep01FindSegmentIndex_(segments, names) {
+  for (var i = 0; i < segments.length; i++) {
+    if (names.indexOf(segments[i]) !== -1) return i;
+  }
+  return -1;
+}
+
+function ep01ExtractLocationSlug_(segments) {
+  var knownLocations = [
+    'saudi-arabia', 'riyadh', 'jeddah', 'dammam', 'dubai', 'abu-dhabi', 'uae',
+    'oman', 'kuwait', 'qatar', 'bahrain', 'libya'
+  ];
+
+  for (var i = 0; i < segments.length; i++) {
+    for (var j = 0; j < knownLocations.length; j++) {
+      var location = knownLocations[j];
+      if (segments[i] === location || segments[i].indexOf(location) !== -1) return location;
+    }
+  }
+  return '';
+}
+
+function ep01PathContainsLocation_(path) {
+  return /(saudi-arabia|riyadh|jeddah|dammam|dubai|abu-dhabi|uae|oman|kuwait|qatar|bahrain|libya|near-me)/.test(String(path || ''));
+}
+
+function ep01PageNameFromPath_(path, groupName) {
+  if (groupName === 'Legal') {
+    if (path === '/privacy-policy/') return 'Privacy Policy';
+    if (path === '/terms-and-conditions/') return 'Terms and Conditions';
+    if (path === '/cookie-policy/') return 'Cookie Policy';
+  }
+
+  if (groupName === 'Work') {
+    if (path === '/portfolio/') return 'Portfolio';
+    if (path === '/projects/') return 'Projects';
+    if (path === '/case-studies/') return 'Case Studies';
+  }
+
+  if (groupName === 'Blog / Resources' || groupName === 'Resources') {
+    if (path === '/blog/') return 'Blog';
+    if (path === '/blog/category/') return 'Blog Categories';
+    if (path === '/blog/tag/') return 'Blog Tags';
+    if (path === '/articles/') return 'Articles';
+  }
+
+  var segments = String(path || '').split('/').filter(Boolean);
+  var last = segments.length ? segments[segments.length - 1] : '';
+  return ep01HumanizePageType_(last);
+}
+
+function ep01IsLowValueTreeChild_(path, pageName, groupName) {
+  if (!path || path === '/') return true;
+  if (groupName === 'Services' && /^Services?$/i.test(pageName)) return true;
+  if (groupName === 'Locations' && /near me/i.test(pageName)) return true;
+  return false;
+}
+
+function ep01IsRequiredUtilityPageType_(pageType) {
+  return /privacy|terms|cookie|legal|policy/.test(String(pageType || '').toLowerCase());
+}
+
+function ep01ApplySiteTreeRecommendationValidation_(sheet, startRow, rowCount) {
+  var rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['Include', 'Review', 'Optional'], true)
+    .setAllowInvalid(true)
+    .build();
+  sheet.getRange(startRow, 7, rowCount, 1).setDataValidation(rule);
+}
+
+function ep01NormalizeTreeDepth_(value) {
+  var depth = Number(value || 1);
+  if (!depth || depth < 1) return 1;
+  if (depth > 6) return 6;
+  return depth;
+}
+
+function ep01TreeLabel_(depth, pageName) {
+  var indent = '';
+  for (var i = 1; i < depth; i++) indent += '  ';
+  return indent + (depth > 1 ? '- ' : '') + pageName;
+}
+
+function ep01NormalizeTreeRecommendation_(value) {
+  var text = String(value || '').trim();
+  if (['Include', 'Review', 'Optional'].indexOf(text) !== -1) return text;
+  return 'Review';
+}
+
+function ep01FindHomepagePageType_(items) {
+  for (var i = 0; i < items.length; i++) {
+    if (ep01IsHomepagePageType_(items[i].page_type)) return items[i];
+  }
+  return null;
+}
+
+function ep01IsHomepagePageType_(pageType) {
+  return /\b(home|homepage|home page)\b/i.test(String(pageType || ''));
+}
+
+function ep01InferSiteTreeGroup_(pageType) {
+  var text = String(pageType || '').toLowerCase();
+  if (/service|solution|offering/.test(text)) return { name: 'Services', path: '/services/' };
+  if (/location|city|area|region|country|near me|local/.test(text)) return { name: 'Locations', path: '/locations/' };
+  if (/blog|article|resource|guide|news|insight|learn/.test(text)) return { name: 'Resources', path: '/resources/' };
+  if (/case stud|portfolio|project|client|work/.test(text)) return { name: 'Work', path: '/work/' };
+  if (/product|platform|software|tool/.test(text)) return { name: 'Products', path: '/products/' };
+  if (/about|team|company|career|mission/.test(text)) return { name: 'Company', path: '/company/' };
+  if (/privacy|terms|cookie|legal|policy/.test(text)) return { name: 'Legal', path: '/legal/' };
+  return null;
+}
+
+function ep01IsGenericGroupPageType_(pageType, groupName) {
+  var text = String(pageType || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  if (groupName === 'Services') return /service|offering|solution/.test(text);
+  if (groupName === 'Locations') return /location|city|area|region|local/.test(text);
+  if (groupName === 'Resources') return /resource|blog|article|guide|news|insight/.test(text);
+  if (groupName === 'Work') return /work|portfolio|case stud|project/.test(text);
+  if (groupName === 'Products') return /^(product|products|product page|product pages)$/.test(text);
+  if (groupName === 'Company') return /^(company|about|about us|team)$/.test(text);
+  if (groupName === 'Legal') return /legal|privacy|terms|cookie|policy|policies/.test(text);
+  return false;
+}
+
+function ep01MergeIntoExistingTreeRow_(rows, pageName, item) {
+  for (var i = 0; i < rows.length; i++) {
+    if (rows[i][2] === pageName) {
+      rows[i][5] = item.page_type;
+      rows[i][6] = item.recommendation;
+      rows[i][7] = item.count;
+      rows[i][8] = item.reasoning || rows[i][8];
+      rows[i][9] = item.notes || rows[i][9];
+      return;
+    }
+  }
+}
+
+function ep01HumanizePageType_(pageType) {
+  var text = String(pageType || 'Page').replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+  return text.replace(/\b\w/g, function(letter) {
+    return letter.toUpperCase();
+  });
+}
+
+function ep01InferRecommendedPath_(pageType, group) {
+  var slug = ep01Slugify_(pageType);
+  if (!slug) return '';
+  if (!group) return '/' + slug + '/';
+  return group.path + slug + '/';
+}
+
+function ep01Slugify_(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 function ep01NormalizeCompetitorMatches_(matches) {
   var normalized = {};
   if (!matches) return normalized;
@@ -960,7 +1524,9 @@ function ep01AsArray_(value) {
   if (Array.isArray(value)) return value.map(function(item) {
     return String(item || '').trim();
   }).filter(Boolean);
-  return [String(value).trim()].filter(Boolean);
+  return String(value || '').split(/\n+/).map(function(item) {
+    return String(item || '').trim();
+  }).filter(Boolean);
 }
 
 function ep01CountCompetitorMatches_(matches) {
